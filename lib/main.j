@@ -1,13 +1,10 @@
 @import <Foundation/Foundation.j>
 @import "Lexer.j"
 
-CPLogRegister(CPLogPrint);
-
 var File = require("file");
 
+// Options Parser
 var parser = new (require("args").Parser)();
-
-DEBUG = function (debugString) {};
 
 parser.usage("INPUT_FILE");
 parser.help("Performs lexical analysis on an input file using a grammar.");
@@ -24,6 +21,8 @@ parser.option("-g", "grammar")
 
 parser.helpful();
 
+DEBUG = function (debugString) {};
+
 function main(args)
 {
     var options = parser.parse(args);
@@ -33,6 +32,8 @@ function main(args)
         parser.printUsage(options);
         return;
     }
+    
+    CPLogRegister(CPLogPrint);
     
     if (options.debug) {
         DEBUG = function(debugString)

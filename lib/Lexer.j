@@ -6,6 +6,11 @@
     JSObject    grammar;
 }
 
+- (id)init
+{
+    return [self initWithGrammar:nil];
+}
+
 - (id)initWithGrammar:(JSObject)aGrammar
 {
     if (self = [super init])
