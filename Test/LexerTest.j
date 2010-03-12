@@ -16,14 +16,24 @@
     [self assertNotNull:target];
 }
 
-- (void)testThatLexerDoesAnalyzeTestClassInput
+- (void)testThatLexerDoesLexTestOne
 {
-    var input = readFile("Test/Files/TestOneInput.txt");
-    var expected_output = readFile("Test/Files/TestOneOutput.txt");
-    
-    var output = [target tokenize:input];
-    
-    [self assert:expected_output equals:output];
+    [self lexerLexesInputFile:@"TestOneInput.txt" intoOutputFile:@"TestOneOutput.txt"];
+}
+
+- (void)testThatLexerDoesLexTestTwo
+{
+    [self lexerLexesInputFile:@"TestTwoInput.txt" intoOutputFile:@"TestTwoOutput.txt"];
+}
+
+- (void)testThatLexerDoesLexTestThree
+{
+    [self lexerLexesInputFile:@"TestThreeInput.txt" intoOutputFile:@"TestThreeOutput.txt"];
+}
+
+- (void)testThatLexerDoesLexTestFour
+{
+    [self lexerLexesInputFile:@"TestFourInput.txt" intoOutputFile:@"TestFourOutput.txt"];
 }
 
 - (void)testThatLexerDoesLexComments
@@ -59,6 +69,16 @@
 - (void)testThatLexerDoesLexCComments
 {
     [self lexerLexes:"// cool" into:""];
+}
+
+- (void)lexerLexesInputFile:(CPString)inputFilename intoOutputFile:(CPString)outputFilename
+{
+    var input = readFile("Test/Files/" + inputFilename);
+    var expected_output = readFile("Test/Files/" + outputFilename);
+
+    var output = [target tokenize:input];
+
+    [self assert:expected_output equals:output];
 }
 
 - (void)lexerLexesArray:(CPArray)inputs forFormat:(CPString)expectedOutputFormat
