@@ -1,0 +1,5 @@
+{
+    "name": "HKCD",
+    "author": ["Chandler Kent", "Derek Hammer"],
+    "dependencies": ["jison", "objective-j", "cappuccino"],
+}
