@@ -9,8 +9,8 @@
 
 - (void)setUp
 {
-    sampleInputs = [CPDictionary dictionaryWithObjects:[@"number 123\nplus +\nminus -\nnumber 312\n", @"plus +\nminus -\nminus -\nplus +\nplus +\nminus -\n"] forKeys:[@"123+-312", @"+--++-"]];
-    target = [[Lexer alloc] initWithGrammar:readGrammarFromFile("../lib/grammar.json")];
+    sampleInputs = [CPDictionary dictionaryWithObjects:[@"number, 123\nplus, +\nminus, -\nnumber, 312\n", @"plus, +\nminus, -\nminus, -\nplus, +\nplus, +\nminus, -\n"] forKeys:[@"123+-312", @"+--++-"]];
+    target = [[Lexer alloc] initWithGrammar:readGrammarFromFile("lib/grammar.json")];
 }
 
 - (void)testThatLexerDoesInitialize
