@@ -69,7 +69,7 @@ function readFile(fileName)
 {
     try
     {
-        var filePath = File.path(File.cwd()).join(fileName);
+        var filePath = File.absolute(fileName);
         DEBUG("Reading file: " + filePath);
         fileBytes = File.read(filePath);
         DEBUG("Read this from file:\n" + fileBytes);
