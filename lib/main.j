@@ -4,62 +4,80 @@
 CPLogRegister(CPLogPrint);
 
 var File = require("file");
-var debugging = NO;
+
+var parser = new (require("args").Parser)();
+
+DEBUG = function (debugString) {};
+
+parser.usage("INPUT_FILE");
+parser.help("Performs lexical analysis on an input file using a grammar.");
+
+parser.option("-d", "debug")
+    .def(false)
+    .set(true)
+    .help("Debug flag. Use this option to print debug messages.");
+
+parser.option("-g", "grammar")
+    .def("lib/grammar.json")
+    .set()
+    .help("Specifies the grammar file (default lib/grammar.json).");
+
+parser.helpful();
 
 function main(args)
 {
-    if (args.length < 2)
+    var options = parser.parse(args);
+    
+    if (options.args.length < 1)
     {
-        CPLog.error("You must specify an input file (e.g. objj main.j <input file>).");
+        parser.printUsage(options);
         return;
     }
     
-    if (args[2] && args[2] == @"-d")
-    {
-        debugging = YES;
+    if (options.debug) {
+        DEBUG = function(debugString)
+        {
+            CPLog.debug(debugString);
+        }
     }
     
-    var fileName = args[1];
-    var filePath = File.path(File.cwd()).join(fileName);
+    var fileName = options.args[0];    
+    var inputFile = readFile(fileName);
     
-    var inputFile = readFile(filePath);
-    
-    var lexer = [[Lexer alloc] initWithGrammar:generateGrammar()];
+    var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
     var tokens = [lexer tokenizeInput:inputFile];
     
     print("\nTokens:\n" + tokens);
     return;
 }
 
-function generateGrammar()
+function readGrammarFromFile(filePath)
 {
-    return {
-        "lex": {
-            "rules": [
-                ["[0-9]+", "return 'number';"],
-                ["\\+", "return 'plus';"],
-                ["-", "return 'minus';"]
-            ]
-        },
-
-        "bnf": {
-            "stmt": ["symbol stmt", ""],
-            "symbol": ["number", "plus", "minus"]
-        }
-    };
+    try
+    {
+        return JSON.parse(readFile(filePath));
+    }
+    catch (e)
+    {
+        CPLog.error("Error reading grammar file: " + filePath);
+        require("os").exit(-1);
+    }
 }
 
-function readFile(filePath)
+function readFile(fileName)
 {
-    DEBUG("Reading file: " + filePath);
-    var fileBytes = File.read(filePath);
-    DEBUG("Read this from file:\n" + fileBytes);
-    
-    return fileBytes;
-}
-
-DEBUG = function(debugString)
-{
-    if (debugging)
-        CPLog.debug(debugString);
+    try
+    {
+        var filePath = File.path(File.cwd()).join(fileName);
+        DEBUG("Reading file: " + filePath);
+        fileBytes = File.read(filePath);
+        DEBUG("Read this from file:\n" + fileBytes);
+        
+        return fileBytes;
+    }
+    catch (e)
+    {
+        CPLog.error("Error reading file: " + filePath);
+        require("os").exit(-1);
+    }
 }

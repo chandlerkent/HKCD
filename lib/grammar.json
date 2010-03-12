@@ -1,0 +1,14 @@
+{
+    "lex": {
+        "rules": [
+            ["[0-9]+", "return 'number';"],
+            ["\\+", "return 'plus';"],
+            ["-", "return 'minus';"]
+        ]
+    },
+
+    "bnf": {
+        "stmt": ["symbol stmt", ""],
+        "symbol": ["number", "plus", "minus"]
+    }
+}
