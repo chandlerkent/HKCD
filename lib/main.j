@@ -24,11 +24,29 @@ function main(args)
     
     var inputFile = readFile(filePath);
     
-    var lexer = [[Lexer alloc] init];
+    var lexer = [[Lexer alloc] initWithGrammar:generateGrammar()];
     var tokens = [lexer tokenizeInput:inputFile];
     
     print("\nTokens:\n" + tokens);
     return;
+}
+
+function generateGrammar()
+{
+    return {
+        "lex": {
+            "rules": [
+                ["[0-9]+", "return 'number';"],
+                ["\\+", "return 'plus';"],
+                ["-", "return 'minus';"]
+            ]
+        },
+
+        "bnf": {
+            "stmt": ["symbol stmt", ""],
+            "symbol": ["number", "plus", "minus"]
+        }
+    };
 }
 
 function readFile(filePath)
