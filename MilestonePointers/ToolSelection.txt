@@ -1,0 +1,105 @@
+============================
+Chandler Kent
+Derek Hammer
+(HKCD)
+Milestone 1 - Tool Selection
+============================
+
+We would like to apologize in advance for the length of this document. We were stuck in “verbose” mode.
+
+--------------------------
+1. Implementation Language
+--------------------------
+
+We had originally settled on using Ruby as our implementation language. We even went as far as completing this milestone (including writing this document) using Ruby. However, we have backed up and decided to instead use Javascript as our implementation language to complete the project.
+
+There are a few reasons we chose Javascript over Ruby, but none of them are a knock against Ruby. Mainly, we are already using Javascript in our daily lives and have become very familiar with its capabilities. Using Javascript is less of a “mental context switch” when we work on this project. Second, we thought it would be really cool! We bet nobody has every done a compilers project in Javascript, mostly because it would have been impossible one year ago. With the introduction of CommonJS and all the great tools that have come with it, we think we can now complete this project using entirely Javascript. To be on the cutting edge is dangerous, but is also a fun experience. Third, we really wanted to learn more about the CommonJS offerings. We have been using it indirectly for the past few months, but now we have an opportunity to really dive head first into all that is CommonJS.
+
+Finally, using Javascript also allows us to use Objective-J. It may be misleading that we are saying we chose Javascript, when we will mostly be using Objective-J. However, at this time we aren’t sure how many of the features of Objective-J will actually be necessary to use. Do we need real classical inheritance? Do we need the Cappuccino frameworks? We are not sure. The line between them is pretty blurry anyway that we feel it is safe (and not lying) to say that Javascript is our implementation language going forward.
+
+--------------------
+2. Scanner-Generator
+--------------------
+
+Our scanner-generator of choice is a Javascript “port” of Bison called Jison (http://github.com/zaach/jison, http://zaa.ch/2k). As we understand Bison, it is not actually a scanner-generator, but a parser-generator (it leaves the lexing to Flex). Jison’s main goal is to be a parser-generator, too. For this milestone we just needed to do lexical analysis so a parser-generator is unnecessary. However, we were trying to avoid writing our own lexer so we used Jison’s built-in lexer. Jison’s documentation claims the lexer is weak right now, but it worked well enough for this milestone. To test it’s chops further we finished milestone 2 as well with little trouble. So we believe Jison is capable enough for this project.
+
+NOTES ON JISON
+In the previous paragraph we said that Jison is a “port” of Bison. The quotes were used because Jison does set out to support all the features of Bison that make sense, but it does deviate where copying Bison does not make sense. For example, Jison is a bottom-up parser. Jison uses JSON as its input language (recently the ability to use Bison syntax was added for compatibility, but we don’t think we will use it). 
+
+NOTES ON MILESTONE 1
+The “lexer” we built for milestone 1 does not completely follow the specification, although we hope that is not a big deal. Due to a limitation we could not get around, we could not print the tokens exactly as the milestone description called for. Instead the tokens are printed more like milestone 2 with KEYWORD, VALUE. For example, our lexer prints the following out for the sample input “123+321-+12”:
+
+	number, 123
+	plus, +
+	number, 321
+	minus, -
+	plus, +
+	number, 12
+
+We hope this is not a problem since this is the syntax required for milestone 2 anyway.
+
+--------------
+3. Source Code
+--------------
+
+The source code for this milestone can be found at (relative to this file):
+
+	“../lib/“
+
+Our lexer is in “Lexer.j” and the entry point for our “compiler” is “main.j”. Our tests are located at:
+
+	“../Test/“
+
+This folder will contain all the source for our project moving forward. We are developing in branches and we will be sure that master will contain the code for the milestone that is being graded. When grading is done we will tag the code (so we can always know what was turned in for each milestone) and then pull in the next version of the source that we have been working on.
+
+----------------------------------------
+4. Other Notes (git, Installation, etc.)
+----------------------------------------
+
+We realize we have asked a lot of you because we are using different tools than the other students (and we REALLY appreciate you allowing us to do this!). This section will describe how we hope the process will work and how to install any tools required to get, build, or run our code. If you have any questions or something does not work, please let us know.
+
+GIT
+You mentioned you already have git installed, so we won’t cover installing git. We want the grading process to be seamless for you. We have created a shell script called “svn” at the top level directory of our repo that will do a “git pull” instead of an “svn up”. The rest should be the same as using svn.
+
+To get our source, clone our GitHub repository:
+
+	$ git clone git://github.com/chandlerkent/HKCD.git
+
+CAPPUCCINO, OBJECTIVE-J, NARWHAL
+The easiest way to install all of these tools is to use Cappuccino’s installer. First, clone Cappuccino’s repo:
+
+	$ git clone git://github.com/280north/cappuccino.git
+	$ cd cappuccino
+
+Then, run bootstrap.sh. This will install narwhal in “/usr/local/narwhal”.
+
+	$ sudo ./bootsrap.sh
+
+Answer “yes” to all of the questions for the default install.
+
+Now, build Cappuccino and Objective-J:
+	
+	$ sudo jake sudo-install
+
+You should now be able to type and run “narwhal” and “objj” from the command line.
+
+JISON
+Our project depends on Jison, so you will also need to install it using “tusk” (Narwhal’s package manager):
+
+	$ sudo tusk install http://github.com/zaach/jison/zipball/master
+
+RUNNING THE LEXER
+To run our lexer for milestone 1, “cd” to our repository and run:
+	
+	$ objj lib/main.j <StringToLex>
+
+It will print out the tokens or an error if the input is invalid.
+
+RUNNING THE TESTS
+If you wish to run our tests you will need to install OJTest:
+
+	$ sudo tusk install http://github.com/280north/ojtest/zipball/master
+
+Then, at the top-level of our repository, run:
+
+	$ ojtest Test/*
