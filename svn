@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Tricky, tricky. This is not an SVN repo. Running git pull instead."
+git pull origin master
