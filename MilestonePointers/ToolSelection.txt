@@ -59,7 +59,11 @@ This folder will contain all the source for our project moving forward. We are d
 We realize we have asked a lot of you because we are using different tools than the other students (and we REALLY appreciate you allowing us to do this!). This section will describe how we hope the process will work and how to install any tools required to get, build, or run our code. If you have any questions or something does not work, please let us know.
 
 GIT
-You mentioned you already have git installed, so we won’t cover installing git. We want the grading process to be seamless for you. We have created a shell script called “svn” at the top level directory of our repo that will do a “git pull” instead of an “svn up”. The rest should be the same as using svn.
+You mentioned you already have git installed, so we won’t cover installing git. We want the grading process to be seamless for you. We have created a shell script called “svn” at the top level directory of our repo that will do a “git pull” instead of an “svn up”. You may have to add the following line to your bash profile to get this hack to work:
+
+	export PATH=“./:$PATH”
+
+The rest should now be the same as using svn.
 
 To get our source, clone our GitHub repository:
 
