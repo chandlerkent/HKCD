@@ -1,14 +1,30 @@
-{
+{   
     "lex": {
+        "macros": {
+            "Letter": "[a-zA-Z]",
+            "Digit" : "[0-9]",
+            "NonZeroDigit" : "[1-9]",
+        },
+        
         "rules": [
-            ["[0-9]+", "return 'number';"],
-            ["\\+", "return 'plus';"],
-            ["-", "return 'minus';"]
+            ["/\\*.*\\*/", "/* skip */"],
+            ["//.*", "/* skip */"],
+            ["\\s+", "/* skip */"],
+            ["class", "return 'ReservedWord';"],
+            ["public", "return 'ReservedWord';"],
+            ["void", "return 'ReservedWord';"],
+            ["String", "return 'ReservedWord';"],
+            ["static", "return 'ReservedWord';"],
+            ["main", "return 'ReservedWord';"],
+            ["System.out.println", "return 'ReservedWord';"],
+            ["({NonZeroDigit}{Digit}*|0)", "return 'Integer';"],
+            ["{Letter}({Letter}|{Digit})*", "return 'ID';"],
+            ["(\\+|-|\\*|\\/|<=|<|>=|>|==|\\!=|&&|\\|\\||\\!)", "return 'Operator';"],
+            ["(;|\\.|,|=|\\(|\\)|\\{|\\}|\\[|\\])", "return 'Delimiter';"],
         ]
     },
 
-    "bnf": {
-        "stmt": ["symbol stmt", ""],
-        "symbol": ["number", "plus", "minus"]
+    "bnf": { 
+        "Program" : ["ReservedWord Program", "ReservedWord", "ID", "Delimiter", "Integer", "Operator"]
     }
 }

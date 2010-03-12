@@ -21,7 +21,7 @@
     return self;
 }
 
-- (CPString)tokenizeInput:(CPString)input
+- (CPString)tokenize:(CPString)input
 {
     var lexer = parser.lexer;
     

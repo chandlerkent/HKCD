@@ -46,7 +46,7 @@ function main(args)
     var inputFile = readFile(fileName);
     
     var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
-    var tokens = [lexer tokenizeInput:inputFile];
+    var tokens = [lexer tokenize:inputFile];
     
     print("\nTokens:\n" + tokens);
     return;

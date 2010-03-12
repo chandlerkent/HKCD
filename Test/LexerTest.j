@@ -3,13 +3,11 @@
 
 @implementation LexerTest : OJTestCase
 {
-    CPDictionary    sampleInputs;
     Lexer           target;
 }
 
 - (void)setUp
 {
-    sampleInputs = [CPDictionary dictionaryWithObjects:[@"number, 123\nplus, +\nminus, -\nnumber, 312\n", @"plus, +\nminus, -\nminus, -\nplus, +\nplus, +\nminus, -\n"] forKeys:[@"123+-312", @"+--++-"]];
     target = [[Lexer alloc] initWithGrammar:readGrammarFromFile("lib/grammar.json")];
 }
 
@@ -18,14 +16,64 @@
     [self assertNotNull:target];
 }
 
-- (void)testThatLexerDoesTokenizeSampleInputs
+- (void)testThatLexerDoesAnalyzeTestClassInput
 {
-    var keys = [sampleInputs allKeys];
-    for (var i = 0; i < keys.length; i++)
+    var input = readFile("Test/Files/TestOneInput.txt");
+    var expected_output = readFile("Test/Files/TestOneOutput.txt");
+    
+    var output = [target tokenize:input];
+    
+    [self assert:expected_output equals:output];
+}
+
+- (void)testThatLexerDoesLexComments
+{
+    [self lexerLexes:"/* some comment */" into:""];
+}
+
+- (void)testThatLexerDoesLexReservedWords
+{
+    [self lexerLexesArray:["class", "public", "static", "void", "main", "String", "System.out.println"] forFormat:"ReservedWord, %@\n"];
+}
+
+- (void)testThatLexerDoesLexIdentifiers
+{
+    [self lexerLexes:"bob" into:"ID, bob\n"];
+}
+
+- (void)testThatLexerDoesLexDelimiters
+{
+    [self lexerLexesArray:[";", ".", ",", "=", "{", "}", "(", ")", "[", "]"] forFormat:"Delimiter, %@\n"];
+}
+
+- (void)testThatLexerDoesLexIntegers
+{
+    [self lexerLexes:"123" into:"Integer, 123\n"];
+}
+
+- (void)testThatLexerDoesLexOperators
+{
+    [self lexerLexesArray:["+", "-", "*", "/", "<", "<=", ">=", ">", "==", "!=", "&&", "||", "!"] forFormat:"Operator, %@\n"];
+}
+
+- (void)testThatLexerDoesLexCComments
+{
+    [self lexerLexes:"// cool" into:""];
+}
+
+- (void)lexerLexesArray:(CPArray)inputs forFormat:(CPString)expectedOutputFormat
+{
+    for(var i = 0; i < [inputs count]; i++) 
     {
-        var key = keys[i];
-        [self assert:[sampleInputs objectForKey:key] equals:[target tokenizeInput:key]];
+        [self lexerLexes:[inputs objectAtIndex:i] into:[CPString stringWithFormat:expectedOutputFormat, [inputs objectAtIndex:i]]];
     }
+}
+
+- (void)lexerLexes:(CPString)input into:(CPString)expectedOutput
+{
+    var output = [target tokenize:input];
+    
+    [self assert:expectedOutput equals:output];
 }
 
 @end
