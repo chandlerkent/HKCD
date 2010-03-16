@@ -16,34 +16,15 @@
     [self assertNotNull:target];
 }
 
-- (void)testThatLexerDoesLexTestOne
+- (void)testThatLexerDoesLexInputFiles
 {
-    [self lexerLexesInputFile:@"TestOneInput.txt" intoOutputFile:@"TestOneOutput.txt"];
-}
-
-- (void)testThatLexerDoesLexTestTwo
-{
-    [self lexerLexesInputFile:@"TestTwoInput.txt" intoOutputFile:@"TestTwoOutput.txt"];
-}
-
-- (void)testThatLexerDoesLexTestThree
-{
-    [self lexerLexesInputFile:@"TestThreeInput.txt" intoOutputFile:@"TestThreeOutput.txt"];
-}
-
-- (void)testThatLexerDoesLexTestFour
-{
-    [self lexerLexesInputFile:@"TestFourInput.txt" intoOutputFile:@"TestFourOutput.txt"];
-}
-
-- (void)testThatLexerDoesLexTestFive
-{
-    [self lexerLexesInputFile:@"TestFiveInput.txt" intoOutputFile:@"TestFiveOutput.txt"];
-}
-
-- (void)testThatLexerDoesLexTestSix
-{
-    [self lexerLexesInputFile:@"TestSixInput.txt" intoOutputFile:@"TestSixOutput.txt"];
+    var inputFiles = new (require("jake").FileList)("Test/Files/*Input.txt").items();
+    var outputFiles = new (require("jake").FileList)("Test/Files/*Output.txt").items();
+    
+    for(var i = 0; i < [inputFiles count]; i++)
+    {
+        [self lexerLexesInputFile:inputFiles[i] intoOutputFile:outputFiles[i]];
+    }
 }
 
 - (void)testThatLexerDoesLexComments
@@ -83,8 +64,8 @@
 
 - (void)lexerLexesInputFile:(CPString)inputFilename intoOutputFile:(CPString)outputFilename
 {
-    var input = readFile("Test/Files/" + inputFilename);
-    var expected_output = readFile("Test/Files/" + outputFilename);
+    var input = readFile(inputFilename);
+    var expected_output = readFile(outputFilename);
 
     var output = [target tokenize:input];
 
