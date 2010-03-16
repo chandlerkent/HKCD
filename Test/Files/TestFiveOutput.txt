@@ -15,8 +15,8 @@ Operator, /
 Operator, <=
 Operator, <
 Operator, >=
-Operator, >=
-Delimiter, =
+Operator, >
+Operator, ==
 Operator, !=
 Operator, &&
 Operator, ||
