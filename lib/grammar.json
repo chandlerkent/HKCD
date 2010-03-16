@@ -1,0 +1,25 @@
+{   
+    "lex": {
+        "macros": {
+            "Letter": "[a-zA-Z]",
+            "Digit" : "[0-9]",
+            "NonZeroDigit" : "[1-9]",
+        },
+        
+        "rules": [
+            ["/\\*.*?\\*/", "/* skip */"],
+            ["//.*", "/* skip */"],
+            ["\\s+", "/* skip */"],
+            ["(class|public|void|String|static|main|extends|int|boolean|if|else|while|return|null|true|false|this|new|System.out.println)\\b", "return 'ReservedWord';"],
+            ["System.out.println\\b", "return 'ReservedWord';"],
+            ["{Letter}({Letter}|{Digit})*", "return 'ID';"],
+            ["({NonZeroDigit}{Digit}*|0)", "return 'Integer';"],
+            ["(\\+|-|\\*|\\/|<=|<|>=|>|==|\\!=|&&|\\|\\||\\!)", "return 'Operator';"],
+            ["(;|\\.|,|=|\\(|\\)|\\{|\\}|\\[|\\])", "return 'Delimiter';"],
+        ]
+    },
+
+    "bnf": { 
+        "Program" : ["ReservedWord Program", "ReservedWord", "ID", "Delimiter", "Integer", "Operator"]
+    }
+}
