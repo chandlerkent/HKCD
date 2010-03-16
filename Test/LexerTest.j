@@ -41,6 +41,11 @@
     [self lexerLexesInputFile:@"TestFiveInput.txt" intoOutputFile:@"TestFiveOutput.txt"];
 }
 
+- (void)testThatLexerDoesLexTestSix
+{
+    [self lexerLexesInputFile:@"TestSixInput.txt" intoOutputFile:@"TestSixOutput.txt"];
+}
+
 - (void)testThatLexerDoesLexComments
 {
     [self lexerLexes:"/* some comment */" into:""];
