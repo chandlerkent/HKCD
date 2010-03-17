@@ -1,5 +1,0 @@
-ReservedWord, System.out.println
-Delimiter, (
-Integer, 123
-Delimiter, )
-Delimiter, ;
