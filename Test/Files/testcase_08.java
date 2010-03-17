@@ -1,6 +1,0 @@
-/* anything 
-******** 
-********
-*/
-
-while new class
