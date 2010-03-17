@@ -1,6 +1,8 @@
 @import "../lib/Lexer.j"
 @import "../lib/main.j"
 
+var FileList = require("jake").FileList;
+
 @implementation LexerTest : OJTestCase
 {
     Lexer           target;
@@ -16,10 +18,21 @@
     [self assertNotNull:target];
 }
 
-- (void)testThatLexerDoesLexInputFiles
+- (void)testThatLexerDoesLexOurTestFiles
 {
-    var inputFiles = new (require("jake").FileList)("Test/Files/*.java").items();
-    var outputFiles = new (require("jake").FileList)("Test/Files/*.out").items();
+    var inputFiles = new FileList("Test/Files/Ours/*.java").items();
+    var outputFiles = new FileList("Test/Files/Ours/*.out").items();
+    
+    for(var i = 0; i < [inputFiles count]; i++)
+    {
+        [self lexerLexesInputFile:inputFiles[i] intoOutputFile:outputFiles[i]];
+    }
+}
+
+- (void)testThatLexerDoesLexRoundOneTestFiles
+{
+    var inputFiles = new FileList("Test/Files/Round1/*.java").items();
+    var outputFiles = new FileList("Test/Files/Round1/*.out").items();
     
     for(var i = 0; i < [inputFiles count]; i++)
     {
