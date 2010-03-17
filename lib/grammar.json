@@ -7,7 +7,7 @@
         },
         
         "rules": [
-            ["/\\*.*?\\*/", "/* skip */"],
+            ["/\\*(.|\\n|\\r|\\r\\n)*?\\*/", "/* skip */"],
             ["//.*", "/* skip */"],
             ["\\s+", "/* skip */"],
             ["(class|public|void|String|static|main|extends|int|boolean|if|else|while|return|null|true|false|this|new|System.out.println)\\b", "return 'ReservedWord';"],

@@ -1,0 +1,17 @@
+Operator, /
+Operator, *
+ID, anything
+Operator, *
+Operator, *
+Operator, *
+Operator, *
+Operator, *
+Operator, *
+Operator, *
+Operator, *
+Operator, *
+Operator, /
+ReservedWord, while
+ReservedWord, new
+ReservedWord, class
+

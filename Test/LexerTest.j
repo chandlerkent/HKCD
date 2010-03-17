@@ -18,8 +18,8 @@
 
 - (void)testThatLexerDoesLexInputFiles
 {
-    var inputFiles = new (require("jake").FileList)("Test/Files/*Input.txt").items();
-    var outputFiles = new (require("jake").FileList)("Test/Files/*Output.txt").items();
+    var inputFiles = new (require("jake").FileList)("Test/Files/*.java").items();
+    var outputFiles = new (require("jake").FileList)("Test/Files/*.out").items();
     
     for(var i = 0; i < [inputFiles count]; i++)
     {
@@ -69,7 +69,21 @@
 
     var output = [target tokenize:input];
 
-    [self assert:expected_output equals:output];
+    try
+    {
+        [self assert:expected_output equals:output];
+    }
+    catch (e)
+    {
+        var file = require("file");
+        var filesPath = file.path(file.cwd());
+        var actualFile = filesPath.join(outputFilename + ".actual").open("w");
+        actualFile.print(output).close();
+        
+        print("\n\nFailed " + inputFilename);
+        
+        throw e;
+    }
 }
 
 - (void)lexerLexesArray:(CPArray)inputs forFormat:(CPString)expectedOutputFormat
