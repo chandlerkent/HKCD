@@ -46,31 +46,49 @@ function main(args)
     var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
     
     if (File.isDirectory(options.args[0])) {
-        var folder = options.args[0];
-        print("reading from " + folder);
-        var outFolder = File.absolute(folder) + "Out";
-        
-        if (File.exists(outFolder))
-            File.rmtree(outFolder);
-        
-        File.mkdir(outFolder);
-        var files = new FileList(folder + "*.java").items();
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var inputFile = readFile(file);
-            var tokens = [lexer tokenize:inputFile];
-            
-            File.write(outFolder + "/" + [file lastPathComponent].split(".")[0] + ".out", tokens);
-        }
+        tokenizeFolder(options.args[0], lexer);
     } else {
-        var fileName = options.args[0];    
-        var inputFile = readFile(fileName);
-        
-        var tokens = [lexer tokenize:inputFile];
-
-        print("\nTokens:\n" + tokens);
+        tokenizeFile(options.args[0], lexer);
     }
     return;
+}
+
+function tokenizeFolder(folder, lexer) {
+    print("reading from " + folder);
+
+    recreateFolder(outputPathForFolder(folder));
+    
+    var files = new FileList(folder + "*.java").items();
+    
+    for (var i = 0; i < files.length; i++) {
+        
+        var inputFile = readFile(files[i]);
+        
+        File.write(outputPathForFolder(folder) + outputPathForFile(files[i]), tokensForFile(files[i], lexer));
+    }
+}
+
+function recreateFolder(folder) {
+    if (File.exists(folder))
+        File.rmtree(folder);
+    
+    File.mkdir(folder);
+}
+
+function outputPathForFolder(folder) {
+    return File.absolute(folder) + "Out";
+}
+
+function outputPathForFile(file) {
+    return "/" + [file lastPathComponent].split(".")[0] + ".out";
+}
+
+function tokenizeFile(fileName, lexer) {
+    print("\nTokens:\n" + tokensForFile(fileName, lexer));
+}
+
+function tokensForFile(fileName, lexer) {
+    return [lexer tokenize:readFile(fileName)];
 }
 
 function readGrammarFromFile(filePath) {
