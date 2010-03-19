@@ -2,6 +2,7 @@
 @import "Lexer.j"
 
 var File = require("file");
+var FileList = require("jake").FileList;
 
 // Options Parser
 var parser = new (require("args").Parser)();
@@ -42,18 +43,37 @@ function main(args)
         }
     }
     
-    var fileName = options.args[0];    
-    var inputFile = readFile(fileName);
-    
     var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
-    var tokens = [lexer tokenize:inputFile];
     
-    print("\nTokens:\n" + tokens);
+    if (File.isDirectory(options.args[0])) {
+        var folder = options.args[0];
+        print("reading from " + folder);
+        var outFolder = File.absolute(folder) + "Out";
+        
+        if (File.exists(outFolder))
+            File.rmtree(outFolder);
+        
+        File.mkdir(outFolder);
+        var files = new FileList(folder + "*.java").items();
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var inputFile = readFile(file);
+            var tokens = [lexer tokenize:inputFile];
+            
+            File.write(outFolder + "/" + [file lastPathComponent].split(".")[0] + ".out", tokens);
+        }
+    } else {
+        var fileName = options.args[0];    
+        var inputFile = readFile(fileName);
+        
+        var tokens = [lexer tokenize:inputFile];
+
+        print("\nTokens:\n" + tokens);
+    }
     return;
 }
 
-function readGrammarFromFile(filePath)
-{
+function readGrammarFromFile(filePath) {
     try
     {
         return JSON.parse(readFile(filePath));
@@ -65,8 +85,7 @@ function readGrammarFromFile(filePath)
     }
 }
 
-function readFile(fileName)
-{
+function readFile(fileName) {
     try
     {
         var filePath = File.absolute(fileName);

@@ -108,10 +108,7 @@ var FileList = require("jake").FileList;
     }
     catch (e)
     {
-        var file = require("file");
-        var filesPath = file.path(file.cwd());
-        var actualFile = filesPath.join(outputFilename + ".actual").open("w");
-        actualFile.print(output).close();
+        
         
         print("\n\nFailed " + inputFilename);
         
