@@ -1,0 +1,8 @@
+ReservedWord, System.out.println
+Delimiter, (
+Operator, !
+Integer, 1
+Operator, >=
+Integer, 9
+Delimiter, )
+Delimiter, ;

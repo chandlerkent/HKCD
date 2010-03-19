@@ -1,0 +1,15 @@
+ID, System
+Delimiter, .
+ID, out
+Delimiter, (
+ReservedWord, System.out.println
+Delimiter, (
+ReservedWord, System.out.println
+Delimiter, ,
+ID, system
+Delimiter, .
+ID, out
+Delimiter, .
+ID, println
+Delimiter, )
+Delimiter, )

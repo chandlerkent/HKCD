@@ -1,0 +1,4 @@
+ReservedWord, System.out.println
+ReservedWord, this
+Delimiter, .
+ID, foo

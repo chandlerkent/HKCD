@@ -1,0 +1,12 @@
+ID, System
+Delimiter, .
+ID, out
+Delimiter, .
+ID, prin7ln
+Delimiter, (
+ReservedWord, this
+ID, shouldnt
+ID, work
+Delimiter, )
+Delimiter, ;
+ID, end

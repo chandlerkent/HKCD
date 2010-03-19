@@ -1,0 +1,14 @@
+Operator, /
+Integer, 123
+Operator, /
+ID, array
+Delimiter, [
+Integer, 2
+Delimiter, ]
+Delimiter, =
+Integer, 5
+Operator, /
+Integer, 3
+Operator, *
+Integer, 500000
+Operator, !

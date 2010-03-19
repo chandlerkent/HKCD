@@ -1,0 +1,14 @@
+Integer, 876
+ID, test
+Delimiter, (
+ID, t456as
+Delimiter, )
+Operator, -
+Integer, 3
+Operator, +
+Integer, 5
+ID, k
+Delimiter, ;
+ID, System
+Delimiter, .
+ID, out
