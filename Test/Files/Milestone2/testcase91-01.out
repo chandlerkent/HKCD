@@ -1,0 +1,14 @@
+ReservedWord, System.out.println
+ReservedWord, class
+Delimiter, (
+ID, I
+ID, told
+ID, you
+ID, Im
+ID, not
+ID, nested
+Delimiter, )
+Operator, *
+Operator, /
+ReservedWord, public
+ReservedWord, static

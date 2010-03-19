@@ -1,0 +1,13 @@
+Operator, <=
+Operator, ==
+Operator, >
+Operator, *
+Operator, *
+Operator, -
+Operator, +
+Delimiter, =
+Operator, !
+Operator, >
+Delimiter, .
+ReservedWord, this
+ID, thispublic

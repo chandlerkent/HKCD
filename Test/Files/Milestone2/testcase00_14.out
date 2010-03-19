@@ -1,0 +1,10 @@
+ID, identifier
+ID, abc123
+ID, integer
+Integer, 456
+ID, reservedWord
+ReservedWord, class
+ID, operator
+Operator, +
+ID, delimiter
+Delimiter, ;

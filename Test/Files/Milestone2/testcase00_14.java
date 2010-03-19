@@ -1,0 +1,10 @@
+identifier
+abc123
+integer
+456
+reservedWord
+class
+operator
++
+delimiter
+;
