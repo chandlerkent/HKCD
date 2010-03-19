@@ -1,7 +1,0 @@
-Integer, 2
-Operator, +
-Integer, 3
-Delimiter, ;
-ReservedWord, true
-Operator, ||
-ReservedWord, false

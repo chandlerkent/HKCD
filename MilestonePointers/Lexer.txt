@@ -1,0 +1,44 @@
+============================
+Chandler Kent
+Derek Hammer
+(HKCD)
+Milestone 2 - Lexer
+============================
+
+----------------------------
+1. Lexer arguments
+----------------------------
+
+Usage: main.j [OPTIONS] INPUT_FILE
+Performs lexical analysis on an input file using a grammar.
+ -d: Debug flag. Use this option to print debug messages.
+ -g GRAMMAR: Specifies the grammar file (default lib/grammar.json).
+ -h --help: displays usage information (final option)
+
+The INPUT_FILE may be a folder. In that case, we attempt to parse all of the inputs in that folder and put the output into a subfolder called Out. This is how we generated our output.
+
+----------------------------
+2. Location of Files
+----------------------------
+
+The output of files, in general, are located in the "Out" directory of the given test files directory. We have been putting our test files in the Test/Files directory.
+
+For milestone 2, the input of the files are located at
+
+    HKCD/Test/Files/Milestone2
+    
+and the output for the milestone 2 files are located at
+
+    HKCD/Test/Files/Milestone2/Out
+    
+These follow the conventions of the given input/output files (input files end in .java and output files end in .out). The output files' names are the same as their mapped input files.
+
+----------------------------
+2. Location of Source Code
+----------------------------
+
+The source code for our project is located in
+
+    HKCD/lib
+    
+The files ending in .j are Objective-J files and the grammar.json is a file with a JSON string representation of our grammar object.
