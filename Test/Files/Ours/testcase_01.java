@@ -1,0 +1,2 @@
+/* Delimiters */{}[]();,.= /* Operator */+-*/<=<>=> ==!=&&||!    /* Reserved Words */class public static extends void int boolean if else while return null true false this new String main System.out.println
+/* Integer */0 1 1230456 /* ID */ Class Public Static string system.out.println a a098b 098abc
