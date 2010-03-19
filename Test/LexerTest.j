@@ -23,10 +23,7 @@ var FileList = require("jake").FileList;
     var inputFiles = new FileList("Test/Files/Ours/*.java").items();
     var outputFiles = new FileList("Test/Files/Ours/*.out").items();
     
-    for(var i = 0; i < [inputFiles count]; i++)
-    {
-        [self lexerLexesInputFile:inputFiles[i] intoOutputFile:outputFiles[i]];
-    }
+    [self lexersLexesInputFiles:inputFiles intoOutputFiles:outputFiles];
 }
 
 - (void)testThatLexerDoesLexRoundOneTestFiles
@@ -34,10 +31,15 @@ var FileList = require("jake").FileList;
     var inputFiles = new FileList("Test/Files/Round1/*.java").items();
     var outputFiles = new FileList("Test/Files/Round1/*.out").items();
     
-    for(var i = 0; i < [inputFiles count]; i++)
-    {
-        [self lexerLexesInputFile:inputFiles[i] intoOutputFile:outputFiles[i]];
-    }
+    [self lexersLexesInputFiles:inputFiles intoOutputFiles:outputFiles];
+}
+
+- (void)testThatLexerDoesLexMilestoneTwoTestFiles
+{
+    var inputFiles = new FileList("Test/Files/Milestone2/*.java").items();
+    var outputFiles = new FileList("Test/Files/Milestone2/*.out").items();
+    
+    [self lexersLexesInputFiles:inputFiles intoOutputFiles:outputFiles];
 }
 
 - (void)testThatLexerDoesLexComments
@@ -75,7 +77,25 @@ var FileList = require("jake").FileList;
     [self lexerLexes:"// cool" into:""];
 }
 
-- (void)lexerLexesInputFile:(CPString)inputFilename intoOutputFile:(CPString)outputFilename
+- (void)lexersLexesInputFiles:(CPArray)inputFiles intoOutputFiles:(CPArray)outputFiles
+{
+    var failures = 0;
+
+    for(var i = 0; i < [inputFiles count]; i++)
+    {
+        if(![self lexerLexesInputFile:inputFiles[i] intoOutputFile:outputFiles[i]])
+        {
+            failures++;
+        }
+    }
+
+    if(failures != 0)
+    {
+        [self fail:failures + " number of tests failed in "+ _cmd +". Check output files for diffs."];
+    }
+}
+
+- (BOOL)lexerLexesInputFile:(CPString)inputFilename intoOutputFile:(CPString)outputFilename
 {
     var input = readFile(inputFilename);
     var expected_output = readFile(outputFilename);
@@ -95,8 +115,10 @@ var FileList = require("jake").FileList;
         
         print("\n\nFailed " + inputFilename);
         
-        throw e;
+        return false;
     }
+    
+    return true;
 }
 
 - (void)lexerLexesArray:(CPArray)inputs forFormat:(CPString)expectedOutputFormat

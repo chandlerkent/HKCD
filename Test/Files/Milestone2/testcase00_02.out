@@ -24,8 +24,11 @@ Operator, <
 Delimiter, [
 Operator, !
 ID, thisH
-ReservedWord, System.out.println
-ID, Enq
+ID, System
+Delimiter, .
+ID, out
+Delimiter, .
+ID, printlnEnq
 Delimiter, ]
 ID, WnewF
 Delimiter, (

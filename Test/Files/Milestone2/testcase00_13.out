@@ -40,8 +40,11 @@ Operator, ||
 ReservedWord, String
 Operator, !
 ReservedWord, main
-ReservedWord, System.out.println
-ID, efgh90
+ID, System
+Delimiter, .
+ID, out
+Delimiter, .
+ID, printlnefgh90
 ID, for
 Delimiter, (
 Delimiter, ;
