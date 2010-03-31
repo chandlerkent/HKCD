@@ -1,6 +1,6 @@
 @import <Foundation/CPObject.j>
 
-@implementation Lexer : CPObject
+@implementation Parser : CPObject
 {
     JSObject    parser;
     JSObject    grammar;
@@ -21,22 +21,37 @@
     return self;
 }
 
-- (CPString)tokenize:(CPString)input
+- (CPArray)tokenize:(CPString)input
 {
     var lexer = parser.lexer;
-    
     lexer.setInput(input);
     
-    var result = "";
+    var result = [];
+    
     var token = lexer.lex();
     while (token) {
-        result += parser.terminals_[token] + ", " + lexer.match + "\n";
+        result.push({
+            "token": parser.terminals_[token],
+            "match": lexer.match
+        });
         token = lexer.lex();
     }
+    
     return result;
 }
 
-- (void)writeLexerToFile
+- (CPNumber)parse:(CPString)input
+{    
+    try {
+        if (parser.parse(input))
+            return [self tokenize:input].length;
+    } catch(e) {
+        print(e.message);
+        return 0;
+    }
+}
+
+- (void)writeGeneratedParserToFile
 {
     var fs = require("file");
     var cwd = fs.path(fs.cwd());

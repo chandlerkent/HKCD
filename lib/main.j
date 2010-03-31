@@ -1,36 +1,41 @@
 @import <Foundation/Foundation.j>
-@import "Lexer.j"
+@import "Parser.j"
 
 var File = require("file");
 var FileList = require("jake").FileList;
 
 // Options Parser
-var parser = new (require("args").Parser)();
+var optionsParser = new (require("args").Parser)();
 
-parser.usage("INPUT_FILE");
-parser.help("Performs lexical analysis on an input file using a grammar.");
+optionsParser.usage("INPUT_FILE");
+optionsParser.help("Performs lexical analysis on an input file using a grammar.");
 
-parser.option("-d", "debug")
+optionsParser.option("-d", "debug")
     .def(false)
     .set(true)
     .help("Debug flag. Use this option to print debug messages.");
 
-parser.option("-g", "grammar")
+optionsParser.option("-t", "tokenize")
+    .def(false)
+    .set(true)
+    .help("Tokenize flag. Tokenizes the input.");
+
+optionsParser.option("-g", "grammar")
     .def("lib/grammar.json")
     .set()
     .help("Specifies the grammar file (default lib/grammar.json).");
 
-parser.helpful();
+optionsParser.helpful();
 
 DEBUG = function (debugString) {};
 
 function main(args)
 {
-    var options = parser.parse(args);
+    var options = optionsParser.parse(args);
     
     if (options.args.length < 1)
     {
-        parser.printUsage(options);
+        optionsParser.printUsage(options);
         return;
     }
     
@@ -43,25 +48,29 @@ function main(args)
         }
     }
     
-    var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
-    
-    if (File.isDirectory(options.args[0])) {
-        tokenizeFolder(options.args[0], lexer);
+    if (options.tokenize) {
+        var parser = [[Parser alloc] initWithGrammar:readGrammarFromFile("lib/lexer_grammar.json")];
+        if (File.isDirectory(options.args[0])) {
+            tokenizeFolder(options.args[0], parser);
+        } else {
+            tokenizeFile(options.args[0], parser);
+        }
     } else {
-        tokenizeFile(options.args[0], lexer);
+        var parser = [[Parser alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
+        parseFile(options.args[0], parser);
     }
+    
     return;
 }
 
 function tokenizeFolder(folder, lexer) {
-    print("reading from " + folder);
+    print("Reading from folder: " + folder);
 
     recreateFolder(outputPathForFolder(folder));
     
     var files = new FileList(folder + "*.java").items();
     
     for (var i = 0; i < files.length; i++) {
-        
         var inputFile = readFile(files[i]);
         
         File.write(outputPathForFolder(folder) + outputPathForFile(files[i]), tokensForFile(files[i], lexer));
@@ -83,12 +92,21 @@ function outputPathForFile(file) {
     return "/" + [file lastPathComponent].split(".")[0] + ".out";
 }
 
-function tokenizeFile(fileName, lexer) {
-    print("\nTokens:\n" + tokensForFile(fileName, lexer));
+function parseFile(fileName, parser) {
+    print("Matched Tokens:\n" + [parser parse:readFile(fileName)]);
 }
 
-function tokensForFile(fileName, lexer) {
-    return [lexer tokenize:readFile(fileName)];
+function tokenizeFile(fileName, parser) {
+    var tokensAndMatches = tokensForFile(fileName, parser);
+    
+    print("\nTokens:");
+    for (var i = 0; i < tokensAndMatches.length; i++) {
+        print(tokensAndMatches[i].token + ", " + tokensAndMatches[i].match);
+    }
+}
+
+function tokensForFile(fileName, parser) {
+    return [parser tokenize:readFile(fileName)];
 }
 
 function readGrammarFromFile(filePath) {

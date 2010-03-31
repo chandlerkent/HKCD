@@ -19,8 +19,6 @@
     },
 
     "bnf": { 
-        "Program": ["IDList", "IntegerList"],
-        "IDList": ["ID IDList", "ID"],
-        "IntegerList": ["Integer IntegerList", "Integer"]
+        "Program": ["ReservedWord Program", "ReservedWord", "ID", "Delimiter", "Integer", "Operator"]
     }
 }
