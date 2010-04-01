@@ -1,18 +1,16 @@
-@import "../lib/Parser.j"
+@import "../lib/Lexer.j"
 @import "../lib/main.j"
 
 var FileList = require("jake").FileList;
 
 @implementation ParserTest : OJTestCase
 {
-    Parser  lexer;
-    Parser  parser;
+    Lexer  lexer;
 }
 
 - (void)setUp
 {
     lexer = [[Parser alloc] initWithGrammar:readGrammarFromFile("lib/lexer_grammar.json")];
-    parser = [[Parser alloc] initWithGrammar:readGrammarFromFile("lib/grammar.json")];
 }
 
 - (void)testThatParserDoesInitialize

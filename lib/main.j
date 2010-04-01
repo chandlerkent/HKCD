@@ -1,4 +1,5 @@
 @import <Foundation/Foundation.j>
+@import "Lexer.j"
 @import "Parser.j"
 
 var File = require("file");
@@ -49,7 +50,7 @@ function main(args)
     }
     
     if (options.tokenize) {
-        var parser = [[Parser alloc] initWithGrammar:readGrammarFromFile("lib/lexer_grammar.json")];
+        var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile("lib/lexer_grammar.json")];
         if (File.isDirectory(options.args[0])) {
             tokenizeFolder(options.args[0], parser);
         } else {
