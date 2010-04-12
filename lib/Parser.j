@@ -5,7 +5,7 @@
 }
 
 - (CPNumber)parse:(CPString)input
-{    
+{
     try {
         if (parser.parse(input))
             return [self tokenize:input].length;
