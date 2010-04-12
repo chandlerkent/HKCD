@@ -3,7 +3,7 @@
 
 var FileList = require("jake").FileList;
 
-@implementation ParserTest : OJTestCase
+@implementation LexerTest : OJTestCase
 {
     Lexer  lexer;
 }
@@ -16,7 +16,6 @@ var FileList = require("jake").FileList;
 - (void)testThatParserDoesInitialize
 {
     [self assertNotNull:lexer];
-    [self assertNotNull:parser];
 }
 
 - (void)testThatLexerDoesLexOurTestFiles
