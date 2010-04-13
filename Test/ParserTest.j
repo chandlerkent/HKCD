@@ -20,9 +20,9 @@ var FileList = require("jake").FileList;
 
 - (void)testThatParserDoesPassOurTestCases
 {
-    var inputFiles = new FileList("Test/Files/BasicParser/Ours/*.java").items();
+    var inputFiles = new FileList("Test/Files/Parser/Ours/*.java").items();
     var outputFiles = new FileList("Test/Files/BasicParser/Ours/*.out").items();
-    
+
     [self parserParsesInputFiles:inputFiles intoOutputFiles:outputFiles];
 }
 
