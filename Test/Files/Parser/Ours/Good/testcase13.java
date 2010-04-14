@@ -4,6 +4,7 @@ class Main {
         int myInt = 4;
         
         Car ferrari = new Car();
+        myInt = ferrari.wheels();
     }
 }
 
