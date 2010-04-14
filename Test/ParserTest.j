@@ -18,20 +18,12 @@ var FileList = require("jake").FileList;
     [self assertNotNull:parser];
 }
 
-- (void)testThatParserDoesPassOurGoodTestCases
+- (void)testThatParserDoesPassOurTestCases
 {
-    var inputFiles = new FileList("Test/Files/Parser/Ours/Good/*.java").items();
+    var inputFiles = new FileList("Test/Files/Parser/Ours/*.java").items();
+    var outputFiles = new FileList("Test/Files/BasicParser/Ours/*.out").items();
 
-    inputFiles.forEach(function(file) {
-        var bytes = readFile(file);
-        
-        try {
-            var parsedTokens = [parser parse:bytes];
-            [self assertTrue:(parsedTokens > 0)];
-        } catch(e) {
-            [self fail:"Failed test case: " + file];
-        }
-    });
+    // [self parserParsesInputFiles:inputFiles intoOutputFiles:outputFiles];
 }
 
 // Basic Parser is an invalid one!
