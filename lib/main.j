@@ -52,41 +52,46 @@ function main(args)
     if (options.tokenize) {
         var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile("lib/lexer_grammar.json")];
         if (File.isDirectory(options.args[0])) {
-            tokenizeFolder(options.args[0], parser);
+            processDirectory(options.args[0], function(file) {
+                return [lexer tokenize:file];
+            });
         } else {
-            tokenizeFile(options.args[0], parser);
+            tokenizeFile(options.args[0], lexer);
         }
     } else {
         var parser = [[Parser alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
-        parseFile(options.args[0], parser);
+        if (File.isDirectory(options.args[0])) {
+            processDirectory(options.args[0], function(file) {
+                return String([parser parse:file]);
+            });
+        } else {
+            parseFile(options.args[0], parser);
+        }
     }
     
     return;
 }
 
-function tokenizeFolder(folder, lexer) {
-    print("Reading from folder: " + folder);
-
-    recreateFolder(outputPathForFolder(folder));
+function processDirectory(directory, processFunction) {
+    print("Processing directory: " + directory);
     
-    var files = new FileList(folder + "*.java").items();
+    var outputDirectoryPath = outputPathForDirectory(directory);
+    createDirectory(outputDirectoryPath);
     
-    for (var i = 0; i < files.length; i++) {
-        var inputFile = readFile(files[i]);
-        
-        File.write(outputPathForFolder(folder) + outputPathForFile(files[i]), tokensForFile(files[i], lexer));
-    }
+    (new FileList(directory + "*.java").items()).forEach(function(file) {
+        File.write(outputDirectoryPath + outputPathForFile(file), processFunction(readFile(file)));
+    });
 }
 
-function recreateFolder(folder) {
+function createDirectory(folder) {
     if (File.exists(folder))
         File.rmtree(folder);
     
     File.mkdir(folder);
 }
 
-function outputPathForFolder(folder) {
-    return File.absolute(folder) + "Out";
+function outputPathForDirectory(dir) {
+    return File.absolute(dir) + "Out";
 }
 
 function outputPathForFile(file) {
@@ -104,10 +109,6 @@ function tokenizeFile(fileName, parser) {
     for (var i = 0; i < tokensAndMatches.length; i++) {
         print(tokensAndMatches[i].token + ", " + tokensAndMatches[i].match);
     }
-}
-
-function tokensForFile(fileName, parser) {
-    return [parser tokenize:readFile(fileName)];
 }
 
 function readGrammarFromFile(filePath) {

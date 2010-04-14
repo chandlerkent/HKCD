@@ -1,0 +1,15 @@
+============
+Basic Parser
+HKCD
+4/13/10
+============
+
+-----------
+Source Code
+-----------
+The source code for this milestone is located in /lib/. The relevant files are "main.j", which is the main entry point for the application on the command line, "Parser.j" which is a simple wrapper around the parser tool, and "grammar.json", which is the grammar definition file.
+
+--------------
+Program Output
+--------------
+The output for the test cases is located in /Test/Files/BasicParser/BasicParserTestCases/FullTests/Out/ (sorry). The names should match the names of the test cases provided.
