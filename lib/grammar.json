@@ -65,7 +65,7 @@
         ["left", "<", "<=", ">", ">="],
         ["left", "+", "-"],
         ["left", "*", "/"],
-        ["right", "!", "UMINUS", "."],
+        ["right", "!", "UMINUS"],
     ],
 
     "bnf": { 
@@ -131,7 +131,6 @@
                                 "Expr || Expr",
                                 "! Expr",
                                 ["- Expr", "$$ = -$2;", {"prec": "UMINUS"}],
-                                "Expr . ID ( ParameterList )",
                                 "new ID ( )",
                                 "ID",
                                 "this",
