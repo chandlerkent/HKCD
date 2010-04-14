@@ -9,12 +9,28 @@ class Foo {
             bar = null;
         }
         
-        blah = bar;
-        bar = this;
-        bar = null;
-        bar = true;
-        bar = false;
-        bar = ( false );
+        blah = 4 + 4;
+        blah = 4 - 4;
+        blah = 4 / 4;
+        blah = 4 * 4;
+        blah = 1 < 2;
+        blah = 1 <= 2;
+        blah = 1 >= 2;
+        blah = 1 > 2;
+        blah = 1 == 2;
+        blah = 1 != 1;
+        blah = true && false;
+        blah = false || true;
+        blah = -3;
+        blah = !true;
+        blah = new Bar();
+        blah = blah;
+        blah = this;
+        blah = 3;
+        blah = null;
+        blah = true;
+        blah = false;
+        blah = (4 + 4 );
     }
 }
 
