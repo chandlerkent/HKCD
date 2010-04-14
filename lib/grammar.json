@@ -22,10 +22,18 @@
             ["return\\b", "return 'return';"],
             ["if\\b", "return 'if';"],
             ["else\\b", "return 'else';"],
-            ["(while|null|true|false|this|new|System\\.out\\.println)\\b", "return 'ReservedWord';"],
+            ["while\\b", "return 'while';"],
+            ["true\\b", "return 'true';"],
+            ["System\\.out\\.println\\b", "return 'printLine';"],
+            ["new\\b", "return 'new';"],
+            ["null\\b", "return 'null';"],
+            ["false\\b", "return 'false';"],
+            ["this\\b", "return 'this';"],
             ["{Letter}({Letter}|{Digit})*", "return 'ID';"],
             ["({NonZeroDigit}{Digit}*|0)", "return 'Integer';"],
-            ["(\\+|-|\\*|\\/|<=|<|>=|>|==|\\!=|&&|\\|\\||\\!)", "return 'Operator';"],
+            ["\\!", "return '!';"],
+            ["-", "return '-';"],
+            ["(\\+|-|\\*|\\/|<=|<|>=|>|==|\\!=|&&|\\|\\|)", "return 'Operator';"],
             ["\\{", "return '{';"],
             ["\\}", "return '}';"],
             ["\\[", "return '[';"],
@@ -40,18 +48,74 @@
     },
 
     "bnf": { 
-        "Program": ["MainClassDecl Program_"],
-        "Program_": ["ClassDecl Program_", ""],
-        "MainClassDecl": ["class ID { public static void main ( String [ ] ID ) { } }"],
-        "ClassDecl": ["class ID ClassDecl_ { ClassVarDecl MethodDecl }"],
-        "ClassDecl_": ["extends ID", ""],
-        "ClassVarDecl": ["Type ID ; ClassVarDecl", ""],
-        "MethodDecl": ["public Type ID ( FormalList ) { Stmt return ID ; } MethodDecl", ""],
-        "FormalList": ["", "Formal FormalList_"],
-        "FormalList_": [", Formal FormalList_", ""],
-        "Formal": ["Type ID"],
-        "Type": ["int", "boolean", "ID"],
-        "Stmt": ["Type ID = Expr ; Stmt", "if ( Expr ) Stmt else Stmt", "{ Stmt }", "ID = Expr ;", ""],
-        "Expr": ["Integer", "ID", "ID Operator Integer"],
+        "Program":          ["MainClassDecl ClassDeclList"],
+        "MainClassDecl":    ["class ID { public static void main ( String [ ] ID ) { StmtList } }"],
+        "ClassDeclList":    [
+                                "",
+                                "ClassDecl ClassDeclList"
+                            ],
+        "ClassDecl":        ["class ID Extension { ClassVarDeclList MethodDeclList }"],
+        "Extension":        [
+                                "",
+                                "extends ID"
+                            ],
+        "ClassVarDeclList": [
+                                "",
+                                "ClassVarDecl ClassVarDeclList"
+                            ],
+        "ClassVarDecl":     ["Type ID ;"],
+        "MethodDeclList":   [
+                                "",
+                                "MethodDecl MethodDeclList"
+                            ],
+        "MethodDecl":       ["public Type ID ( FormalList ) { StmtList return Expr ; }"],
+        "FormalList":       [
+                                "",
+                                "Formal FormalList_"
+                            ],
+        "FormalList_":      [
+                                "",
+                                ", Formal FormalList_"
+                            ],
+        "Formal":           ["Type ID"],
+        "Type":             [
+                                "int",
+                                "boolean",
+                                "ID"
+                            ],
+        "StmtList":         [
+                                "",
+                                "Stmt StmtList"
+                            ],
+        "Stmt":             [
+                                "Type ID = Expr ;",
+                                "{ Stmt }",
+                                "if ( Expr ) Stmt else Stmt",
+                                "while ( Expr ) Stmt",
+                                "printLine ( Expr ) ;",
+                                "ID = Expr ;"
+                            ],
+        "Expr":             [
+                                "Expr Operator Expr",
+                                "! Expr",
+                                "- Expr",
+                                "Expr . ID ( ParameterList )",
+                                "new ID ( )",
+                                "ID",
+                                "this",
+                                "Integer",
+                                "null",
+                                "true",
+                                "false", 
+                                "( Expr )"
+                            ],
+        "ParameterList":    [
+                                "",
+                                "Expr ParameterList_"
+                            ],
+        "ParameterList_":   [
+                                "",
+                                ", Expr ParameterList_"
+                            ],
     }
 }
