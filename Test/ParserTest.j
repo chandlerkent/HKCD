@@ -34,6 +34,22 @@ var FileList = require("jake").FileList;
     });
 }
 
+- (void)testThatParserDoesPassEarlyGoodTestCases
+{
+    var inputFiles = new FileList("Test/Files/Parser/Early/Good/*.java").items();
+
+    inputFiles.forEach(function(file) {
+        var bytes = readFile(file);
+        
+        try {
+            var parsedTokens = [parser parse:bytes];
+            [self assertTrue:(parsedTokens > 0)];
+        } catch(e) {
+            [self fail:"Failed test case: " + file];
+        }
+    });
+}
+
 // Basic Parser is an invalid one!
 // - (void)testThatParserDoesPassBasicParserTestCases
 // {

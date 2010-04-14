@@ -110,7 +110,7 @@
                             ],
         "Stmt":             [
                                 "Type ID = Expr ;",
-                                "{ Stmt }",
+                                "{ StmtList }",
                                 "if ( Expr ) Stmt else Stmt",
                                 "while ( Expr ) Stmt",
                                 "printLine ( Expr ) ;",

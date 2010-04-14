@@ -7,7 +7,7 @@ class Main {
     }
 }
 
-class Car {
+class Car extends Automobile {
     int wheels;
     int speed;
     
