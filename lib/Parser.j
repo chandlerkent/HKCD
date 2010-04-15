@@ -11,6 +11,7 @@
     try {
         parser.parse(input);
     } catch(e) {
+        ParsedProductions.push(e.message);
         CPLog.error(e.message);
     }
     
