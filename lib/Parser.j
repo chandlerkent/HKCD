@@ -6,13 +6,15 @@
 
 - (CPNumber)parse:(CPString)input
 {
+    ParsedProductions = [];
+
     try {
-        if (parser.parse(input))
-            return [self tokenize:input].length;
+        parser.parse(input);
     } catch(e) {
-        print(e.message);
-        return 0;
+        CPLog.error(e.message);
     }
+    
+    return ParsedProductions;
 }
 
 @end

@@ -1,3 +1,6 @@
+// This is a nasty hack, but because of objj file-scoping its global vars., I don't think it can happen any other way.
+ParsedProduction = [];
+
 @import <Foundation/Foundation.j>
 @import "Lexer.j"
 @import "Parser.j"
@@ -68,7 +71,7 @@ function main(args)
             parseFile(options.args[0], parser);
         }
     }
-    
+
     return;
 }
 
@@ -99,7 +102,12 @@ function outputPathForFile(file) {
 }
 
 function parseFile(fileName, parser) {
-    print("Matched Tokens:\n" + [parser parse:readFile(fileName)]);
+    var parsedProductions = [parser parse:readFile(fileName)];
+    
+    print("\nParsed Productions:");
+    parsedProductions.map(function(parsedProduction) {
+        print(parsedProduction);
+    });
 }
 
 function tokenizeFile(fileName, parser) {
