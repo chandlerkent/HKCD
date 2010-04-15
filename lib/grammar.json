@@ -69,85 +69,97 @@
     ],
 
     "bnf": { 
-        "Program":          ["MainClassDecl ClassDeclList"],
-        "MainClassDecl":    ["class ID { public static void main ( String [ ] ID ) { StmtList } }"],
-        "ClassDeclList":    [
-                                "",
-                                "ClassDecl ClassDeclList"
+        "Program":          [
+                                ["MainClassDecl ClassDeclList", "print('<Program> ::= <MainClassDecl> <ClassDeclList>');"]
                             ],
-        "ClassDecl":        ["class ID Extension { ClassVarDeclList MethodDeclList }"],
+        "MainClassDecl":    [
+                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "print('<MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }');"]
+                            ],
+        "ClassDeclList":    [
+                                ["", "print('<ClassDeclList> ::= epsilon');"],
+                                ["ClassDecl ClassDeclList", "print('<ClassDeclList> ::= <ClassDecl> <ClassDeclList>');"]
+                            ],
+        "ClassDecl":        [
+                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "print('<ClassDecl> ::= class ID <Extension> { <ClassVarDeclList> <MethodDeclList> }');"]
+                            ],
         "Extension":        [
-                                "",
-                                "extends ID"
+                                ["", "print('<Extension> ::= epsilon');"],
+                                ["extends ID", "print('<Extension> ::= extends ID');"]
                             ],
         "ClassVarDeclList": [
-                                "",
-                                "ClassVarDecl ClassVarDeclList"
+                                ["", "print('<ClassVarDeclList> ::= epsilon');"],
+                                ["ClassVarDecl ClassVarDeclList", "print('<ClassVarDeclList> ::= <ClassVarDecl> <ClassVarDeclList>');"]
                             ],
-        "ClassVarDecl":     ["Type ID ;"],
+        "ClassVarDecl":     [
+                                ["Type ID ;", "print('<ClassVarDecl> ::= <Type> ID');"]
+                            ],
         "MethodDeclList":   [
-                                "",
-                                "MethodDecl MethodDeclList"
+                                ["", "print('<MethodDeclList> ::= epsilon');"],
+                                ["MethodDecl MethodDeclList", "print('<MethodDeclList> ::= <MethodDecl> <MethodDeclList>');"]
                             ],
-        "MethodDecl":       ["public Type ID ( FormalList ) { StmtList return Expr ; }"],
+        "MethodDecl":       [
+                                ["public Type ID ( FormalList ) { StmtList return Expr ; }", "print('<MethodDecl> ::= public <Type> ID ( <FormalList> ) { <StmtList> return <Expr> ; }');"]
+                            ],
         "FormalList":       [
-                                "",
-                                "Formal FormalList_"
+                                ["", "print('<FormalList> ::= epsilon');"],
+                                ["Formal FormalList_", "print('<FormalList> ::= <Formal> <FormalList_>');"]
                             ],
         "FormalList_":      [
-                                "",
-                                ", Formal FormalList_"
+                                ["", "print('<FormalList_> ::= epsilon');"],
+                                [", Formal FormalList_", "print('<FormalList_> ::= , <Formal> <FormalList_>');"]
                             ],
-        "Formal":           ["Type ID"],
+        "Formal":           [
+                                ["Type ID", "print('<Formal> ::= <Type> ID');"]
+                            ],
         "Type":             [
-                                "int",
-                                "boolean",
-                                "ID"
+                                ["int", "print('<Type> ::= int');"],
+                                ["boolean", "print('<Type> ::= boolean');"],
+                                ["ID", "print('<Type> ::= ID');"]
                             ],
         "StmtList":         [
-                                "",
-                                "Stmt StmtList"
+                                ["", "print('<StmtList> ::= epsilon');"],
+                                ["Stmt StmtList", "print('<StmtList> ::= <Stmt> <StmtList>');"]
                             ],
         "Stmt":             [
-                                "Type ID = Expr ;",
-                                "{ StmtList }",
-                                "if ( Expr ) Stmt else Stmt",
-                                "while ( Expr ) Stmt",
-                                "printLine ( Expr ) ;",
-                                "ID = Expr ;"
+                                ["Type ID = Expr ;", "print('<Stmt> ::= <Type> ID = <Expr> ;');"],
+                                ["{ StmtList }", "print('<Stmt> ::= { <StmtList> }');"],
+                                ["if ( Expr ) Stmt else Stmt", "print('<Stmt> ::= if ( <Expr> ) <Stmt> else <Stmt>');"],
+                                ["while ( Expr ) Stmt", "print('<Stmt> ::= while ( <Expr> ) <Stmt>');"],
+                                ["printLine ( Expr ) ;", "print('<Stmt> ::= ' + $1 + ' ( <Expr> )');"],
+                                ["ID = Expr ;", "print('<Stmt> ::= ID = <Expr>');"]
                             ],
         "Expr":             [
-                                "Expr + Expr",
-                                "Expr - Expr",
-                                "Expr * Expr",
-                                "Expr / Expr",
-                                "Expr < Expr",
-                                "Expr <= Expr",
-                                "Expr >= Expr",
-                                "Expr > Expr",
-                                "Expr == Expr",
-                                "Expr != Expr",
-                                "Expr && Expr",
-                                "Expr || Expr",
-                                "! Expr",
-                                ["- Expr", "$$ = -$2;", {"prec": "UMINUS"}],
-                                "Expr . ID ( ParameterList )",
-                                "new ID ( )",
-                                "ID",
-                                "this",
-                                "Integer",
-                                "null",
-                                "true",
-                                "false", 
-                                "( Expr )"
+                                ["Expr + Expr", "print('<Expr> ::= <Expr> + <Expr>');"],
+                                ["Expr - Expr", "print('<Expr> ::= <Expr> - <Expr>');"],
+                                ["Expr * Expr", "print('<Expr> ::= <Expr> * <Expr>');"],
+                                ["Expr / Expr", "print('<Expr> ::= <Expr> / <Expr>');"],
+                                ["Expr < Expr", "print('<Expr> ::= <Expr> < <Expr>');"],
+                                ["Expr <= Expr", "print('<Expr> ::= <Expr> <= <Expr>');"],
+                                ["Expr >= Expr", "print('<Expr> ::= <Expr> >= <Expr>');"],
+                                ["Expr > Expr", "print('<Expr> ::= <Expr> > <Expr>');"],
+                                ["Expr == Expr", "print('<Expr> ::= <Expr> == <Expr>');"],
+                                ["Expr != Expr", "print('<Expr> ::= <Expr> != <Expr>');"],
+                                ["Expr && Expr", "print('<Expr> ::= <Expr> && <Expr>');"],
+                                ["Expr || Expr", "print('<Expr> ::= <Expr> || <Expr>');"],
+                                ["! Expr", "print('<Expr> ::= ! <Expr>');"],
+                                ["- Expr", "print('<Expr> ::= - <Expr>');", {"prec": "UMINUS"}],
+                                ["Expr . ID ( ParameterList )", "print('<Expr> ::= <Expr> . ID ( <ParameterList> )');"],
+                                ["new ID ( )", "print('<Expr> ::= new ID ( )');"],
+                                ["ID", "print('<Expr> ::= ID');"],
+                                ["this", "print('<Expr> ::= this');"],
+                                ["Integer", "print('<Expr> ::= Integer');"],
+                                ["null", "print('<Expr> ::= null');"],
+                                ["true", "print('<Expr> ::= true');"],
+                                ["false", "print('<Expr> ::= false');"], 
+                                ["( Expr )", "print('<Expr> ::= ( <Expr> )');"]
                             ],
         "ParameterList":    [
-                                "",
-                                "Expr ParameterList_"
+                                ["", "print('<ParameterList> ::= epsilon');"],
+                                ["Expr ParameterList_", "print('<ParameterList> ::= <Expr> <ParameterList_>');"]
                             ],
         "ParameterList_":   [
-                                "",
-                                ", Expr ParameterList_"
+                                ["", "print('<ParameterList_> ::= epsilon');"],
+                                [", Expr ParameterList_", "print('<ParameterList_> ::= <Expr> <ParameterList_>');"]
                             ],
     }
 }
