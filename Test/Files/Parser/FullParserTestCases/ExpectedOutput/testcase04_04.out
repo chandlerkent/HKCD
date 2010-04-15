@@ -1,0 +1,11 @@
+StmtList ::= 
+Type ::= ID
+
+
+ERROR in line 13 and column 1: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+Program ::= MainClassDecl ClassDeclList

@@ -1,0 +1,122 @@
+StmtList ::= 
+LiteralExpr ::= TRUE
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+
+
+ERROR in line 3 and column 12: Syntax error
+
+Error recovery to next semicolon.
+LiteralExpr ::= THIS
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= THIS
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= ID GETS Expr SEMI
+Stmt ::= WHILE LPAREN Expr RPAREN Stmt
+Stmt ::= IF LPAREN Expr RPAREN Stmt ELSE Stmt
+StmtList ::= StmtList Stmt
+LiteralExpr ::= NULL
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+
+
+ERROR in line 26 and column 3: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr TIMES Expr
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr DIVIDE Expr
+Stmt ::= ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+Unmatched character '|' at line 33 and column 25
+
+
+ERROR in line 33 and column 27: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr NE Expr
+Stmt ::= ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+LiteralExpr ::= TRUE
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+LiteralExpr ::= FALSE
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr TIMES Expr
+ParenExpr	::=	LPAREN Expr RPAREN
+LiteralExpr ::= ParenExpr
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr DIVIDE Expr
+ParenExpr	::=	LPAREN Expr RPAREN
+LiteralExpr ::= ParenExpr
+CallExpr ::= LiteralExpr
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+ExprList ::= Expr
+OptExprList ::= ExprList
+CallExpr ::= CallExpr DOT ID LPAREN OptExprList RPAREN
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+
+
+ERROR in line 38 and column 3: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+Program ::= MainClassDecl ClassDeclList

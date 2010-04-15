@@ -1,0 +1,37 @@
+StmtList ::= 
+Type ::= INT
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= Type ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr LT Expr
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= ID GETS Expr SEMI
+
+
+ERROR in line 11 and column 10: Syntax error
+
+Error recovery to next semicolon.
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= ID GETS Expr SEMI
+Stmt ::= IF LPAREN Expr RPAREN Stmt ELSE Stmt
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+Program ::= MainClassDecl ClassDeclList

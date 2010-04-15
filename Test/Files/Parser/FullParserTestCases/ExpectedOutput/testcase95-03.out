@@ -1,0 +1,28 @@
+StmtList ::= 
+
+
+ERROR in line 3 and column 28: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+Type ::= ID
+
+
+ERROR in line 5 and column 49: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+OptExtends ::= 
+ClassVarDeclList ::= 
+Type ::= ID
+
+
+ERROR in line 14 and column 15: Syntax error
+
+
+
+ERROR in line 14 and column 15: Couldn't repair and continue parse
+
+Exception processing file: Can't recover from previous error(s)
