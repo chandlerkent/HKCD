@@ -65,7 +65,7 @@ function main(args)
         var parser = [[Parser alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
         if (File.isDirectory(options.args[0])) {
             processDirectory(options.args[0], function(file) {
-                return String([parser parse:file]);
+                return [parser parse:file].join("\n");
             });
         } else {
             parseFile(options.args[0], parser);
@@ -102,12 +102,8 @@ function outputPathForFile(file) {
 }
 
 function parseFile(fileName, parser) {
-    var parsedProductions = [parser parse:readFile(fileName)];
-    
     print("\nParsed Productions:");
-    parsedProductions.map(function(parsedProduction) {
-        print(parsedProduction);
-    });
+    print([parser parse:readFile(fileName)].join("\n"));
 }
 
 function tokenizeFile(fileName, parser) {
