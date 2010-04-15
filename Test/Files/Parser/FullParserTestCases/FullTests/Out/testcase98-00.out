@@ -1,0 +1,17 @@
+<Type> ::= ID
+<Expr> ::= new ID ( )
+<Stmt> ::= <Type> ID = <Expr> ;
+<Expr> ::= ID
+<Expr> ::= Integer
+<Expr> ::= Integer
+<ParameterList_> ::= epsilon
+<ParameterList_> ::= <Expr> <ParameterList_>
+<ParameterList> ::= <Expr> <ParameterList_>
+<Expr> ::= <Expr> . ID ( <ParameterList> )
+<Stmt> ::= System.out.println ( <Expr> )
+<StmtList> ::= epsilon
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }
+<Extension> ::= epsilon
+<Type> ::= int

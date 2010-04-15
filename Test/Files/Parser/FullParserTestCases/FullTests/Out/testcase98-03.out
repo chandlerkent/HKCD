@@ -1,0 +1,52 @@
+<Type> ::= ID
+<Expr> ::= new ID ( )
+<Stmt> ::= <Type> ID = <Expr> ;
+<Expr> ::= ID
+<Expr> ::= Integer
+<Expr> ::= Integer
+<ParameterList_> ::= epsilon
+<ParameterList_> ::= <Expr> <ParameterList_>
+<ParameterList> ::= <Expr> <ParameterList_>
+<Expr> ::= <Expr> . ID ( <ParameterList> )
+<Stmt> ::= System.out.println ( <Expr> )
+<StmtList> ::= epsilon
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }
+<Extension> ::= epsilon
+<Type> ::= int
+<ClassVarDecl> ::= <Type> ID
+<Type> ::= int
+<ClassVarDecl> ::= <Type> ID
+<ClassVarDeclList> ::= epsilon
+<ClassVarDeclList> ::= <ClassVarDecl> <ClassVarDeclList>
+<ClassVarDeclList> ::= <ClassVarDecl> <ClassVarDeclList>
+<Type> ::= int
+<Type> ::= int
+<Formal> ::= <Type> ID
+<Type> ::= int
+<Formal> ::= <Type> ID
+<FormalList_> ::= epsilon
+<FormalList_> ::= , <Formal> <FormalList_>
+<FormalList> ::= <Formal> <FormalList_>
+<Expr> ::= ID
+<Stmt> ::= ID = <Expr>
+<Expr> ::= ID
+<Stmt> ::= ID = <Expr>
+<Type> ::= int
+<Expr> ::= ID
+<Expr> ::= ID
+<Expr> ::= <Expr> + <Expr>
+<Stmt> ::= <Type> ID = <Expr> ;
+<StmtList> ::= epsilon
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<Expr> ::= ID
+<MethodDecl> ::= public <Type> ID ( <FormalList> ) { <StmtList> return <Expr> ; }
+<MethodDeclList> ::= epsilon
+<MethodDeclList> ::= <MethodDecl> <MethodDeclList>
+<ClassDecl> ::= class ID <Extension> { <ClassVarDeclList> <MethodDeclList> }
+<ClassDeclList> ::= epsilon
+<ClassDeclList> ::= <ClassDecl> <ClassDeclList>
+<Program> ::= <MainClassDecl> <ClassDeclList>

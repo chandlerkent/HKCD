@@ -1,0 +1,9 @@
+<Type> ::= int
+<Expr> ::= Integer
+<Stmt> ::= <Type> ID = <Expr> ;
+<Type> ::= int
+<Expr> ::= Integer
+<Stmt> ::= <Type> ID = <Expr> ;
+<Type> ::= ID
+<Expr> ::= new ID ( )
+<Stmt> ::= <Type> ID = <Expr> ;

@@ -1,0 +1,39 @@
+<Type> ::= boolean
+<Expr> ::= true
+<Stmt> ::= <Type> ID = <Expr> ;
+<Type> ::= int
+<Expr> ::= Integer
+<Stmt> ::= <Type> ID = <Expr> ;
+<Type> ::= int
+<Expr> ::= Integer
+<Stmt> ::= <Type> ID = <Expr> ;
+<Expr> ::= ID
+<Expr> ::= ID
+<Expr> ::= <Expr> != <Expr>
+<Expr> ::= ID
+<Expr> ::= Integer
+<Expr> ::= <Expr> - <Expr>
+<Stmt> ::= ID = <Expr>
+<StmtList> ::= epsilon
+<StmtList> ::= <Stmt> <StmtList>
+<Stmt> ::= { <StmtList> }
+<Stmt> ::= while ( <Expr> ) <Stmt>
+<Expr> ::= ID
+<Expr> ::= ID
+<Stmt> ::= System.out.println ( <Expr> )
+<StmtList> ::= epsilon
+<StmtList> ::= <Stmt> <StmtList>
+<Stmt> ::= { <StmtList> }
+<Type> ::= int
+<Expr> ::= Integer
+<Stmt> ::= <Type> ID = <Expr> ;
+<Stmt> ::= if ( <Expr> ) <Stmt> else <Stmt>
+<StmtList> ::= epsilon
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }
+<ClassDeclList> ::= epsilon
+<Program> ::= <MainClassDecl> <ClassDeclList>

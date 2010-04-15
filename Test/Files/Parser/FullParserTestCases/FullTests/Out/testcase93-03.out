@@ -1,0 +1,6 @@
+<Type> ::= boolean
+<Expr> ::= true
+<Stmt> ::= <Type> ID = <Expr> ;
+<Type> ::= boolean
+<Expr> ::= false
+<Stmt> ::= <Type> ID = <Expr> ;

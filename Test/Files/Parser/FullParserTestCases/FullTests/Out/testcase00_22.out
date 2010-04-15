@@ -1,0 +1,34 @@
+<Type> ::= int
+<Expr> ::= Integer
+<Stmt> ::= <Type> ID = <Expr> ;
+<Expr> ::= Integer
+<Expr> ::= Integer
+<Expr> ::= <Expr> * <Expr>
+<Expr> ::= Integer
+<Expr> ::= Integer
+<Expr> ::= Integer
+<Expr> ::= Integer
+<Expr> ::= <Expr> * <Expr>
+<Expr> ::= ( <Expr> )
+<Expr> ::= <Expr> + <Expr>
+<Expr> ::= ( <Expr> )
+<Expr> ::= <Expr> / <Expr>
+<Expr> ::= Integer
+<Expr> ::= <Expr> + <Expr>
+<Expr> ::= ( <Expr> )
+<Expr> ::= <Expr> + <Expr>
+<Expr> ::= Integer
+<Expr> ::= Integer
+<Expr> ::= <Expr> * <Expr>
+<Expr> ::= <Expr> - <Expr>
+<Expr> ::= ( <Expr> )
+<Stmt> ::= ID = <Expr>
+<Expr> ::= ID
+<Stmt> ::= System.out.println ( <Expr> )
+<StmtList> ::= epsilon
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<StmtList> ::= <Stmt> <StmtList>
+<MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }
+<ClassDeclList> ::= epsilon
+<Program> ::= <MainClassDecl> <ClassDeclList>

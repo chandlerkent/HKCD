@@ -1,0 +1,4 @@
+<StmtList> ::= epsilon
+<MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }
+<ClassDeclList> ::= epsilon
+<Program> ::= <MainClassDecl> <ClassDeclList>
