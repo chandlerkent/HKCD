@@ -1,0 +1,23 @@
+StmtList ::= 
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr PLUS Expr
+Stmt ::= SYSTEMOUTPRINTLN LPAREN Expr RPAREN SEMI
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+
+
+ERROR in line 8 and column 12: Syntax error
+
+
+
+ERROR in line 8 and column 12: Couldn't repair and continue parse
+
+Exception processing file: Can't recover from previous error(s)
