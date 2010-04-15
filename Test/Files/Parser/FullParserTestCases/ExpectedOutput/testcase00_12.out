@@ -1,0 +1,28 @@
+StmtList ::= 
+Type ::= ID
+CallExpr ::= NEW ID LPAREN RPAREN
+UnaryExpr ::= CallExpr
+UnaryExpr ::= NOT UnaryExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= NULL
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+UnaryExpr ::= MINUS UnaryExpr
+Expr ::= UnaryExpr
+Expr ::= Expr TIMES Expr
+Stmt ::= Type ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+
+
+ERROR in line 5 and column 15: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+OptExtends ::= 
+ClassVarDeclList ::= 
+MethodDeclList ::= 
+ClassDecl ::= ...
+ClassDeclList ::= ClassDeclList ClassDecl
+Program ::= MainClassDecl ClassDeclList

@@ -1,0 +1,42 @@
+StmtList ::= 
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= SYSTEMOUTPRINTLN LPAREN Expr RPAREN SEMI
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+OptExtends ::= 
+ClassVarDeclList ::= 
+Type ::= ID
+ClassVarDecl ::= Type ID SEMI
+ClassVarDeclList ::= ClassVarDeclList ClassVarDecl
+Type ::= INT
+ClassVarDecl ::= Type ID SEMI
+ClassVarDeclList ::= ClassVarDeclList ClassVarDecl
+MethodDeclList ::= 
+Type ::= INT
+Type ::= INT
+Formal ::= Type ID
+FormalList ::= Formal
+OptFormalList ::= FormalList
+StmtList ::= 
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr EQ Expr
+
+
+ERROR in line 5 and column 31: Syntax error
+
+
+
+ERROR in line 19 and column 1: Couldn't repair and continue parse
+
+Exception processing file: Can't recover from previous error(s)

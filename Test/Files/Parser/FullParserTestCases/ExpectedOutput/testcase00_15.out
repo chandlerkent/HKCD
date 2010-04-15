@@ -1,0 +1,81 @@
+StmtList ::= 
+Type ::= INT
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Stmt ::= Type ID GETS Expr SEMI
+StmtList ::= StmtList Stmt
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr LT Expr
+StmtList ::= 
+
+
+ERROR in line 6 and column 26: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+LiteralExpr ::= ID
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+LiteralExpr ::= INTEGER
+CallExpr ::= LiteralExpr
+UnaryExpr ::= CallExpr
+Expr ::= UnaryExpr
+Expr ::= Expr EQ Expr
+
+
+ERROR in line 19 and column 15: Syntax error
+
+Error recovery to next semicolon.
+
+
+ERROR in line 21 and column 4: Syntax error
+
+Error recovery to next semicolon.
+Stmt ::= IF LPAREN Expr RPAREN Stmt ELSE Stmt
+StmtList ::= StmtList Stmt
+Stmt ::= LBRACE StmtList RBRACE
+Stmt ::= WHILE LPAREN Expr RPAREN Stmt
+StmtList ::= StmtList Stmt
+
+
+ERROR in line 30 and column 1: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+Type ::= ID
+
+
+ERROR in line 42 and column 24: Syntax error
+
+Error recovery to next semicolon.
+StmtList ::= StmtList Stmt
+MainClassDecl ::= ...
+ClassDeclList ::= 
+OptExtends ::= 
+ClassVarDeclList ::= 
+Type ::= INT
+ClassVarDecl ::= Type ID SEMI
+ClassVarDeclList ::= ClassVarDeclList ClassVarDecl
+Type ::= INT
+ClassVarDecl ::= Type ID SEMI
+ClassVarDeclList ::= ClassVarDeclList ClassVarDecl
+MethodDeclList ::= 
+
+
+ERROR in line 51 and column 14: Syntax error
+
+
+
+ERROR in line 51 and column 14: Couldn't repair and continue parse
+
+Exception processing file: Can't recover from previous error(s)
