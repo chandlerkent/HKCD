@@ -5,3 +5,9 @@
 <Expr> ::= - <Expr>
 <Expr> ::= <Expr> * <Expr>
 <Stmt> ::= <Type> ID = <Expr> ;
+
+
+Parse error on line 5:
+...             while()                i
+----------------------^
+Expecting '!', '-', 'new', 'ID', 'this', 'Integer', 'null', 'true', 'false', '('

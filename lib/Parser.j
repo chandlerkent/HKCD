@@ -12,6 +12,8 @@
         parser.parse(input);
     } catch(e) {
         CPLog.error(e.message);
+        ParsedProductions.push("\n");
+        ParsedProductions.push(e.message);
     }
     
     return ParsedProductions;
