@@ -9,7 +9,15 @@ Parser Milestone
 Output Files
 ----------------
 
-The output of our parser can be found in /Test/Files/Parser/FullParserTestCases/FullTests/Out/. The names of the output files map directly to the names of the input files. Our parser is bottom-up, so files which it correctly parses, the start production will be last. If it does not correctly parse a file, the output file will include all productions parsed up to the failure point and then the corresponding error message.
+The output of our parser can be found in two locations, separated by the "good" tests and the "bad" tests. The results of the "good" tests are found in:
+
+/Test/Files/Parser/FullParserTestCases/Good/FullTests/Out/.
+
+The results of the "bad" tests are found in:
+
+/Test/Files/Parser/FullParserTestCases/Bad/FullTests/Out/.
+
+The names of the output files map directly to the names of the input files. Our parser is bottom-up, so files which it correctly parses, the start production will be last. If it does not correctly parse a file, the output file will include all productions parsed up to the failure point and then the corresponding error message.
 
 ----------------
 Source Code
