@@ -1,6 +1,0 @@
-<Expr> ::= new ID ( )
-<Expr> ::= ID
-<Expr> ::= ( <Expr> )
-<Expr> ::= <Expr> == <Expr>
-<Expr> ::= Integer
-<Stmt> ::= System.out.println ( <Expr> )

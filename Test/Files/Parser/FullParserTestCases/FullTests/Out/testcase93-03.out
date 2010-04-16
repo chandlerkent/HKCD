@@ -1,0 +1,11 @@
+<Type> ::= boolean
+<Expr> ::= true
+<Stmt> ::= <Type> ID = <Expr> ;
+<Type> ::= boolean
+<Expr> ::= false
+<Stmt> ::= <Type> ID = <Expr> ;
+
+
+Lexical error on line 7. Unrecognized text.
+...				if(javaIsCool & pythonIsCool){			
+---------------------^

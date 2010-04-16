@@ -1,0 +1,6 @@
+
+
+Parse error on line 6:
+... Swapper{		public int a;	public int b
+---------------------^
+Expecting 'static'

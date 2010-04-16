@@ -7,3 +7,9 @@
 <Type> ::= ID
 <Expr> ::= new ID ( )
 <Stmt> ::= <Type> ID = <Expr> ;
+
+
+Parse error on line 3:
+...w Discordia();chaos.everythingYouKnowIs
+----------------------^
+Expecting '=', 'ID'

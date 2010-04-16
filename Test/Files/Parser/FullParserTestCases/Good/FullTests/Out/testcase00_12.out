@@ -1,7 +1,0 @@
-<Type> ::= ID
-<Expr> ::= new ID ( )
-<Expr> ::= ! <Expr>
-<Expr> ::= null
-<Expr> ::= - <Expr>
-<Expr> ::= <Expr> * <Expr>
-<Stmt> ::= <Type> ID = <Expr> ;

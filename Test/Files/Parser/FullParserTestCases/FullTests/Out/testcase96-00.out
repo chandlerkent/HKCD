@@ -1,0 +1,6 @@
+
+
+Parse error on line 1:
+class Evil extends Satan {    
+-----------^
+Expecting '{'
