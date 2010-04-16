@@ -1,0 +1,18 @@
+============================
+Chandler Kent
+Derek Hammer
+(HKCD)
+Parser Milestone
+============================
+
+----------------
+Output Files
+----------------
+
+The output of our parser can be found in /Test/Files/Parser/FullParserTestCases/FullTests/Out/. The names of the output files map directly to the names of the input files. Our parser is bottom-up, so files which it correctly parses, the start production will be last. If it does not correctly parse a file, the output file will include all productions parsed up to the failure point and then the corresponding error message.
+
+----------------
+Source Code
+----------------
+
+There are three relevant source code files, which are all located in /lib/. main.j is the entry point for program. grammar.json is the grammar definition, both for lexical analysis and parsing. Finally, Parser.j is a simple wrapper around Jison to execute the parser that is dynamically generated.

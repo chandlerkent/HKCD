@@ -11,3 +11,9 @@
 <Expr> ::= Integer
 <Stmt> ::= <Type> ID = <Expr> ;
 <Type> ::= int
+
+
+Parse error on line 9:
+...ccum = 1;		int temp;		while (i < n) {
+----------------------^
+Expecting '='

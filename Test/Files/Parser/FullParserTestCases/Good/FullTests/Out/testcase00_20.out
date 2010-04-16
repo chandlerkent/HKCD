@@ -1,0 +1,6 @@
+
+
+Parse error on line 1:
+class MainClass {	int a;	public stati
+------------------^
+Expecting 'public'

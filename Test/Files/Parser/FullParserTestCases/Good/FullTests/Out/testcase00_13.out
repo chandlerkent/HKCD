@@ -7,3 +7,9 @@
 <Type> ::= ID
 <Expr> ::= new ID ( )
 <Stmt> ::= <Type> ID = <Expr> ;
+
+
+Parse error on line 15:
+... new Euclid();		gcd.init(a, b);				Sy
+----------------------^
+Expecting '=', 'ID'

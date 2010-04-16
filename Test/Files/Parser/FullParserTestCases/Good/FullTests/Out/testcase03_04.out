@@ -7,3 +7,9 @@
 <Stmt> ::= <Type> ID = <Expr> ;
 <Expr> ::= true
 <Expr> ::= ! <Expr>
+
+
+Parse error on line 10:
+...8 * 9;		if (!true) null else i = 2*(i);
+----------------------^
+Expecting '{', 'if', 'while', 'printLine', 'ID', 'int', 'boolean'
