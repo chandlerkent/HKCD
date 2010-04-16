@@ -1,6 +1,6 @@
 @import <Foundation/CPObject.j>
 
-var actions = require(require("file").absolute("./lib/actions"));
+var ast = require(require("file").absolute("./lib/ast"));
 
 @implementation Parser : CPObject
 {
@@ -19,15 +19,15 @@ var actions = require(require("file").absolute("./lib/actions"));
 - (JSObject)parse:(CPString)input
 {
     var parser = new require("jison").Parser(grammar);    
-    parser.yy = actions;
+    parser.yy = ast;
 
     try {
-        var ast = parser.parse(input);
+        var node = parser.parse(input);
     } catch(e) {
         // parser.yy.createError(e.message);
     }
 
-    return ast;
+    return node;
 }
 
 @end
