@@ -6,17 +6,17 @@
 
 - (CPNumber)parse:(CPString)input
 {
-    ParsedProductions = [];
+    parser.yy = require(require("file").absolute("./lib/actions"));
 
     try {
         parser.parse(input);
     } catch(e) {
         CPLog.error(e.message);
-        ParsedProductions.push("\n");
-        ParsedProductions.push(e.message);
+        parser.yy.productions.push("\n");
+        parser.yy.productions.push(e.message);
     }
     
-    return ParsedProductions;
+    return parser.yy.productions;
 }
 
 @end

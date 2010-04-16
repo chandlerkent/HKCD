@@ -31,96 +31,96 @@
 
     "bnf": { 
         "Program":          [
-                                ["MainClassDecl ClassDeclList", "ParsedProductions.push('<Program> ::= <MainClassDecl> <ClassDeclList>');"]
+                                ["MainClassDecl ClassDeclList", "yy.createProduction('<Program>', '<MainClassDecl> <ClassDeclList>');"]
                             ],
         "MainClassDecl":    [
-                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "ParsedProductions.push('<MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }');"]
+                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "yy.createProduction('<MainClassDecl>', 'class ID { public static void main ( String [ ] ID ) { <StmtList> } }');"]
                             ],
         "ClassDeclList":    [
-                                ["", "ParsedProductions.push('<ClassDeclList> ::= epsilon');"],
-                                ["ClassDecl ClassDeclList", "ParsedProductions.push('<ClassDeclList> ::= <ClassDecl> <ClassDeclList>');"]
+                                ["", "yy.createProduction('<ClassDeclList>', 'epsilon');"],
+                                ["ClassDecl ClassDeclList", "yy.createProduction('<ClassDeclList>', '<ClassDecl> <ClassDeclList>');"]
                             ],
         "ClassDecl":        [
-                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "ParsedProductions.push('<ClassDecl> ::= class ID <Extension> { <ClassVarDeclList> <MethodDeclList> }');"]
+                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "yy.createProduction('<ClassDecl>', 'class ID <Extension> { <ClassVarDeclList> <MethodDeclList> }');"]
                             ],
         "Extension":        [
-                                ["", "ParsedProductions.push('<Extension> ::= epsilon');"],
-                                ["extends ID", "ParsedProductions.push('<Extension> ::= extends ID');"]
+                                ["", "yy.createProduction('<Extension>', 'epsilon');"],
+                                ["extends ID", "yy.createProduction('<Extension>', 'extends ID');"]
                             ],
         "ClassVarDeclList": [
-                                ["", "ParsedProductions.push('<ClassVarDeclList> ::= epsilon');"],
-                                ["ClassVarDecl ClassVarDeclList", "ParsedProductions.push('<ClassVarDeclList> ::= <ClassVarDecl> <ClassVarDeclList>');"]
+                                ["", "yy.createProduction('<ClassVarDeclList>', 'epsilon');"],
+                                ["ClassVarDecl ClassVarDeclList", "yy.createProduction('<ClassVarDeclList>', '<ClassVarDecl> <ClassVarDeclList>');"]
                             ],
         "ClassVarDecl":     [
-                                ["Type ID ;", "ParsedProductions.push('<ClassVarDecl> ::= <Type> ID');"]
+                                ["Type ID ;", "yy.createProduction('<ClassVarDecl>', '<Type> ID');"]
                             ],
         "MethodDeclList":   [
-                                ["", "ParsedProductions.push('<MethodDeclList> ::= epsilon');"],
-                                ["MethodDecl MethodDeclList", "ParsedProductions.push('<MethodDeclList> ::= <MethodDecl> <MethodDeclList>');"]
+                                ["", "yy.createProduction('<MethodDeclList>', 'epsilon');"],
+                                ["MethodDecl MethodDeclList", "yy.createProduction('<MethodDeclList>', '<MethodDecl> <MethodDeclList>');"]
                             ],
         "MethodDecl":       [
-                                ["public Type ID ( FormalList ) { StmtList return Expr ; }", "ParsedProductions.push('<MethodDecl> ::= public <Type> ID ( <FormalList> ) { <StmtList> return <Expr> ; }');"]
+                                ["public Type ID ( FormalList ) { StmtList return Expr ; }", "yy.createProduction('<MethodDecl>', 'public <Type> ID ( <FormalList> ) { <StmtList> return <Expr> ; }');"]
                             ],
         "FormalList":       [
-                                ["", "ParsedProductions.push('<FormalList> ::= epsilon');"],
-                                ["Formal FormalList_", "ParsedProductions.push('<FormalList> ::= <Formal> <FormalList_>');"]
+                                ["", "yy.createProduction('<FormalList>', 'epsilon');"],
+                                ["Formal FormalList_", "yy.createProduction('<FormalList>', '<Formal> <FormalList_>');"]
                             ],
         "FormalList_":      [
-                                ["", "ParsedProductions.push('<FormalList_> ::= epsilon');"],
-                                [", Formal FormalList_", "ParsedProductions.push('<FormalList_> ::= , <Formal> <FormalList_>');"]
+                                ["", "yy.createProduction('<FormalList_>', 'epsilon');"],
+                                [", Formal FormalList_", "yy.createProduction('<FormalList_>', ', <Formal> <FormalList_>');"]
                             ],
         "Formal":           [
-                                ["Type ID", "ParsedProductions.push('<Formal> ::= <Type> ID');"]
+                                ["Type ID", "yy.createProduction('<Formal>', '<Type> ID');"]
                             ],
         "Type":             [
-                                ["int", "ParsedProductions.push('<Type> ::= int');"],
-                                ["boolean", "ParsedProductions.push('<Type> ::= boolean');"],
-                                ["ID", "ParsedProductions.push('<Type> ::= ID');"]
+                                ["int", "yy.createProduction('<Type>', 'int');"],
+                                ["boolean", "yy.createProduction('<Type>', 'boolean');"],
+                                ["ID", "yy.createProduction('<Type>', 'ID');"]
                             ],
         "StmtList":         [
-                                ["", "ParsedProductions.push('<StmtList> ::= epsilon');"],
-                                ["Stmt StmtList", "ParsedProductions.push('<StmtList> ::= <Stmt> <StmtList>');"]
+                                ["", "yy.createProduction('<StmtList>', 'epsilon');"],
+                                ["Stmt StmtList", "yy.createProduction('<StmtList>', '<Stmt> <StmtList>');"]
                             ],
         "Stmt":             [
-                                ["Type ID = Expr ;", "ParsedProductions.push('<Stmt> ::= <Type> ID = <Expr> ;');"],
-                                ["{ StmtList }", "ParsedProductions.push('<Stmt> ::= { <StmtList> }');"],
-                                ["if ( Expr ) Stmt else Stmt", "ParsedProductions.push('<Stmt> ::= if ( <Expr> ) <Stmt> else <Stmt>');"],
-                                ["while ( Expr ) Stmt", "ParsedProductions.push('<Stmt> ::= while ( <Expr> ) <Stmt>');"],
-                                ["printLine ( Expr ) ;", "ParsedProductions.push('<Stmt> ::= ' + $1 + ' ( <Expr> )');"],
-                                ["ID = Expr ;", "ParsedProductions.push('<Stmt> ::= ID = <Expr>');"]
+                                ["Type ID = Expr ;", "yy.createProduction('<Stmt>', '<Type> ID = <Expr> ;');"],
+                                ["{ StmtList }", "yy.createProduction('<Stmt>', '{ <StmtList> }');"],
+                                ["if ( Expr ) Stmt else Stmt", "yy.createProduction('<Stmt>', 'if ( <Expr> ) <Stmt> else <Stmt>');"],
+                                ["while ( Expr ) Stmt", "yy.createProduction('<Stmt>', 'while ( <Expr> ) <Stmt>');"],
+                                ["printLine ( Expr ) ;", "yy.createProduction('<Stmt>', '' + $1 + ' ( <Expr> )');"],
+                                ["ID = Expr ;", "yy.createProduction('<Stmt>', 'ID = <Expr>');"]
                             ],
         "Expr":             [
-                                ["Expr + Expr", "ParsedProductions.push('<Expr> ::= <Expr> + <Expr>');"],
-                                ["Expr - Expr", "ParsedProductions.push('<Expr> ::= <Expr> - <Expr>');"],
-                                ["Expr * Expr", "ParsedProductions.push('<Expr> ::= <Expr> * <Expr>');"],
-                                ["Expr / Expr", "ParsedProductions.push('<Expr> ::= <Expr> / <Expr>');"],
-                                ["Expr < Expr", "ParsedProductions.push('<Expr> ::= <Expr> < <Expr>');"],
-                                ["Expr <= Expr", "ParsedProductions.push('<Expr> ::= <Expr> <= <Expr>');"],
-                                ["Expr >= Expr", "ParsedProductions.push('<Expr> ::= <Expr> >= <Expr>');"],
-                                ["Expr > Expr", "ParsedProductions.push('<Expr> ::= <Expr> > <Expr>');"],
-                                ["Expr == Expr", "ParsedProductions.push('<Expr> ::= <Expr> == <Expr>');"],
-                                ["Expr != Expr", "ParsedProductions.push('<Expr> ::= <Expr> != <Expr>');"],
-                                ["Expr && Expr", "ParsedProductions.push('<Expr> ::= <Expr> && <Expr>');"],
-                                ["Expr || Expr", "ParsedProductions.push('<Expr> ::= <Expr> || <Expr>');"],
-                                ["! Expr", "ParsedProductions.push('<Expr> ::= ! <Expr>');"],
-                                ["- Expr", "ParsedProductions.push('<Expr> ::= - <Expr>');", {"prec": "UMINUS"}],
-                                ["Expr . ID ( ParameterList )", "ParsedProductions.push('<Expr> ::= <Expr> . ID ( <ParameterList> )');"],
-                                ["new ID ( )", "ParsedProductions.push('<Expr> ::= new ID ( )');"],
-                                ["ID", "ParsedProductions.push('<Expr> ::= ID');"],
-                                ["this", "ParsedProductions.push('<Expr> ::= this');"],
-                                ["Integer", "ParsedProductions.push('<Expr> ::= Integer');"],
-                                ["null", "ParsedProductions.push('<Expr> ::= null');"],
-                                ["true", "ParsedProductions.push('<Expr> ::= true');"],
-                                ["false", "ParsedProductions.push('<Expr> ::= false');"], 
-                                ["( Expr )", "ParsedProductions.push('<Expr> ::= ( <Expr> )');"]
+                                ["Expr + Expr", "yy.createProduction('<Expr>', '<Expr> + <Expr>');"],
+                                ["Expr - Expr", "yy.createProduction('<Expr>', '<Expr> - <Expr>');"],
+                                ["Expr * Expr", "yy.createProduction('<Expr>', '<Expr> * <Expr>');"],
+                                ["Expr / Expr", "yy.createProduction('<Expr>', '<Expr> / <Expr>');"],
+                                ["Expr < Expr", "yy.createProduction('<Expr>', '<Expr> < <Expr>');"],
+                                ["Expr <= Expr", "yy.createProduction('<Expr>', '<Expr> <= <Expr>');"],
+                                ["Expr >= Expr", "yy.createProduction('<Expr>', '<Expr> >= <Expr>');"],
+                                ["Expr > Expr", "yy.createProduction('<Expr>', '<Expr> > <Expr>');"],
+                                ["Expr == Expr", "yy.createProduction('<Expr>', '<Expr> == <Expr>');"],
+                                ["Expr != Expr", "yy.createProduction('<Expr>', '<Expr> != <Expr>');"],
+                                ["Expr && Expr", "yy.createProduction('<Expr>', '<Expr> && <Expr>');"],
+                                ["Expr || Expr", "yy.createProduction('<Expr>', '<Expr> || <Expr>');"],
+                                ["! Expr", "yy.createProduction('<Expr>', '! <Expr>');"],
+                                ["- Expr", "yy.createProduction('<Expr>', '- <Expr>');", {"prec": "UMINUS"}],
+                                ["Expr . ID ( ParameterList )", "yy.createProduction('<Expr>', '<Expr> . ID ( <ParameterList> )');"],
+                                ["new ID ( )", "yy.createProduction('<Expr>', 'new ID ( )');"],
+                                ["ID", "yy.createProduction('<Expr>', 'ID');"],
+                                ["this", "yy.createProduction('<Expr>', 'this');"],
+                                ["Integer", "yy.createProduction('<Expr>', 'Integer');"],
+                                ["null", "yy.createProduction('<Expr>', 'null');"],
+                                ["true", "yy.createProduction('<Expr>', 'true');"],
+                                ["false", "yy.createProduction('<Expr>', 'false');"], 
+                                ["( Expr )", "yy.createProduction('<Expr>', '( <Expr> )');"]
                             ],
         "ParameterList":    [
-                                ["", "ParsedProductions.push('<ParameterList> ::= epsilon');"],
-                                ["Expr ParameterList_", "ParsedProductions.push('<ParameterList> ::= <Expr> <ParameterList_>');"]
+                                ["", "yy.createProduction('<ParameterList>', 'epsilon');"],
+                                ["Expr ParameterList_", "yy.createProduction('<ParameterList>', '<Expr> <ParameterList_>');"]
                             ],
         "ParameterList_":   [
-                                ["", "ParsedProductions.push('<ParameterList_> ::= epsilon');"],
-                                [", Expr ParameterList_", "ParsedProductions.push('<ParameterList_> ::= <Expr> <ParameterList_>');"]
+                                ["", "yy.createProduction('<ParameterList_>', 'epsilon');"],
+                                [", Expr ParameterList_", "yy.createProduction('<ParameterList_>', '<Expr> <ParameterList_>');"]
                             ],
     }
 }

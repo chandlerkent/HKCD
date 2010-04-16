@@ -1,6 +1,3 @@
-// This is a nasty hack, but because of objj file-scoping its global vars., I don't think it can happen any other way.
-ParsedProduction = [];
-
 @import <Foundation/Foundation.j>
 @import "Lexer.j"
 @import "Parser.j"
