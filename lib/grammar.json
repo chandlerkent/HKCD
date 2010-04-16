@@ -31,96 +31,96 @@
 
     "bnf": { 
         "Program":          [
-                                ["MainClassDecl ClassDeclList", "yy.createProduction('<Program>', '<MainClassDecl> <ClassDeclList>');"]
+                                ["MainClassDecl ClassDeclList", "$$ = new yy.Node('Program', [$1, $2]); return $$;"],
                             ],
         "MainClassDecl":    [
-                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "yy.createProduction('<MainClassDecl>', 'class ID { public static void main ( String [ ] ID ) { <StmtList> } }');"]
+                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "$$ = new yy.Node('MainClassDecl', [$2, $12, $15]);"],
                             ],
         "ClassDeclList":    [
-                                ["", "yy.createProduction('<ClassDeclList>', 'epsilon');"],
-                                ["ClassDecl ClassDeclList", "yy.createProduction('<ClassDeclList>', '<ClassDecl> <ClassDeclList>');"]
+                                ["", "$$ = new yy.Node('ClassDeclList');"],
+                                ["ClassDecl ClassDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "ClassDecl":        [
-                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "yy.createProduction('<ClassDecl>', 'class ID <Extension> { <ClassVarDeclList> <MethodDeclList> }');"]
+                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.Node('ClassDecl', [$2, $3, $5, $6]);"],
                             ],
         "Extension":        [
-                                ["", "yy.createProduction('<Extension>', 'epsilon');"],
-                                ["extends ID", "yy.createProduction('<Extension>', 'extends ID');"]
+                                ["", "$$ = new yy.Node('Extension');"],
+                                ["extends ID", "$$ = new yy.Node('Extension', [$2]);"],
                             ],
         "ClassVarDeclList": [
-                                ["", "yy.createProduction('<ClassVarDeclList>', 'epsilon');"],
-                                ["ClassVarDecl ClassVarDeclList", "yy.createProduction('<ClassVarDeclList>', '<ClassVarDecl> <ClassVarDeclList>');"]
+                                ["", "$$ = new yy.Node('ClassVarDeclList');"],
+                                ["ClassVarDecl ClassVarDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "ClassVarDecl":     [
-                                ["Type ID ;", "yy.createProduction('<ClassVarDecl>', '<Type> ID');"]
+                                ["Type ID ;", "$$ = new yy.Node('ClassVarDecl', [$2], { 'type' : $2 });"],
                             ],
         "MethodDeclList":   [
-                                ["", "yy.createProduction('<MethodDeclList>', 'epsilon');"],
-                                ["MethodDecl MethodDeclList", "yy.createProduction('<MethodDeclList>', '<MethodDecl> <MethodDeclList>');"]
+                                ["", "$$ = new yy.Node('MethodDeclList');"],
+                                ["MethodDecl MethodDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "MethodDecl":       [
-                                ["public Type ID ( FormalList ) { StmtList return Expr ; }", "yy.createProduction('<MethodDecl>', 'public <Type> ID ( <FormalList> ) { <StmtList> return <Expr> ; }');"]
+                                ["public Type ID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.Node('MethodDecl', [$3, $5, $8, $10], { 'type' : $2 });"],
                             ],
         "FormalList":       [
-                                ["", "yy.createProduction('<FormalList>', 'epsilon');"],
-                                ["Formal FormalList_", "yy.createProduction('<FormalList>', '<Formal> <FormalList_>');"]
+                                ["", "$$ = new yy.Node('FormalList');"],
+                                ["Formal FormalList_", "$2.addChild($1); $$ = $2;"],
                             ],
         "FormalList_":      [
-                                ["", "yy.createProduction('<FormalList_>', 'epsilon');"],
-                                [", Formal FormalList_", "yy.createProduction('<FormalList_>', ', <Formal> <FormalList_>');"]
+                                ["", "$$ = new yy.Node('FormalList');"],
+                                [", Formal FormalList_", "$3.addChild($2); $$ = $3;"],
                             ],
         "Formal":           [
-                                ["Type ID", "yy.createProduction('<Formal>', '<Type> ID');"]
+                                ["Type ID", "$$ = new yy.Node('Formal', [$2], { 'type' : $1 });"],
                             ],
         "Type":             [
-                                ["int", "yy.createProduction('<Type>', 'int');"],
-                                ["boolean", "yy.createProduction('<Type>', 'boolean');"],
-                                ["ID", "yy.createProduction('<Type>', 'ID');"]
+                                ["int", "$$ = yytext;"],
+                                ["boolean", "$$ = yytext;"],
+                                ["ID", "$$ = $1;"],
                             ],
         "StmtList":         [
-                                ["", "yy.createProduction('<StmtList>', 'epsilon');"],
-                                ["Stmt StmtList", "yy.createProduction('<StmtList>', '<Stmt> <StmtList>');"]
+                                ["", "$$ = new yy.Node('StmtList');"],
+                                ["Stmt StmtList", "$2.addChild($1); $$ = $2;"],
                             ],
         "Stmt":             [
-                                ["Type ID = Expr ;", "yy.createProduction('<Stmt>', '<Type> ID = <Expr> ;');"],
-                                ["{ StmtList }", "yy.createProduction('<Stmt>', '{ <StmtList> }');"],
-                                ["if ( Expr ) Stmt else Stmt", "yy.createProduction('<Stmt>', 'if ( <Expr> ) <Stmt> else <Stmt>');"],
-                                ["while ( Expr ) Stmt", "yy.createProduction('<Stmt>', 'while ( <Expr> ) <Stmt>');"],
-                                ["printLine ( Expr ) ;", "yy.createProduction('<Stmt>', '' + $1 + ' ( <Expr> )');"],
-                                ["ID = Expr ;", "yy.createProduction('<Stmt>', 'ID = <Expr>');"]
+                                ["Type ID = Expr ;", "$$ = new yy.Node('InitialAssignment', [$2, $4], { 'type' : $1 });"],
+                                ["{ StmtList }", "$$ = new yy.Node('Block', [$2]);"],
+                                ["if ( Expr ) Stmt else Stmt", "$$ = new yy.Node('If', [$3, $5, $7]);"],
+                                ["while ( Expr ) Stmt", "$$ = new yy.Node('While', [$3, $5]);"],
+                                ["printLine ( Expr ) ;", "$$ = new yy.Node('PrintLine', [$3]);"],
+                                ["ID = Expr ;", "$$ = new yy.Node('Assignment', [$1, $3]);"],
                             ],
         "Expr":             [
-                                ["Expr + Expr", "yy.createProduction('<Expr>', '<Expr> + <Expr>');"],
-                                ["Expr - Expr", "yy.createProduction('<Expr>', '<Expr> - <Expr>');"],
-                                ["Expr * Expr", "yy.createProduction('<Expr>', '<Expr> * <Expr>');"],
-                                ["Expr / Expr", "yy.createProduction('<Expr>', '<Expr> / <Expr>');"],
-                                ["Expr < Expr", "yy.createProduction('<Expr>', '<Expr> < <Expr>');"],
-                                ["Expr <= Expr", "yy.createProduction('<Expr>', '<Expr> <= <Expr>');"],
-                                ["Expr >= Expr", "yy.createProduction('<Expr>', '<Expr> >= <Expr>');"],
-                                ["Expr > Expr", "yy.createProduction('<Expr>', '<Expr> > <Expr>');"],
-                                ["Expr == Expr", "yy.createProduction('<Expr>', '<Expr> == <Expr>');"],
-                                ["Expr != Expr", "yy.createProduction('<Expr>', '<Expr> != <Expr>');"],
-                                ["Expr && Expr", "yy.createProduction('<Expr>', '<Expr> && <Expr>');"],
-                                ["Expr || Expr", "yy.createProduction('<Expr>', '<Expr> || <Expr>');"],
-                                ["! Expr", "yy.createProduction('<Expr>', '! <Expr>');"],
-                                ["- Expr", "yy.createProduction('<Expr>', '- <Expr>');", {"prec": "UMINUS"}],
-                                ["Expr . ID ( ParameterList )", "yy.createProduction('<Expr>', '<Expr> . ID ( <ParameterList> )');"],
-                                ["new ID ( )", "yy.createProduction('<Expr>', 'new ID ( )');"],
-                                ["ID", "yy.createProduction('<Expr>', 'ID');"],
-                                ["this", "yy.createProduction('<Expr>', 'this');"],
-                                ["Integer", "yy.createProduction('<Expr>', 'Integer');"],
-                                ["null", "yy.createProduction('<Expr>', 'null');"],
-                                ["true", "yy.createProduction('<Expr>', 'true');"],
-                                ["false", "yy.createProduction('<Expr>', 'false');"], 
-                                ["( Expr )", "yy.createProduction('<Expr>', '( <Expr> )');"]
+                                ["Expr + Expr", "$$ = new yy.Node('Add', [$1, $3]);"],
+                                ["Expr - Expr", "$$ = new yy.Node('Subtract', [$1, $3]);"],
+                                ["Expr * Expr", "$$ = new yy.Node('Multiply', [$1, $3]);"],
+                                ["Expr / Expr", "$$ = new yy.Node('Divide', [$1, $3]);"],
+                                ["Expr < Expr", "$$ = new yy.Node('LessThan', [$1, $3]);"],
+                                ["Expr <= Expr", "$$ = new yy.Node('LessThanEqual', [$1, $3]);"],
+                                ["Expr >= Expr", "$$ = new yy.Node('GreaterThanEqual', [$1, $3]);"],
+                                ["Expr > Expr", "$$ = new yy.Node('GreaterThan', [$1, $3]);"],
+                                ["Expr == Expr", "$$ = new yy.Node('Equal', [$1, $3]);"],
+                                ["Expr != Expr", "$$ = new yy.Node('NotEqual', [$1, $3]);"],
+                                ["Expr && Expr", "$$ = new yy.Node('And', [$1, $3]);"],
+                                ["Expr || Expr", "$$ = new yy.Node('Or', [$1, $3]);"],
+                                ["! Expr", "$$ = new yy.Node('Not', [$2]);"],
+                                ["- Expr", "$$ = new yy.Node('Negate', [$2]);", {"prec": "UMINUS"}],
+                                ["Expr . ID ( ParameterList )", "$$ = new yy.Node('Call', [$1, $3, $5]);"],
+                                ["new ID ( )", "$$ = new yy.Node('Construct', [$2]);"],
+                                ["ID", "$$ = yytext;"],
+                                ["this", "$$ = yytext;"],
+                                ["Integer", "$$ = yytext;"],
+                                ["null", "$$ = yytext;"],
+                                ["true", "$$ = yytext;"],
+                                ["false", "$$ = yytext;"], 
+                                ["( Expr )", "$$ = $2;"],
                             ],
         "ParameterList":    [
-                                ["", "yy.createProduction('<ParameterList>', 'epsilon');"],
-                                ["Expr ParameterList_", "yy.createProduction('<ParameterList>', '<Expr> <ParameterList_>');"]
+                                ["", "$$ = new yy.Node('ParameterList');"],
+                                ["Expr ParameterList_", "$2.addChild($1); $$ = $2;"],
                             ],
         "ParameterList_":   [
-                                ["", "yy.createProduction('<ParameterList_>', 'epsilon');"],
-                                [", Expr ParameterList_", "yy.createProduction('<ParameterList_>', '<Expr> <ParameterList_>');"]
+                                ["", "$$ = new yy.Node('ParameterList');"],
+                                [", Expr ParameterList_", "$3.addChild($2); $$ = $3;"],
                             ],
     }
 }

@@ -65,7 +65,7 @@ function main(args)
                 return parseFile(file, parser);
             });
         } else {
-            print("\nParsed Productions:");
+            print("\nAST:");
             print(parseFile(readFile(options.args[0]), parser));
         }
     }
@@ -102,12 +102,8 @@ function outputPathForFile(file) {
 function parseFile(file, parser) {
     var result = "";
     
-    var parsedFile = [parser parse:file];
-    result += parsedFile.productions.join("\n");
-    
-    if (parsedFile.errors.length > 0) {
-        result += "\n" + parsedFile.errors.join("\n");
-    }
+    var ast = [parser parse:file];
+    result += ast.toString();
     
     return result;
 }

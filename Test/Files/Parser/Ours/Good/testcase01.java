@@ -1,5 +1,5 @@
 class Foo {
-    public static void main (String[] ID) {
+    public static void main (String[] aString) {
         
     }
 }

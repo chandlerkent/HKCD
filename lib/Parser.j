@@ -19,15 +19,15 @@ var actions = require(require("file").absolute("./lib/actions"));
 - (JSObject)parse:(CPString)input
 {
     var parser = new require("jison").Parser(grammar);    
-    parser.yy = new actions.ParseResults();
+    parser.yy = actions;
 
     try {
-        parser.parse(input);
+        var ast = parser.parse(input);
     } catch(e) {
-        parser.yy.createError(e.message);
+        // parser.yy.createError(e.message);
     }
-    
-    return parser.yy;
+
+    return ast;
 }
 
 @end
