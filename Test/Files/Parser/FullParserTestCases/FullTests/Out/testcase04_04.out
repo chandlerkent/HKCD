@@ -1,7 +1,0 @@
-<Type> ::= ID
-
-
-Parse error on line 12:
-...er s = new Solver()s}} class Solver 
-----------------------^
-Expecting ';', '+', '-', '*', '/', '<', '<=', '>=', '>', '==', '!=', '&&', '||', '.', ')', ','

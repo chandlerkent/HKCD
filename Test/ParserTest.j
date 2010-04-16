@@ -20,30 +20,56 @@ var FileList = require("jake").FileList;
 
 - (void)testThatParserDoesPassOurGoodTestCases
 {
-    var inputFiles = new FileList("Test/Files/Parser/Ours/Good/*.java").items();
-
-    inputFiles.forEach(function(file) {
-        var bytes = readFile(file);
-        
-        try {
-            var parsedTokens = [parser parse:bytes];
-            [self assertTrue:(parsedTokens > 0)];
-        } catch(e) {
-            [self fail:"Failed test case: " + file];
-        }
-    });
+    [self parserParsesWithNoErrorsInputFilesFromLocation:
+        "Test/Files/Parser/Ours/Good/*.java"];
 }
 
 - (void)testThatParserDoesPassEarlyGoodTestCases
 {
-    var inputFiles = new FileList("Test/Files/Parser/Early/Good/*.java").items();
+    [self parserParsesWithNoErrorsInputFilesFromLocation:
+        "Test/Files/Parser/Early/Good/*.java"];
+}
+
+- (void)testThatParserDoesPassFullGoodTestCases
+{
+    [self parserParsesWithNoErrorsInputFilesFromLocation:
+        "Test/Files/Parser/FullParserTestCases/Good/FullTests/*.java"];
+}
+
+- (void)testThatParserDoesFailFullBadTestCases
+{
+    [self parserParsesWithErrorsInputFilesFromLocation:
+        "Test/Files/Parser/FullParserTestCases/Bad/FullTests/*.java"];
+}
+
+- (void)parserParsesWithNoErrorsInputFilesFromLocation:(CPString)location
+{
+    [self parserParsesWithAssertion:
+            function(parsedTokens) {
+                [self assertFalse:/error/i.test(parsedTokens)];
+            }
+          inputFilesFromLocation:location];
+}
+
+- (void)parserParsesWithErrorsInputFilesFromLocation:(CPString)location
+{
+    [self parserParsesWithAssertion:
+            function(parsedTokens) {
+                [self assertTrue:/error/i.test(parsedTokens)];
+            }
+          inputFilesFromLocation:location];
+}
+
+- (void)parserParsesWithAssertion:(Function)assertion inputFilesFromLocation:(CPString)location
+{
+    var inputFiles = new FileList(location).items();
 
     inputFiles.forEach(function(file) {
         var bytes = readFile(file);
-        
+
         try {
             var parsedTokens = [parser parse:bytes];
-            [self assertTrue:(parsedTokens > 0)];
+            assertion(parsedTokens);
         } catch(e) {
             [self fail:"Failed test case: " + file];
         }

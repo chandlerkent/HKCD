@@ -1,7 +1,0 @@
-<Expr> ::= true
-
-
-Parse error on line 3:
-...[] ID) {		if (true);	}}class SomeOt
-----------------------^
-Expecting '{', 'if', 'while', 'printLine', 'ID', 'int', 'boolean'

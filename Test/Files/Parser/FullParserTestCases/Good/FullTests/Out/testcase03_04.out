@@ -1,0 +1,9 @@
+<Type> ::= int
+<Expr> ::= Integer
+<Expr> ::= Integer
+<Expr> ::= Integer
+<Expr> ::= <Expr> * <Expr>
+<Expr> ::= <Expr> + <Expr>
+<Stmt> ::= <Type> ID = <Expr> ;
+<Expr> ::= true
+<Expr> ::= ! <Expr>

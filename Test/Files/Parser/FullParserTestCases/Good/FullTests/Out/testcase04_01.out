@@ -19,9 +19,3 @@
 <Expr> ::= ID
 <Expr> ::= Integer
 <Expr> ::= <Expr> == <Expr>
-
-
-Parse error on line 5:
-... get(int i){if(i==0)return this.element;
------------------------^
-Expecting '{', 'if', 'while', 'printLine', 'ID', 'int', 'boolean'

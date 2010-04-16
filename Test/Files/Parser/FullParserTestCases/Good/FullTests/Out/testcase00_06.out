@@ -4,12 +4,10 @@
 <Type> ::= int
 <Expr> ::= Integer
 <Stmt> ::= <Type> ID = <Expr> ;
-<Type> ::= ID
-<Expr> ::= new ID ( )
+<Type> ::= int
+<Expr> ::= Integer
 <Stmt> ::= <Type> ID = <Expr> ;
-
-
-Parse error on line 15:
-... new Euclid();		gcd.init(a, b);				Sy
-----------------------^
-Expecting '=', 'ID'
+<Type> ::= int
+<Expr> ::= Integer
+<Stmt> ::= <Type> ID = <Expr> ;
+<Type> ::= int

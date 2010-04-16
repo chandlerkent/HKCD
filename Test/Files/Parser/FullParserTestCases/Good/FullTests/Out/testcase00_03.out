@@ -6,9 +6,3 @@
 <Expr> ::= <Expr> < <Expr>
 <Expr> ::= Integer
 <Stmt> ::= ID = <Expr>
-
-
-Parse error on line 10:
-...    b = 4;         b = 4 + b;      els
-----------------------^
-Expecting 'else'
