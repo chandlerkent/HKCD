@@ -15,8 +15,6 @@
 <MainClassDecl> ::= class ID { public static void main ( String [ ] ID ) { <StmtList> } }
 <Extension> ::= epsilon
 <Type> ::= int
-
-
 Parse error on line 11:
 ...perTest {	int num1 = 0;	int num2 = 0;
 ----------------------^

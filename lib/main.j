@@ -62,10 +62,11 @@ function main(args)
         var parser = [[Parser alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
         if (File.isDirectory(options.args[0])) {
             processDirectory(options.args[0], function(file) {
-                return [parser parse:file].join("\n");
+                return parseFile(file, parser);
             });
         } else {
-            parseFile(options.args[0], parser);
+            print("\nParsed Productions:");
+            print(parseFile(readFile(options.args[0]), parser));
         }
     }
 
@@ -98,9 +99,17 @@ function outputPathForFile(file) {
     return "/" + [file lastPathComponent].split(".")[0] + ".out";
 }
 
-function parseFile(fileName, parser) {
-    print("\nParsed Productions:");
-    print([parser parse:readFile(fileName)].join("\n"));
+function parseFile(file, parser) {
+    var result = "";
+    
+    var parsedFile = [parser parse:file];
+    result += parsedFile.productions.join("\n");
+    
+    if (parsedFile.errors.length > 0) {
+        result += "\n" + parsedFile.errors.join("\n");
+    }
+    
+    return result;
 }
 
 function tokenizeFile(fileName, parser) {

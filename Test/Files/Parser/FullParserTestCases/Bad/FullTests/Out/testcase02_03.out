@@ -70,8 +70,6 @@
 <Expr> ::= ID
 <Expr> ::= <Expr> / <Expr>
 <Stmt> ::= ID = <Expr>
-
-
 Lexical error on line 31. Unrecognized text.
 ...mething = something | something && somet
 -----------------------^

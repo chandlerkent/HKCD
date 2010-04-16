@@ -4,8 +4,6 @@
 <Expr> ::= <Expr> == <Expr>
 <Expr> ::= Integer
 <Stmt> ::= System.out.println ( <Expr> )
-
-
 Parse error on line 6:
 ...lse			b3 = ! null	}}
 ---------------------^

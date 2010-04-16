@@ -1,15 +1,13 @@
 <Type> ::= int
 <Expr> ::= Integer
 <Stmt> ::= <Type> ID = <Expr> ;
-<Type> ::= int
-<Expr> ::= Integer
+<Type> ::= boolean
+<Expr> ::= false
 <Stmt> ::= <Type> ID = <Expr> ;
 <Type> ::= ID
 <Expr> ::= new ID ( )
 <Stmt> ::= <Type> ID = <Expr> ;
-
-
-Parse error on line 15:
-... new Euclid();		gcd.init(a, b);				Sy
+Parse error on line 3:
+...w Discordia();chaos.everythingYouKnowIs
 ----------------------^
 Expecting '=', 'ID'

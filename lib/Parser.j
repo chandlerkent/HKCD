@@ -1,22 +1,33 @@
-@import "Lexer.j"
+@import <Foundation/CPObject.j>
 
-@implementation Parser : Lexer
+var actions = require(require("file").absolute("./lib/actions"));
+
+@implementation Parser : CPObject
 {
+    JSObject grammar;
 }
 
-- (CPNumber)parse:(CPString)input
+- (id)initWithGrammar:(JSObject)aGrammar
 {
-    parser.yy = require(require("file").absolute("./lib/actions"));
+    if (self = [super init])
+    {
+        grammar = aGrammar;
+    }
+    return self;
+}
+
+- (JSObject)parse:(CPString)input
+{
+    var parser = new require("jison").Parser(grammar);    
+    parser.yy = new actions.ParseResults();
 
     try {
         parser.parse(input);
     } catch(e) {
-        CPLog.error(e.message);
-        parser.yy.productions.push("\n");
-        parser.yy.productions.push(e.message);
+        parser.yy.createError(e.message);
     }
     
-    return parser.yy.productions;
+    return parser.yy;
 }
 
 @end

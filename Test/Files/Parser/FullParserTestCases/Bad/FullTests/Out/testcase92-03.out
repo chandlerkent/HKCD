@@ -1,6 +1,5 @@
 
-
 Parse error on line 1:
-class main {	public stati
+class {void main (String[
 ------^
 Expecting 'ID'

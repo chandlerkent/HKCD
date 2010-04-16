@@ -45,8 +45,8 @@ var FileList = require("jake").FileList;
 - (void)parserParsesWithNoErrorsInputFilesFromLocation:(CPString)location
 {
     [self parserParsesWithAssertion:
-            function(parsedTokens) {
-                [self assertFalse:/error/i.test(parsedTokens)];
+            function(parsedFile) {
+                [self assertFalse:(parsedFile.errors.length > 0)];
             }
           inputFilesFromLocation:location];
 }
@@ -54,8 +54,8 @@ var FileList = require("jake").FileList;
 - (void)parserParsesWithErrorsInputFilesFromLocation:(CPString)location
 {
     [self parserParsesWithAssertion:
-            function(parsedTokens) {
-                [self assertTrue:/error/i.test(parsedTokens)];
+            function(parsedFile) {
+                [self assertTrue:(parsedFile.errors.length > 0)];
             }
           inputFilesFromLocation:location];
 }
@@ -68,8 +68,8 @@ var FileList = require("jake").FileList;
         var bytes = readFile(file);
 
         try {
-            var parsedTokens = [parser parse:bytes];
-            assertion(parsedTokens);
+            var parsedFile = [parser parse:bytes];
+            assertion(parsedFile);
         } catch(e) {
             [self fail:"Failed test case: " + file];
         }

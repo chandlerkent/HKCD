@@ -1,6 +1,5 @@
 
-
 Parse error on line 1:
-class {void main (String[
+class main extends main {
 ------^
 Expecting 'ID'

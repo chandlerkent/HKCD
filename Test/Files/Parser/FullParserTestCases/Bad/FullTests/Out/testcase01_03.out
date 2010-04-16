@@ -1,7 +1,5 @@
 <Expr> ::= this
 <Expr> ::= Integer
-
-
 Parse error on line 4:
 ...			{ c3 = 4 || - 4 }	}}class C2 ext
 ----------------------^

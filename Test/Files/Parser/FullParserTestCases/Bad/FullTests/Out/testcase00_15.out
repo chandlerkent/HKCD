@@ -4,8 +4,6 @@
 <Expr> ::= ID
 <Expr> ::= Integer
 <Expr> ::= <Expr> < <Expr>
-
-
 Parse error on line 6:
 ...stem.out.println(fib(i));			i++;		}	
 -----------------------^
