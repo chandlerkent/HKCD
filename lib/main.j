@@ -53,7 +53,7 @@ function main(args)
     }
     
     if (options.tokenize) {
-        var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile("lib/lexer_grammar.json")];
+        var lexer = [[Lexer alloc] initWithGrammar:readGrammarFromFile(options.grammar)];
         if (File.isDirectory(options.args[0])) {
             processDirectory(options.args[0], function(file) {
                 return [lexer tokenize:file];
@@ -107,7 +107,7 @@ function parseFile(fileName, parser) {
 }
 
 function tokenizeFile(fileName, parser) {
-    var tokensAndMatches = tokensForFile(fileName, parser);
+    var tokensAndMatches = [parser tokenize:readFile(fileName)];
     
     print("\nTokens:");
     for (var i = 0; i < tokensAndMatches.length; i++) {
