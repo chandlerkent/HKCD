@@ -1,6 +1,6 @@
 var ASSERT = require("test/assert");
 var classtypes = require("../lib/classtypes");
-var Node = require("../lib/ast").Node;
+var Node = require("../lib/Node").Node;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = buildAST();
