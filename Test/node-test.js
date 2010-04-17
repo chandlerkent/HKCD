@@ -9,9 +9,8 @@ exports.testNodeConstruction = function() {
     var someChildren = ['1', '2', '3'];
     var nodeWithChildren = new Node('Chandler', someChildren);
     ASSERT.eq(someChildren, nodeWithChildren.children);
-    
-    var someProperties = {"value": 1, "type": "int"};
-    var nodeWithProperties = new Node('Derek', [], someProperties);
+
+    var nodeWithProperties = new Node('Derek', [], {"value": 1, "type": "int"});
     ASSERT.eq(1, nodeWithProperties.value);
     ASSERT.eq("int", nodeWithProperties.type);
 };

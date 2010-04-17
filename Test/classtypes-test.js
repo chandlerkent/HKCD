@@ -20,14 +20,14 @@ function buildInvalidAST() {
             "Foo",
             "args",
             new Node("StmtList"),
-        ]),
+        ], {"value": "Foo"}),
         new Node("ClassDeclList", [
             new Node("ClassDecl", [
                 "Foo",
                 new Node("Extension"),
                 new Node("ClassVarDeclList"),
                 new Node("MethodDeclList")
-            ])
+            ], {"value": "Foo"})
         ])
     ]);
 }
@@ -38,7 +38,7 @@ function buildAST() {
             "Foo",
             "args",
             new Node("StmtList"),
-        ]),
+        ], {"value": "Foo"}),
         new Node("ClassDeclList")
     ]);
 }
