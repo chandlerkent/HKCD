@@ -34,32 +34,32 @@
                                 ["MainClassDecl ClassDeclList", "$$ = new yy.Node('Program', [$1, $2]); return $$;"],
                             ],
         "MainClassDecl":    [
-                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "$$ = new yy.Node('MainClassDecl', [$2, $12, $15], {'value': $2});"],
+                                ["class JavaID { public static void main ( String [ ] JavaID ) { StmtList } }", "$$ = new yy.Node('MainClassDecl', [$2, $12, $15], {'value': $2});"],
                             ],
         "ClassDeclList":    [
                                 ["", "$$ = new yy.Node('ClassDeclList');"],
                                 ["ClassDecl ClassDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "ClassDecl":        [
-                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.Node('ClassDecl', [$2, $3, $5, $6], {'value': $2});"],
+                                ["class JavaID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.Node('ClassDecl', [$2, $3, $5, $6], {'value': $2});"],
                             ],
         "Extension":        [
                                 ["", "$$ = new yy.Node('Extension');"],
-                                ["extends ID", "$$ = new yy.Node('Extension', [$2]);"],
+                                ["extends JavaID", "$$ = new yy.Node('Extension', [$2]);"],
                             ],
         "ClassVarDeclList": [
                                 ["", "$$ = new yy.Node('ClassVarDeclList');"],
                                 ["ClassVarDecl ClassVarDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "ClassVarDecl":     [
-                                ["Type ID ;", "$$ = new yy.Node('ClassVarDecl', [$2], { 'type' : $2 });"],
+                                ["Type JavaID ;", "$$ = new yy.Node('ClassVarDecl', [$2], { 'type' : $2 });"],
                             ],
         "MethodDeclList":   [
                                 ["", "$$ = new yy.Node('MethodDeclList');"],
                                 ["MethodDecl MethodDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "MethodDecl":       [
-                                ["public Type ID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.Node('MethodDecl', [$3, $5, $8, $10], { 'type' : $2 });"],
+                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.Node('MethodDecl', [$3, $5, $8, $10], { 'type' : $2 });"],
                             ],
         "FormalList":       [
                                 ["", "$$ = new yy.Node('FormalList');"],
@@ -70,19 +70,19 @@
                                 [", Formal FormalList_", "$3.addChild($2); $$ = $3;"],
                             ],
         "Formal":           [
-                                ["Type ID", "$$ = new yy.Node('Formal', [$2], { 'type' : $1 });"],
+                                ["Type JavaID", "$$ = new yy.Node('Formal', [$2], { 'type' : $1 });"],
                             ],
         "Type":             [
                                 ["int", "$$ = yytext;"],
                                 ["boolean", "$$ = yytext;"],
-                                ["ID", "$$ = $1;"],
+                                ["ID", "$$ = yytext;"],
                             ],
         "StmtList":         [
                                 ["", "$$ = new yy.Node('StmtList');"],
                                 ["Stmt StmtList", "$2.addChild($1); $$ = $2;"],
                             ],
         "Stmt":             [
-                                ["Type ID = Expr ;", "$$ = new yy.Node('InitialAssignment', [$2, $4], { 'type' : $1 });"],
+                                ["Type JavaID = Expr ;", "$$ = new yy.Node('InitialAssignment', [$2, $4], { 'type' : $1 });"],
                                 ["{ StmtList }", "$$ = new yy.Node('Block', [$2]);"],
                                 ["if ( Expr ) Stmt else Stmt", "$$ = new yy.Node('If', [$3, $5, $7]);"],
                                 ["while ( Expr ) Stmt", "$$ = new yy.Node('While', [$3, $5]);"],
@@ -104,8 +104,8 @@
                                 ["Expr || Expr", "$$ = new yy.Node('Or', [$1, $3]);"],
                                 ["! Expr", "$$ = new yy.Node('Not', [$2]);"],
                                 ["- Expr", "$$ = new yy.Node('Negate', [$2]);", {"prec": "UMINUS"}],
-                                ["Expr . ID ( ParameterList )", "$$ = new yy.Node('Call', [$1, $3, $5]);"],
-                                ["new ID ( )", "$$ = new yy.Node('Construct', [$2]);"],
+                                ["Expr . JavaID ( ParameterList )", "$$ = new yy.Node('Call', [$1, $3, $5]);"],
+                                ["new JavaID ( )", "$$ = new yy.Node('Construct', [$2]);"],
                                 ["ID", "$$ = yytext;"],
                                 ["this", "$$ = yytext;"],
                                 ["Integer", "$$ = yytext;"],
@@ -121,6 +121,9 @@
         "ParameterList_":   [
                                 ["", "$$ = new yy.Node('ParameterList');"],
                                 [", Expr ParameterList_", "$3.addChild($2); $$ = $3;"],
+                            ],
+        "JavaID":           [
+                                ["ID", "$$ = yytext"],
                             ],
     }
 }
