@@ -41,7 +41,7 @@
                                 ["ClassDecl ClassDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "ClassDecl":        [
-                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.Node('ClassDecl', [$2, $3, $5, $6], {'value', $2});"],
+                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.Node('ClassDecl', [$2, $3, $5, $6], {'value': $2});"],
                             ],
         "Extension":        [
                                 ["", "$$ = new yy.Node('Extension');"],
