@@ -3,43 +3,77 @@ var classtypes = require("../lib/classtypes");
 var Node = require("../lib/Node").Node;
 
 exports.testThatValidASTReturnsSameAST = function() {
-    var ast = buildAST();
+    var ast = buildValidAST();
     var otherAST = classtypes.process(ast);
     
     ASSERT.eq(ast, otherAST);
 };
 
 exports.testThatTwoClassWithSameNameAreInvalid = function() {
-    var ast = buildInvalidAST();
-    ASSERT.throwsError(function() {classtypes.process(ast)});
+    var ast = buildSameClassesAST();
+
+    ASSERT.throwsError(function() { classtypes.process(ast) });
 };
 
-function buildInvalidAST() {
+exports.testThatExtendingAnUndefinedClassIsInvalid = function() {
+    var ast = buildBadExtensionAST();
+    
+    ASSERT.throwsError(function() { classtypes.process(ast) });
+};
+
+function buildBadExtensionAST() {
     return new Node("Program", [
         new Node("MainClassDecl", [
             "Foo",
             "args",
             new Node("StmtList"),
-        ], {"value": "Foo"}),
+        ], {"class_decl": "Foo"}),
+        new Node("ClassDeclList", [
+            new Node("ClassDecl", [
+                "Bar",
+                new Node("Extension", [
+                    "Baz"
+                ], {"extension": "Baz"}),
+                new Node("ClassVarDeclList"),
+                new Node("MethodDeclList")
+            ], {"class_decl": "Bar"})
+        ])
+    ]);
+}
+
+function buildSameClassesAST() {
+    return new Node("Program", [
+        new Node("MainClassDecl", [
+            "Foo",
+            "args",
+            new Node("StmtList"),
+        ], {"class_decl": "Foo"}),
         new Node("ClassDeclList", [
             new Node("ClassDecl", [
                 "Foo",
                 new Node("Extension"),
                 new Node("ClassVarDeclList"),
                 new Node("MethodDeclList")
-            ], {"value": "Foo"})
+            ], {"class_decl": "Foo"})
         ])
     ]);
 }
 
-function buildAST() {
+function buildValidAST() {
     return new Node("Program", [
         new Node("MainClassDecl", [
             "Foo",
             "args",
             new Node("StmtList"),
-        ], {"value": "Foo"}),
-        new Node("ClassDeclList")
+        ], {"class_decl": "Foo"}),
+        new Node("ClassDeclList", [
+            new Node("ClassDecl", [
+                "Bar",
+                new Node("Extension"),
+                new Node("ClassVarDeclList"),
+                new Node("MethodDeclList")
+            ], {"class_decl": "Bar"})
+        ])
     ]);
 }
 

@@ -34,18 +34,18 @@
                                 ["MainClassDecl ClassDeclList", "$$ = new yy.Node('Program', [$1, $2]); return $$;"],
                             ],
         "MainClassDecl":    [
-                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "$$ = new yy.Node('MainClassDecl', [$2, $12, $15], {'value': $2});"],
+                                ["class ID { public static void main ( String [ ] ID ) { StmtList } }", "$$ = new yy.Node('MainClassDecl', [$2, $12, $15], {'class_decl': $2});"],
                             ],
         "ClassDeclList":    [
                                 ["", "$$ = new yy.Node('ClassDeclList');"],
                                 ["ClassDecl ClassDeclList", "$2.addChild($1); $$ = $2;"],
                             ],
         "ClassDecl":        [
-                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.Node('ClassDecl', [$2, $3, $5, $6], {'value', $2});"],
+                                ["class ID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.Node('ClassDecl', [$2, $3, $5, $6], {'class_decl': $2});"],
                             ],
         "Extension":        [
                                 ["", "$$ = new yy.Node('Extension');"],
-                                ["extends ID", "$$ = new yy.Node('Extension', [$2]);"],
+                                ["extends ID", "$$ = new yy.Node('Extension', [$2], {'extension': $2});"],
                             ],
         "ClassVarDeclList": [
                                 ["", "$$ = new yy.Node('ClassVarDeclList');"],

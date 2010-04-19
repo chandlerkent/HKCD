@@ -1,6 +1,6 @@
 @import <Foundation/CPObject.j>
 
-var ast = require(require("file").absolute("./lib/ast"));
+var ast = require(require("file").absolute("./lib/Node"));
 
 @implementation Parser : CPObject
 {
