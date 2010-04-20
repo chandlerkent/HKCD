@@ -22,45 +22,24 @@ exports.testThatExtendingAnUndefinedClassIsInvalid = function() {
 };
 
 function buildBadExtensionAST() {
-    return new Node("Program", [
-        new Node("MainClassDecl", [], {"class_decl": "Foo"}),
-        new Node("ClassDecl", [], {"class_decl": "Bar", "extension": "Baz"}),
+    return new Node('Program', [
+        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new Node('ClassDecl', [], { 'class_decl': 'Bar', 'extension': 'Baz'})
     ]);
 }
 
 function buildSameClassesAST() {
-    return new Node("Program", [
-        new Node("MainClassDecl", [
-            "Foo",
-            "args",
-            new Node("StmtList"),
-        ], {"class_decl": "Foo"}),
-        new Node("ClassDeclList", [
-            new Node("ClassDecl", [
-                "Foo",
-                new Node("Extension"),
-                new Node("ClassVarDeclList"),
-                new Node("MethodDeclList")
-            ], {"class_decl": "Foo"})
-        ])
+    return new Node('Program', [
+        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new Node('ClassDecl', [], { 'class_decl': 'Foo', 'extension': null})
     ]);
 }
 
 function buildValidAST() {
-    return new Node("Program", [
-        new Node("MainClassDecl", [
-            "Foo",
-            "args",
-            new Node("StmtList"),
-        ], {"class_decl": "Foo"}),
-        new Node("ClassDeclList", [
-            new Node("ClassDecl", [
-                "Bar",
-                new Node("Extension"),
-                new Node("ClassVarDeclList"),
-                new Node("MethodDeclList")
-            ], {"class_decl": "Bar"})
-        ])
+    return new Node('Program', [
+        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new Node('ClassDecl', [], { 'class_decl': 'Bar', 'extension': null}),
+        new Node('ClassDecl', [], { 'class_decl': 'Baz', 'extension': null})
     ]);
 }
 

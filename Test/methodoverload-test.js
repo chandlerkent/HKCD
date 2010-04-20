@@ -3,7 +3,7 @@ var methodoverload = require("../lib/methodoverload");
 var Node = require("../lib/Node").Node;
 
 exports.testThatValidASTReturnsSameAST = function() {
-    var ast = buildAST();
+    var ast = buildValidAST();
     var otherAST = methodoverload.process(ast);
     
     ASSERT.eq(ast, otherAST);
@@ -14,58 +14,52 @@ exports.testThatTwoMethodsWithSameNameAreInvalid = function() {
     ASSERT.throwsError(function() {methodoverload.process(ast)});
 };
 
+exports.testThatOverriddenMethodFromSuperclassMustHaveSameArgsAndType = function() {
+    var ast = buildInvalidExtendsAST();
+    ASSERT.throwsError(function() {methodoverload.process(ast)});
+};
+
+function buildInvalidExtendsAST() {
+    return new Node('Program', [
+        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new Node('ClassDecl', [
+            new Node('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
+            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'hasBar'})
+        ], { 'class_decl': 'Bar', 'extension': null}),
+        new Node('ClassDecl', [
+            new Node('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
+            new Node('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'}),
+            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'bar',})
+        ], { 'class_decl': 'Baz', 'extension': 'Bar'})
+    ]);
+}
+
 function buildInvalidAST() {
-    return new Node("Program", [
-        new Node("MainClassDecl", [], {"class_decl": "Foo", "param": "args"}),
-        new Node("ClassDecl", [
-            new Node("MethodDecl", [], {"method_name": "bar"}),
-            new Node("MethodDecl", [], {"method_name": "bar"})
-        ], {"class_decl": "Baz"})
+    return new Node('Program', [
+        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new Node('ClassDecl', [
+            new Node('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
+            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'bar'})
+        ], { 'class_decl': 'Bar', 'extension': null}),
+        new Node('ClassDecl', [
+            new Node('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
+            new Node('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'})
+        ], { 'class_decl': 'Baz', 'extension': null})
     ]);
 }
 
-function buildInvalidMethodDeclList() {
-    var result = new Node("MethodDeclList");
-    
-    result.addChild(new Node("MethodDecl", 
-        ["test", new Node("FormalList"), new Node("StmtList"), new Node("Expr")], 
-        { 'type' : "Foo" }));
-    result.addChild(new Node("MethodDecl", 
-        ["test", new Node("FormalList"), new Node("StmtList"), new Node("Expr")], 
-        { 'type' : "int" }));
-        
-    return result;
-}
-
-function buildAST() {
-    return new Node("Program", [
-        new Node("MainClassDecl", [
-            "Foo",
-            "args",
-            new Node("StmtList"),
-        ], {"value": "Foo"}),
-            new Node("ClassDeclList", [
-                new Node("ClassDecl", [
-                    "Foo",
-                    new Node("Extension"),
-                    new Node("ClassVarDeclList"),
-                    buildValidMethodDeclList(),
-                ], {"value": "Foo"})
-            ])
+function buildValidAST() {
+    return new Node('Program', [
+        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new Node('ClassDecl', [
+            new Node('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
+            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'hasBar'})
+        ], { 'class_decl': 'Bar', 'extension': null}),
+        new Node('ClassDecl', [
+            new Node('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
+            new Node('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'})
+        ], { 'class_decl': 'Baz', 'extension': null})
     ]);
-}
-
-function buildValidMethodDeclList() {
-    var result = new Node("MethodDeclList");
-
-    result.addChild(new Node("MethodDecl", 
-        ["test", new Node("FormalList"), new Node("StmtList"), new Node("Expr")], 
-        { 'type' : "Foo" }));
-    result.addChild(new Node("MethodDecl", 
-        ["test2", new Node("FormalList"), new Node("StmtList"), new Node("Expr")], 
-        { 'type' : "int" }));
-
-    return result;
 }
 
 if (require.main === module)

@@ -2,17 +2,34 @@
 // of the project but we are required to submit functional test cases. Since we are writing them, we may as well
 // leverage them. This is where they go.
 
-File = require("file");
-Parser = require(File.absolute("lib/parser.js")).Parser;
-Driver = require(File.absolute("lib/driver.js")).Driver;
-ClassTypes = require(File.absolute("lib/classtypes.js"));
-ASSERT = require("assert");
+var Parser = require("../lib/parser").Parser;
+var Driver = require("../lib/driver").Driver;
+var ClassTypes = require("../lib/classtypes");
+var MethodOverload = require("../lib/methodoverload");
+var ASSERT = require("assert");
 
 exports.testThatDuplicateClassesGetTypeChecked = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/testcase01.java", "A class named Foo already exists.");
-}
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_class_decls.java", "A class named Foo already exists.");
+};
+
+exports.testThatDuplicateMethodDeclarationsFails = function() {
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in this class.");
+};
+
+exports.testThatOverridingSuperclassMethodDeclarationWithDifferentArgsOrTypeFails = function() {
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "DONTKNOWYET!!! FIXME");
+};
+
+exports.testThatLegalClassDeclarationsDontFail = function() {
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_class_decls.java");
+};
+
+exports.testThatLegalMethodDeclarationsDontFail = function() {
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_method_decls.java");
+};
 
 function compilingFileResultsInError(filename, error) {
+    error = error || null;
     var finished = false;
     try {
         var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
@@ -21,7 +38,7 @@ function compilingFileResultsInError(filename, error) {
         if(ast.errors.length > 0)
             throw new Error("Error in parsing: " + ast.errors[0]);
         
-        var driver = new Driver([ClassTypes]);
+        var driver = new Driver([ClassTypes, MethodOverload]);
         var results = driver.process(ast);
         
         finished = true;
@@ -30,8 +47,8 @@ function compilingFileResultsInError(filename, error) {
         ASSERT.equal(error, e.message, "Error message: <" + e.message + "> did not match <" + error + ">");
     }
     
-    if(finished)
-        ASSERT.fail("We were expecting an error!");
+    if(finished && error)
+        ASSERT.fail("We were expecting an error but got none!");
 }
 
 function readGrammarFromFile(filePath) {
