@@ -1,6 +1,6 @@
 var ASSERT = require("test/assert");
 var classtypes = require("../lib/classtypes");
-var Node = require("../lib/Node").Node;
+var ASTNode = require("../lib/astnode").ASTNode;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = buildValidAST();
@@ -22,24 +22,24 @@ exports.testThatExtendingAnUndefinedClassIsInvalid = function() {
 };
 
 function buildBadExtensionAST() {
-    return new Node('Program', [
-        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new Node('ClassDecl', [], { 'class_decl': 'Bar', 'extension': 'Baz'})
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [], { 'class_decl': 'Bar', 'extension': 'Baz'})
     ]);
 }
 
 function buildSameClassesAST() {
-    return new Node('Program', [
-        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new Node('ClassDecl', [], { 'class_decl': 'Foo', 'extension': null})
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [], { 'class_decl': 'Foo', 'extension': null})
     ]);
 }
 
 function buildValidAST() {
-    return new Node('Program', [
-        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new Node('ClassDecl', [], { 'class_decl': 'Bar', 'extension': null}),
-        new Node('ClassDecl', [], { 'class_decl': 'Baz', 'extension': null})
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [], { 'class_decl': 'Bar', 'extension': null}),
+        new ASTNode('ClassDecl', [], { 'class_decl': 'Baz', 'extension': null})
     ]);
 }
 

@@ -1,6 +1,5 @@
-File = require("file");
-Driver = require(File.absolute("lib/driver.js")).Driver;
-ASSERT = require("assert");
+var Driver = require("../lib/driver").Driver;
+var ASSERT = require("assert");
 
 exports.testThatDriverProcessesSteps = function() {
     var steps = buildFakes();

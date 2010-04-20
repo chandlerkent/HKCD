@@ -1,6 +1,6 @@
 var ASSERT = require("test/assert");
 var methodoverload = require("../lib/methodoverload");
-var Node = require("../lib/Node").Node;
+var ASTNode = require("../lib/astnode").ASTNode;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = buildValidAST();
@@ -20,44 +20,44 @@ exports.testThatOverriddenMethodFromSuperclassMustHaveSameArgsAndType = function
 };
 
 function buildInvalidExtendsAST() {
-    return new Node('Program', [
-        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new Node('ClassDecl', [
-            new Node('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
-            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'hasBar'})
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
+            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'hasBar'})
         ], { 'class_decl': 'Bar', 'extension': null}),
-        new Node('ClassDecl', [
-            new Node('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
-            new Node('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'}),
-            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'bar',})
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
+            new ASTNode('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'}),
+            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'bar',})
         ], { 'class_decl': 'Baz', 'extension': 'Bar'})
     ]);
 }
 
 function buildInvalidAST() {
-    return new Node('Program', [
-        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new Node('ClassDecl', [
-            new Node('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
-            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'bar'})
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
+            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'bar'})
         ], { 'class_decl': 'Bar', 'extension': null}),
-        new Node('ClassDecl', [
-            new Node('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
-            new Node('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'})
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
+            new ASTNode('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'})
         ], { 'class_decl': 'Baz', 'extension': null})
     ]);
 }
 
 function buildValidAST() {
-    return new Node('Program', [
-        new Node('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new Node('ClassDecl', [
-            new Node('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
-            new Node('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'hasBar'})
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
+            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'hasBar'})
         ], { 'class_decl': 'Bar', 'extension': null}),
-        new Node('ClassDecl', [
-            new Node('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
-            new Node('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'})
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
+            new ASTNode('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'hasBaz'})
         ], { 'class_decl': 'Baz', 'extension': null})
     ]);
 }
