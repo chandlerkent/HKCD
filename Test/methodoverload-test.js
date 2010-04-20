@@ -16,19 +16,11 @@ exports.testThatTwoMethodsWithSameNameAreInvalid = function() {
 
 function buildInvalidAST() {
     return new Node("Program", [
-        new Node("MainClassDecl", [
-            "Foo",
-            "args",
-            new Node("StmtList"),
-        ], {"value": "Foo"}),
-        new Node("ClassDeclList", [
-            new Node("ClassDecl", [
-                "Foo",
-                new Node("Extension"),
-                new Node("ClassVarDeclList"),
-                buildInvalidMethodDeclList(),
-            ], {"value": "Foo"})
-        ])
+        new Node("MainClassDecl", [], {"class_decl": "Foo", "param": "args"}),
+        new Node("ClassDecl", [
+            new Node("MethodDecl", [], {"method_name": "bar"}),
+            new Node("MethodDecl", [], {"method_name": "bar"})
+        ], {"class_decl": "Baz"})
     ]);
 }
 

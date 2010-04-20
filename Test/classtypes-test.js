@@ -23,21 +23,8 @@ exports.testThatExtendingAnUndefinedClassIsInvalid = function() {
 
 function buildBadExtensionAST() {
     return new Node("Program", [
-        new Node("MainClassDecl", [
-            "Foo",
-            "args",
-            new Node("StmtList"),
-        ], {"class_decl": "Foo"}),
-        new Node("ClassDeclList", [
-            new Node("ClassDecl", [
-                "Bar",
-                new Node("Extension", [
-                    "Baz"
-                ], {"extension": "Baz"}),
-                new Node("ClassVarDeclList"),
-                new Node("MethodDeclList")
-            ], {"class_decl": "Bar"})
-        ])
+        new Node("MainClassDecl", [], {"class_decl": "Foo"}),
+        new Node("ClassDecl", [], {"class_decl": "Bar", "extension": "Baz"}),
     ]);
 }
 
