@@ -1,0 +1,13 @@
+class Foo {
+    public static void main(String[] args) {
+        
+    }
+}
+
+class Bar {
+    
+}
+
+class Baz {
+    
+}
