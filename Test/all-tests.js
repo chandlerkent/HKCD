@@ -1,4 +1,4 @@
-exports.testNode = require("./node-test");
+exports.testNode = require("./astnode-test");
 exports.testClassTypes = require("./classtypes-test");
 exports.testParser = require("./parser-test");
 exports.testDriver = require("./driver-test");
