@@ -23,7 +23,7 @@ function buildInvalidFieldsAST() {
         ], { 'class_decl': 'Bar', 'extension': null}),
         new ASTNode('ClassDecl', [
             new ASTNode('ClassVarDecl', [], { 'type': 'boolean', 'var_name':'x'}),
-        ], { 'class_decl': 'Foo', 'extension': 'Bar'}),
+        ], { 'class_decl': 'Baz', 'extension': 'Bar'}),
     ]);
 }
 
@@ -36,7 +36,7 @@ function buildValidAST() {
         ], { 'class_decl': 'Bar', 'extension': null}),
         new ASTNode('ClasDecl', [
             new ASTNode('ClassVarDecl', [], { 'type': 'boolean', 'var_name':'y'}),
-        ], { 'class_decl': 'Foo', 'extension': 'Bar'}),
+        ], { 'class_decl': 'Baz', 'extension': 'Bar'}),
     ]);
 }
 
