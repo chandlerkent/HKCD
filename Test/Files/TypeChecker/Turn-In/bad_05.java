@@ -6,8 +6,5 @@ class Foo {
 
 class Bar {
     int x;
-}
-
-class Foo extends Bar {
-    Bar x;
+    boolean x;
 }

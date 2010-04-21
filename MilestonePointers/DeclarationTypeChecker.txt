@@ -1,0 +1,16 @@
+============================
+Chandler Kent
+Derek Hammer
+(HKCD)
+DTC Milestone
+============================
+
+--------------
+Test Case
+--------------
+
+Test cases are found in 
+
+    HKCD/Test/Files/TypeChecker/Turn-In
+    
+The bad test cases are prefixed with bad_ and the good test cases are prefixed with good_.
