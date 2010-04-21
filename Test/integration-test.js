@@ -8,7 +8,9 @@ var ClassTypes = require("../lib/classtypes");
 var MethodOverload = require("../lib/methodoverload");
 var MethodOverride = require("../lib/methodoverride");
 var FieldDecs = require("../lib/fielddecs");
+var FieldShadow = require("../lib/fieldshadow");
 var ASSERT = require("assert");
+var FileList = require("jake").FileList;
 
 exports.testThatDuplicateClassesGetTypeChecked = function() {
     compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_class_decls.java", "A class named Foo already exists.");
@@ -38,6 +40,32 @@ exports.testThatDuplicateFieldDeclarationsFail = function() {
     compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_field_decls.java", "A field named x has already been defined in this class.");
 };
 
+exports.testThatTurnInFolderGoodsDontFail = function() {
+    var files = new FileList("Test/Files/TypeChecker/Turn-In/good*.java").items();
+
+    files.forEach(function(file) {
+       compilingFileResultsInError(file); 
+    });
+}
+
+exports.testThatTurnInFolderBadsFail = function() {
+    var files = new FileList("Test/Files/TypeChecker/Turn-In/bad*.java").items();
+    var expected = [
+        "A class named Foo already exists.", 
+        "No class named Baz to extend.", 
+        "A class named Foo already exists.", 
+        "A class named Foo already exists.", 
+        "A field named x has already been defined in this class.", 
+        "A field named x has already been defined in the superclass Bar."
+    ];
+    var i = 0;
+
+    files.forEach(function(file) {
+       compilingFileResultsInError(file, expected[i]); 
+       i++;
+    });
+}
+
 function compilingFileResultsInError(filename, error) {
     error = error || null;
     var finished = false;
@@ -50,7 +78,7 @@ function compilingFileResultsInError(filename, error) {
         if(ast.errors.length > 0)
             throw new Error("Error in parsing: " + ast.errors[0]);
         
-        var driver = new Driver([ClassTypes, MethodOverload, MethodOverride, FieldDecs]);
+        var driver = new Driver([ClassTypes, MethodOverload, MethodOverride, FieldDecs, FieldShadow]);
         var results = driver.process(ast);
         
         finished = true;
@@ -60,7 +88,7 @@ function compilingFileResultsInError(filename, error) {
     }
     
     if(finished && error)
-        ASSERT.fail("We were expecting an error but got none!");
+        ASSERT.fail("We were expecting the error " + error + " but got none!");
 }
 
 function readGrammarFromFile(filePath) {
