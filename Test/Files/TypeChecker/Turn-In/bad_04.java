@@ -8,6 +8,6 @@ class Bar {
     int x;
 }
 
-class Foo extends Bar {
+class Baz extends Bar {
     Bar x;
 }

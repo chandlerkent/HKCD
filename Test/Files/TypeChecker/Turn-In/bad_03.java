@@ -10,13 +10,13 @@ class Bar {
     }
 }
 
-class Foo extends Bar {
+class Rab extends Bar {
     public int length() {
         return 1;
     }
 }
 
-class Baz extends Foo {
+class Baz extends Rab {
     public boolean size() {
         return true;
     }

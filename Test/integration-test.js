@@ -53,8 +53,8 @@ exports.testThatTurnInFolderBadsFail = function() {
     var expected = [
         "A class named Foo already exists.", 
         "No class named Baz to extend.", 
-        "A class named Foo already exists.", 
-        "A class named Foo already exists.", 
+        "The method size attempts to change the type from Rab:size:int to Baz:size:boolean", 
+        "A field named x has already been defined in the superclass Bar.", 
         "A field named x has already been defined in this class.", 
         "A field named x has already been defined in the superclass Bar."
     ];
