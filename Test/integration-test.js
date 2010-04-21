@@ -58,12 +58,29 @@ exports.testThatTurnInFolderBadsFail = function() {
         "A field named x has already been defined in this class.", 
         "A field named x has already been defined in the superclass Bar."
     ];
-    var i = 0;
-
+    
     files.forEach(function(file) {
-       compilingFileResultsInError(file, expected[i]); 
-       i++;
+       compilingFileResultsInError(file, expected[files.indexOf(file)]);
     });
+}
+
+exports.testThatEarlySamplesFail = function() {
+    var files = new FileList("Test/Files/TypeChecker/EarlySamples/*.java").items();
+    var expected = [
+        "A class named A already exists.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    ];
+    
+    files.forEach(function(file) {
+        compilingFileResultsInError(file, expected[files.indexOf(file)]);
+    })
 }
 
 function compilingFileResultsInError(filename, error) {
