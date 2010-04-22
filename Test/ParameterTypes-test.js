@@ -1,21 +1,21 @@
 var ASSERT = require("test/assert");
-var ParameterDecs = require("../lib/ParameterDecs");
+var ParameterTypes = require("../lib/ParameterTypes");
 var ASTBuilder = require("./astbuilder")
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = ASTBuilder.buildValidAST();
     var env = require("../lib/GatherTypeInfo").process(ast).env;
-    var otherAST = ParameterDecs.process(ast, env);
+    var otherAST = ParameterTypes.process(ast, env);
     
     ASSERT.eq(ast, otherAST.ast);
 };
 
-exports.testThatParametersWithDuplicateNamesAreInvalid = function() {
+exports.testThatParameterWithUndefinedTypeIsInvalid = function() {
     var ast = buildInvalidParameterAST();
     var env = require("../lib/GatherTypeInfo").process(ast).env;
-    var result = ParameterDecs.process(ast, env);
+    var result = ParameterTypes.process(ast, env);
     
-    ASSERT.eq(2, result.env.errors.length);
+    ASSERT.eq(1, result.env.errors.length);
 };
 
 function buildInvalidParameterAST() {
@@ -27,7 +27,7 @@ function buildInvalidParameterAST() {
     var method = ASTBuilder.MethodNode("bar", "int");
     
     method.addChild(ASTBuilder.ParameterNode("x", "int"));
-    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
+    method.addChild(ASTBuilder.ParameterNode("y", "Test"));
     
     classNode.addChild(method);
     
