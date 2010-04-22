@@ -7,6 +7,8 @@ exports.testFieldShadow = require("./fieldshadow-test");
 exports.testMethodOverload = require("./methodoverload-test");
 exports.testMethodOverride = require("./methodoverride-test");
 exports.testIntegration = require("./integration-test");
+exports.testClassMap = require("./ClassMap-test");
+exports.testMethodMap = require("./MethodMap-test");
 
 if (require.main === module)
     require("os").exit(require("test/runner").run(exports));
