@@ -14,6 +14,20 @@ exports.testThatClassVarsOfSameNameAreInvalid = function() {
     ASSERT.throwsError(function() {fielddecs.process(ast)});
 };
 
+exports.testThatClassVarsWithUndefinedTypeAreInvalid = function() {
+    var ast = buildInvalidFieldTypeAST();
+    ASSERT.throwsError(function() {fielddecs.process(ast)});
+};
+
+function buildInvalidFieldTypeAST() {
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [
+            new ASTNode('ClassVarDecl', [], { 'type': 'Baz', 'var_name':'x'}),
+        ], { 'class_decl': 'Bar', 'extension': null})
+    ]);
+}
+
 function buildInvalidFieldsAST() {
     return new ASTNode('Program', [
         new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
