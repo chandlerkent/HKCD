@@ -14,6 +14,29 @@ exports.testThatOverriddenMethodWithDifferentReturnTypeIsInvalid = function() {
     ASSERT.throwsError(function() {methodoverride.process(ast)});
 };
 
+exports.testThatOverriddenMethodWithDifferentParameterTypesIsInvalid = function() {
+    var ast = buildInvalidParamterTypeOverrideAST();
+    ASSERT.throwsError(function() {methodoverride.process(ast)});
+}
+
+function buildInvalidParamterTypeOverrideAST() {
+    return new ASTNode('Program', [
+        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [
+                new ASTNode('Formal', [], { 'type':'boolean', 'param_name':'y'}),
+                3
+            ], { 'return_type': 'int', 'method_name': 'bar'}),
+            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'anotherBar'})
+        ], { 'class_decl': 'Bar', 'extension': null}),
+        new ASTNode('ClassDecl', [
+            new ASTNode('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'baz'}),
+            new ASTNode('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'anotherBaz'}),
+            new ASTNode('MethodDecl', [false], { 'return_type': 'int', 'method_name': 'bar',})
+        ], { 'class_decl': 'Baz', 'extension': 'Bar'})
+    ]);
+}
+
 function buildInvalidExtendsAST() {
     return new ASTNode('Program', [
         new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
