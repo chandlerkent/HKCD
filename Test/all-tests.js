@@ -10,6 +10,7 @@ exports.testIntegration = require("./integration-test");
 exports.testClassMap = require("./ClassMap-test");
 exports.testMethodMap = require("./MethodMap-test");
 exports.testClassDecl = require("./ClassDecl-test");
+exports.testClassDecl = require("./FieldDecl-test");
 
 if (require.main === module)
     require("os").exit(require("test/runner").run(exports));
