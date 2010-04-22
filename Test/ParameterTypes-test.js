@@ -1,44 +1,39 @@
 var ASSERT = require("test/assert");
-var parametertypes = require("../lib/parametertypes");
-var ASTNode = require("../lib/astnode").ASTNode;
+var ParameterTypes = require("../lib/ParameterTypes");
+var ASTBuilder = require("./astbuilder")
 
 exports.testThatValidASTReturnsSameAST = function() {
-    var ast = buildValidAST();
-    var otherAST = parametertypes.process(ast);
+    var ast = ASTBuilder.buildValidAST();
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var otherAST = ParameterTypes.process(ast, env);
     
-    ASSERT.eq(ast, otherAST);
+    ASSERT.eq(ast, otherAST.ast);
 };
 
 exports.testThatParameterWithUndefinedTypeIsInvalid = function() {
     var ast = buildInvalidParameterAST();
-    ASSERT.throwsError(function() {parametertypes.process(ast)});
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ParameterTypes.process(ast, env);
+    
+    ASSERT.eq(1, result.env.errors.length);
 };
 
 function buildInvalidParameterAST() {
-    return new ASTNode('Program', [
-        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('ClassVarDecl', [], { 'type': 'boolean', 'var_name':'x'}),
-            new ASTNode('MethodDecl', [
-                new ASTNode('Formal', [], { 'type': 'Baz', 'param_name':'y'}),
-                3
-            ], { 'return_type': 'int', 'method_name': 'bar'}),
-        ], { 'class_decl': 'Bar', 'extension': null})
-    ]);
-}
-
-function buildValidAST() {
-    return new ASTNode('Program', [
-        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('ClassVarDecl', [], { 'type': 'int', 'var_name':'x'}),
-            new ASTNode('ClassVarDecl', [], { 'type': 'boolean', 'var_name':'y'}),
-            new ASTNode('MethodDecl', [
-                new ASTNode('Formal', [], { 'type': 'int', 'param_name':'y'}),
-                3
-            ], { 'return_type': 'int', 'method_name': 'bar'}),
-        ], { 'class_decl': 'Bar', 'extension': null}),
-    ]);
+    var ast = ASTBuilder.ProgramNode();
+    ast.addChild(ASTBuilder.MainClassNode());
+    
+    var classNode = ASTBuilder.ClassNode("Bar", null);
+    
+    var method = ASTBuilder.MethodNode("bar", "int");
+    
+    method.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method.addChild(ASTBuilder.ParameterNode("y", "Test"));
+    
+    classNode.addChild(method);
+    
+    ast.addChild(classNode);
+    
+    return ast;
 }
 
 if (require.main === module)
