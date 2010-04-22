@@ -32,8 +32,8 @@ var MainClassNode = exports.MainClassNode = function() {
     return new ASTNode('MainClassDecl', [], { 'className': 'SomeClassWeNeverUse', 'param': 'args' });
 }
 
-var ClassNode = exports.ClassNode = function(name) {
-    return new ASTNode('ClassDecl', [], { 'className': name, 'superClassName': null });
+var ClassNode = exports.ClassNode = function(name, superclass) {
+    return new ASTNode('ClassDecl', [], { 'className': name, 'superClassName': superclass ? superclass : null });
 }
 
 var FieldNode = exports.FieldNode = function(name, type) {

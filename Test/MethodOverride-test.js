@@ -1,69 +1,85 @@
 var ASSERT = require("test/assert");
-var methodoverride = require("../lib/methodoverride");
-var ASTNode = require("../lib/astnode").ASTNode;
+var MethodOverride = require("../lib/MethodOverride");
+var ASTBuilder = require("./astbuilder")
 
 exports.testThatValidASTReturnsSameAST = function() {
-    var ast = buildValidAST();
-    var otherAST = methodoverride.process(ast);
+    var ast = ASTBuilder.buildValidAST();
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var otherAST = MethodOverride.process(ast, env);
     
-    ASSERT.eq(ast, otherAST);
+    ASSERT.eq(ast, otherAST.ast);
 };
 
-exports.testThatOverriddenMethodWithDifferentReturnTypeIsInvalid = function() {
-    var ast = buildInvalidExtendsAST();
-    ASSERT.throwsError(function() {methodoverride.process(ast)});
+exports.testThatOverrideMethodWithDifferentTypeIsInvalid = function() {
+    var ast = buildInvalidReturnTypeAST();
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = MethodOverride.process(ast, env);
+    
+    ASSERT.eq(1, result.env.errors.length);
 };
 
-exports.testThatOverriddenMethodWithDifferentParameterTypesIsInvalid = function() {
-    var ast = buildInvalidParamterTypeOverrideAST();
-    ASSERT.throwsError(function() {methodoverride.process(ast)});
+exports.testThatOverrideMethodWithDifferentParameterTypesIsInvalid = function() {
+    var ast = buildInvalidParameterTypeAST();
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = MethodOverride.process(ast, env);
+
+    ASSERT.eq(1, result.env.errors.length);
+};
+
+function buildInvalidReturnTypeAST() {
+    var ast = ASTBuilder.ProgramNode();
+    ast.addChild(ASTBuilder.MainClassNode());
+    
+    var classNode = ASTBuilder.ClassNode("Bar", null);
+    
+    var method = ASTBuilder.MethodNode("bar", "int");
+    
+    method.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method.addChild(ASTBuilder.ParameterNode("y", "Test"));
+    
+    classNode.addChild(method);
+    
+    var classNode2 = ASTBuilder.ClassNode("Baz", "Bar");
+    
+    var method2 = ASTBuilder.MethodNode("bar", "boolean");
+    
+    method2.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method2.addChild(ASTBuilder.ParameterNode("y", "Test"));
+    
+    classNode2.addChild(method2);
+    
+    ast.addChild(classNode);
+    ast.addChild(classNode2);
+    
+    return ast;
 }
 
-function buildInvalidParamterTypeOverrideAST() {
-    return new ASTNode('Program', [
-        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('MethodDecl', [
-                new ASTNode('Formal', [], { 'type':'boolean', 'param_name':'y'}),
-                3
-            ], { 'return_type': 'int', 'method_name': 'bar'}),
-            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'anotherBar'})
-        ], { 'class_decl': 'Bar', 'extension': null}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'baz'}),
-            new ASTNode('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'anotherBaz'}),
-            new ASTNode('MethodDecl', [false], { 'return_type': 'int', 'method_name': 'bar',})
-        ], { 'class_decl': 'Baz', 'extension': 'Bar'})
-    ]);
-}
+function buildInvalidParameterTypeAST() {
+    var ast = ASTBuilder.ProgramNode();
+    ast.addChild(ASTBuilder.MainClassNode());
 
-function buildInvalidExtendsAST() {
-    return new ASTNode('Program', [
-        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
-            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'anotherBar'})
-        ], { 'class_decl': 'Bar', 'extension': null}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'baz'}),
-            new ASTNode('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'anotherBaz'}),
-            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'bar',})
-        ], { 'class_decl': 'Baz', 'extension': 'Bar'})
-    ]);
-}
+    var classNode = ASTBuilder.ClassNode("Bar", null);
 
-function buildValidAST() {
-    return new ASTNode('Program', [
-        new ASTNode('MainClassDecl', [], { 'class_decl': 'Foo', 'param': 'args'}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('MethodDecl', [3], { 'return_type': 'int', 'method_name': 'bar'}),
-            new ASTNode('MethodDecl', [false], { 'return_type': 'boolean', 'method_name': 'test'})
-        ], { 'class_decl': 'Bar', 'extension': null}),
-        new ASTNode('ClassDecl', [
-            new ASTNode('MethodDecl', [42], { 'return_type': 'int', 'method_name': 'bar'}),
-            new ASTNode('MethodDecl', [true], { 'return_type': 'boolean', 'method_name': 'anotherBaz'})
-        ], { 'class_decl': 'Baz', 'extension': 'Bar'})
-    ]);
+    var method = ASTBuilder.MethodNode("bar", "int");
+
+    method.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method.addChild(ASTBuilder.ParameterNode("y", "Test"));
+
+    classNode.addChild(method);
+
+    var classNode2 = ASTBuilder.ClassNode("Baz", "Bar");
+
+    var method2 = ASTBuilder.MethodNode("bar", "int");
+
+    method2.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method2.addChild(ASTBuilder.ParameterNode("y", "boolean"));
+
+    classNode2.addChild(method2);
+
+    ast.addChild(classNode);
+    ast.addChild(classNode2);
+
+    return ast;
 }
 
 if (require.main === module)
