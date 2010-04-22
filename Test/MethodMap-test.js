@@ -81,6 +81,15 @@ exports.testEquals = function() {
     ASSERT.isFalse(methodMap7.equals(methodMap5));
 };
 
+exports.testToString = function() {
+    var methodMap = buildTestMethodMap();
+    methodMap.addParameter("x", "int");
+    methodMap.addParameter("y", "boolean");
+    
+    var expected = "{name: <foo>, returnType: <int>, parameters: <[{name: <x>, type: <int>}, {name: <y>, type: <boolean>}]>}";
+    ASSERT.eq(expected, methodMap.toString());
+};
+
 function buildTestMethodMap() {
     return new MethodMap("foo", "int");
 }

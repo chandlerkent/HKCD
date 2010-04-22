@@ -102,6 +102,19 @@ exports.testGetKey = function() {
     ASSERT.eq("bar", classMap.getKey());
 };
 
+exports.testToString = function() {
+    var classMap = buildTestClassMap();
+    classMap.addField("x", "int");
+    classMap.addField("y", "boolean");
+    var methodMap1 = new MethodMap("bar", "int");
+    var methodMap2 = new MethodMap("foo", "boolean");
+    classMap.addMethod(methodMap1);
+    classMap.addMethod(methodMap2);
+    
+    var expected = "{name: <bar>, superclass: <foo>, fields: <[{name: <x>, type: <int>}, {name: <y>, type: <boolean>}]>, methods: <[{name: <bar>, returnType: <int>, parameters: <[]>}, {name: <foo>, returnType: <boolean>, parameters: <[]>}]>}";
+    ASSERT.eq(expected, classMap.toString());
+};
+
 function buildTestClassMap() {
     return new ClassMap("bar", "foo");
 }
