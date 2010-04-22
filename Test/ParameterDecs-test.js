@@ -15,7 +15,6 @@ exports.testThatParametersWithDuplicateNamesAreInvalid = function() {
     var env = require("../lib/GatherTypeInfo").process(ast).env;
     var result = ParameterDecs.process(ast, env);
     
-    print(result.env.errors);
     ASSERT.eq(2, result.env.errors.length);
 };
 
