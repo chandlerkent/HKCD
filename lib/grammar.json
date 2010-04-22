@@ -34,14 +34,14 @@
                                 ["MainClassDecl ClassDeclList", "$$ = new yy.ASTNode('Program', [$1].concat($2)); return $$;"],
                             ],
         "MainClassDecl":    [
-                                ["class JavaID { public static void main ( String [ ] JavaID ) { StmtList } }", "$$ = new yy.ASTNode('MainClassDecl', [].concat($15), { 'class_decl': $2, 'param': $12 });"],
+                                ["class JavaID { public static void main ( String [ ] JavaID ) { StmtList } }", "$$ = new yy.ASTNode('MainClassDecl', [].concat($15), { 'className': $2, 'param': $12 });"],
                             ],
         "ClassDeclList":    [
                                 ["", "$$ = [];"],
                                 ["ClassDecl ClassDeclList", "$2.unshift($1); $$ = $2;"],
                             ],
         "ClassDecl":        [
-                                ["class JavaID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.ASTNode('ClassDecl', [].concat($5, $6), { 'class_decl': $2, 'extension': $3 });"],
+                                ["class JavaID Extension { ClassVarDeclList MethodDeclList }", "$$ = new yy.ASTNode('ClassDecl', [].concat($5, $6), { 'className': $2, 'superClassName': $3 });"],
                             ],
         "Extension":        [
                                 ["", "$$ = null;"],
@@ -52,14 +52,14 @@
                                 ["ClassVarDecl ClassVarDeclList", "$2.unshift($1); $$ = $2;"],
                             ],
         "ClassVarDecl":     [
-                                ["Type JavaID ;", "$$ = new yy.ASTNode('ClassVarDecl', [], { 'type': $1, 'var_name': $2 });"],
+                                ["Type JavaID ;", "$$ = new yy.ASTNode('ClassVarDecl', [], { 'type': $1, 'fieldName': $2 });"],
                             ],
         "MethodDeclList":   [
                                 ["", "$$ = [];"],
                                 ["MethodDecl MethodDeclList", "$2.unshift($1); $$ = $2;"],
                             ],
         "MethodDecl":       [
-                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $5.concat($8, [$10]), { 'return_type': $2, 'method_name': $3 });"],
+                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $8.concat([$10]), { 'returnType': $2, 'methodName': $3, 'parameters' : $5 });"],
                             ],
         "FormalList":       [
                                 ["", "$$ = [];"],
@@ -70,7 +70,7 @@
                                 [", Formal FormalList_", "$3.unshift($2); $$ = $3;"],
                             ],
         "Formal":           [
-                                ["Type JavaID", "$$ = new yy.ASTNode('Formal', [], { 'type': $1, 'param_name': $2 });"],
+                                ["Type JavaID", "$$ = new yy.ASTNode('Formal', [], { 'type': $1, 'parameterName': $2 });"],
                             ],
         "Type":             [
                                 ["int", "$$ = yytext;"],
