@@ -59,7 +59,7 @@
                                 ["MethodDecl MethodDeclList", "$2.unshift($1); $$ = $2;"],
                             ],
         "MethodDecl":       [
-                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $8.concat([$10]), { 'returnType': $2, 'methodName': $3, 'parameters' : $5 });"],
+                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $5.concat($8, [$10]), { 'returnType': $2, 'methodName': $3 });"],
                             ],
         "FormalList":       [
                                 ["", "$$ = [];"],
