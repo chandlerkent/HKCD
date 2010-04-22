@@ -46,12 +46,8 @@ exports.testHasMultipleOfParameter = function() {
 
 exports.testGetKey = function() {
     var methodMap = buildTestMethodMap();
-    methodMap.addParameter("x", "int");
-    methodMap.addParameter("y", "boolean");
     
-    ASSERT.eq({"name": "x", "type": "int"}, methodMap.getKey("x"));
-    ASSERT.eq({"name": "y", "type": "boolean"}, methodMap.getKey("y"));
-    ASSERT.eq(null, methodMap.getKey("z"));
+    ASSERT.eq("foo", methodMap.getKey());
 };
 
 exports.testEquals = function() {
@@ -87,7 +83,7 @@ exports.testEquals = function() {
 
 function buildTestMethodMap() {
     return new MethodMap("foo", "int");
-};
+}
 
 if (require.main === module)
     require("os").exit(require("test/runner").run(exports));
