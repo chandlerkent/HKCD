@@ -56,7 +56,7 @@ exports.testThatTurnInFolderBadsFail = function() {
     var expected = [
         "Multiple declarations found for class Foo.", 
         "Cannot extend the unknown superclass Baz.", 
-        "The method size attempts to change the return type from Bar->size->int to Baz->size->boolean", 
+        "The method {name: <size>, returnType: <boolean>, parameters: <[]>} attempts to override the method {name: <size>, returnType: <int>, parameters: <[]>}.", 
         "A field named x has already been defined in the superclass Bar.", 
         "A field named x is defined more than once in Bar.", 
         "A field named x has already been defined in the superclass Bar."
@@ -73,7 +73,7 @@ exports.testThatEarlySamplesFail = function() {
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
         "The parameter c is initialized with undefined type C.",
-        "The method start attempts to change the return type from C->start->int to B->start->boolean",
+        "The method {name: <start>, returnType: <boolean>, parameters: <[]>} attempts to override the method {name: <start>, returnType: <int>, parameters: <[]>}.",
         "A field named a has already been defined in the superclass noPoint.",
         "A method named setB has already been defined in the class noPoint2.",
         "A field named a is defined more than once in noPoint.",
