@@ -6,11 +6,12 @@ var Parser = require("../lib/parser").Parser;
 var Driver = require("../lib/driver").Driver;
 var ClassDecl = require("../lib/ClassDecl");
 var MethodOverload = require("../lib/MethodOverload");
-// var MethodOverride = require("../lib/methodoverride");
 var FieldDecl = require("../lib/FieldDecl");
 var FieldShadow = require("../lib/FieldShadow");
 var ParameterDecs = require("../lib/ParameterDecs");
 var ParameterTypes = require("../lib/ParameterTypes");
+var MethodOverride = require("../lib/MethodOverride");
+
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
 
@@ -55,9 +56,9 @@ exports.testThatTurnInFolderBadsFail = function() {
     var expected = [
         "Multiple declarations found for class Foo.", 
         "Cannot extend the unknown superclass Baz.", 
-        "The method size attempts to change the type from Rab:size:int to Baz:size:boolean", 
+        "The method size attempts to change the return type from Bar->size->int to Baz->size->boolean", 
         "A field named x has already been defined in the superclass Bar.", 
-        "A field named x has already been defined in this class.", 
+        "A field named x is defined more than once in Bar.", 
         "A field named x has already been defined in the superclass Bar."
     ];
     
@@ -72,10 +73,10 @@ exports.testThatEarlySamplesFail = function() {
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
         "The parameter c is initialized with undefined type C.",
-        "c",
-        "d",
-        "e",
-        "r",
+        "The method start attempts to change the return type from C->start->int to B->start->boolean",
+        "A field named a has already been defined in the superclass noPoint.",
+        "A method named setB has already been defined in the class noPoint2.",
+        "A field named a is defined more than once in noPoint.",
         "g",
         "h",
     ];
@@ -92,7 +93,7 @@ function compilingFileResultsInError(filename, error) {
     var ast = parser.parse(readFile(filename));
     
     var env = require("../lib/GatherTypeInfo").process(ast).env;
-    var driver = new Driver([ClassDecl, ParameterTypes, ParameterDecs, MethodOverload, FieldDecl, FieldShadow]);
+    var driver = new Driver([ClassDecl, ParameterTypes, ParameterDecs, MethodOverload, FieldDecl, FieldShadow, MethodOverride]);
     
     driver.process(ast, env);
 
