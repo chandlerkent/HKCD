@@ -9,6 +9,8 @@ var MethodOverload = require("../lib/MethodOverload");
 // var MethodOverride = require("../lib/methodoverride");
 var FieldDecl = require("../lib/FieldDecl");
 var FieldShadow = require("../lib/FieldShadow");
+var ParameterDecs = require("../lib/ParameterDecs");
+var ParameterTypes = require("../lib/ParameterTypes");
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
 
@@ -69,7 +71,7 @@ exports.testThatEarlySamplesFail = function() {
     var expected = [
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
-        "b",
+        "The parameter c is initialized with undefined type C.",
         "c",
         "d",
         "e",
@@ -90,7 +92,7 @@ function compilingFileResultsInError(filename, error) {
     var ast = parser.parse(readFile(filename));
     
     var env = require("../lib/GatherTypeInfo").process(ast).env;
-    var driver = new Driver([ClassDecl, MethodOverload, FieldDecl, FieldShadow]);
+    var driver = new Driver([ClassDecl, ParameterTypes, ParameterDecs, MethodOverload, FieldDecl, FieldShadow]);
     
     driver.process(ast, env);
 
