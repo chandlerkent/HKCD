@@ -34,7 +34,7 @@
                                 ["MainClassDecl ClassDeclList", "$$ = new yy.ASTNode('Program', [$1].concat($2)); return $$;"],
                             ],
         "MainClassDecl":    [
-                                ["class JavaID { public static void main ( String [ ] JavaID ) { StmtList } }", "$$ = new yy.ASTNode('MainClassDecl', [].concat($15), { 'className': $2, 'param': $12 });"],
+                                ["class JavaID { public static void main ( String [ ] JavaID ) { StmtList } }", "$$ = new yy.ASTNode('MainClassDecl', [].concat($15), { 'className': $2, 'param': $12, 'superClassName': null });"],
                             ],
         "ClassDeclList":    [
                                 ["", "$$ = [];"],

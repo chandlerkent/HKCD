@@ -77,8 +77,8 @@ exports.testThatEarlySamplesFail = function() {
         "A field named a has already been defined in the superclass noPoint.",
         "A method named setB has already been defined in the class noPoint2.",
         "A field named a is defined more than once in noPoint.",
-        "g",
-        "h",
+        "Cannot extend the unknown superclass Foo1.",
+        "Cannot extend the unknown superclass Foo.",
     ];
     
     files.forEach(function(file) {
