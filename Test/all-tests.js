@@ -1,5 +1,5 @@
 exports.testNode = require("./astnode-test");
-exports.testClassTypes = require("./classtypes-test");
+exports.testGatherTypeInfo = require("./gathertypeinfo-test");
 //exports.testParser = require("./parser-test");
 exports.testDriver = require("./driver-test");
 exports.testFieldDecs = require("./fielddecs-test");

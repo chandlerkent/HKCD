@@ -1,10 +1,10 @@
 var ASSERT = require("test/assert");
-var classtypes = require("../lib/classtypes");
+var gathertypeinfo = require("../lib/gathertypeinfo");
 var ASTNode = require("../lib/astnode").ASTNode;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = buildValidAST();
-    var otherAST = classtypes.process(ast);
+    var otherAST = gathertypeinfo.process(ast);
     
     ASSERT.eq(ast, otherAST);
 };
@@ -12,13 +12,13 @@ exports.testThatValidASTReturnsSameAST = function() {
 exports.testThatTwoClassWithSameNameAreInvalid = function() {
     var ast = buildSameClassesAST();
 
-    ASSERT.throwsError(function() { classtypes.process(ast) });
+    ASSERT.throwsError(function() { gathertypeinfo.process(ast) });
 };
 
 exports.testThatExtendingAnUndefinedClassIsInvalid = function() {
     var ast = buildBadExtensionAST();
     
-    ASSERT.throwsError(function() { classtypes.process(ast) });
+    ASSERT.throwsError(function() { gathertypeinfo.process(ast) });
 };
 
 function buildBadExtensionAST() {
