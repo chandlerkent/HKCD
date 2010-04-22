@@ -1,4 +1,4 @@
-var FieldDecl = require("../lib/FieldDecl");
+var FieldShadow = require("../lib/FieldShadow");
 var ASSERT = require("test/assert");
 
 if (require.main === module)
