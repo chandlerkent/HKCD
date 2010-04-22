@@ -1,4 +1,4 @@
-var ASTNode = require("../lib/astnode").ASTNode;
+var ASTNode = require("../lib/ASTNode").ASTNode;
 var ASSERT = require("test/assert");
 
 exports.testNodeConstruction = function() {
