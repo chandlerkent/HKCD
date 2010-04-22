@@ -4,16 +4,19 @@ var ASTBuilder = require("./astbuilder")
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = ASTBuilder.buildValidAST();
-    var env = require("../lib/GatherTypeInfo").process(ast);
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
     var otherAST = ParameterDecs.process(ast, env);
     
-    ASSERT.eq(ast, otherAST);
+    ASSERT.eq(ast, otherAST.ast);
 };
 
 exports.testThatParametersWithDuplicateNamesAreInvalid = function() {
     var ast = buildInvalidParameterAST();
     var env = require("../lib/GatherTypeInfo").process(ast).env;
-    ASSERT.throwsError(function() {ParameterDecs.process(ast, env)});
+    var result = ParameterDecs.process(ast, env);
+    
+    print(result.env.errors);
+    ASSERT.eq(2, result.env.errors.length);
 };
 
 function buildInvalidParameterAST() {
