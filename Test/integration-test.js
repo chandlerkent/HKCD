@@ -4,24 +4,24 @@
 
 var Parser = require("../lib/parser").Parser;
 var Driver = require("../lib/driver").Driver;
-var ClassTypes = require("../lib/classtypes");
-var MethodOverload = require("../lib/methodoverload");
-var MethodOverride = require("../lib/methodoverride");
-var FieldDecs = require("../lib/fielddecs");
-var FieldShadow = require("../lib/fieldshadow");
+var ClassDecl = require("../lib/ClassDecl");
+var MethodOverload = require("../lib/MethodOverload");
+// var MethodOverride = require("../lib/methodoverride");
+var FieldDecl = require("../lib/FieldDecl");
+var FieldShadow = require("../lib/FieldShadow");
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
 
 exports.testThatDuplicateClassesGetTypeChecked = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_class_decls.java", "A class named Foo already exists.");
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_class_decls.java", "Multiple declarations found for class Foo.");
 };
 
 exports.testThatDuplicateMethodDeclarationsFails = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in this class.");
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
 };
 
 exports.testThatOverridingSuperclassMethodDeclarationWithDifferentArgsOrTypeFails = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in this class.");
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
 };
 
 exports.testThatLegalClassDeclarationsDontFail = function() {
@@ -37,7 +37,7 @@ exports.testThatLegalMethodDeclarationsDontFail = function() {
 };
 
 exports.testThatDuplicateFieldDeclarationsFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_field_decls.java", "A field named x has already been defined in this class.");
+    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_field_decls.java", "A field named x is defined more than once in Baz.");
 };
 
 exports.testThatTurnInFolderGoodsDontFail = function() {
@@ -51,8 +51,8 @@ exports.testThatTurnInFolderGoodsDontFail = function() {
 exports.testThatTurnInFolderBadsFail = function() {
     var files = new FileList("Test/Files/TypeChecker/Turn-In/bad*.java").items();
     var expected = [
-        "A class named Foo already exists.", 
-        "No class named Baz to extend.", 
+        "Multiple declarations found for class Foo.", 
+        "Cannot extend the unknown superclass Baz.", 
         "The method size attempts to change the type from Rab:size:int to Baz:size:boolean", 
         "A field named x has already been defined in the superclass Bar.", 
         "A field named x has already been defined in this class.", 
@@ -67,15 +67,15 @@ exports.testThatTurnInFolderBadsFail = function() {
 exports.testThatEarlySamplesFail = function() {
     var files = new FileList("Test/Files/TypeChecker/EarlySamples/*.java").items();
     var expected = [
-        "A class named A already exists.",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "Multiple declarations found for class A.",
+        "A field named c is initialized with an uninitialized type C.",
+        "b",
+        "c",
+        "d",
+        "e",
+        "r",
+        "g",
+        "h",
     ];
     
     files.forEach(function(file) {
@@ -85,27 +85,20 @@ exports.testThatEarlySamplesFail = function() {
 
 function compilingFileResultsInError(filename, error) {
     error = error || null;
-    var finished = false;
-    var parsed = false;
-    try {
-        var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
-        var ast = parser.parse(readFile(filename));
-        parsed = true;
-        
-        if(ast.errors.length > 0)
-            throw new Error("Error in parsing: " + ast.errors[0]);
-        
-        var driver = new Driver([ClassTypes, MethodOverload, MethodOverride, FieldDecs, FieldShadow]);
-        var results = driver.process(ast);
-        
-        finished = true;
-    }
-    catch (e) {
-        ASSERT.equal(error, e.message, "Error message: <" + e.message + "> did not match <" + error + ">");
-    }
     
-    if(finished && error)
-        ASSERT.fail("We were expecting the error " + error + " but got none!");
+    var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
+    var ast = parser.parse(readFile(filename));
+    
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var driver = new Driver([ClassDecl, MethodOverload, FieldDecl, FieldShadow]);
+    
+    driver.process(ast, env);
+
+    if (error) {
+        ASSERT.equal(true, (env.errors.indexOf(error) >= 0), "Error message: <" + env.errors.join("\n") + "> did not match <" + error + ">");
+    } else {
+        ASSERT.equal(0, env.errors.length);
+    }
 }
 
 function readGrammarFromFile(filePath) {
