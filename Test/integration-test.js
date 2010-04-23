@@ -11,99 +11,244 @@ var FieldShadow = require("../lib/FieldShadow");
 var ParameterDecs = require("../lib/ParameterDecs");
 var ParameterTypes = require("../lib/ParameterTypes");
 var MethodOverride = require("../lib/MethodOverride");
+var MethodDecl = require("../lib/MethodDecl");
 
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
 
-exports.testThatDuplicateClassesGetTypeChecked = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_class_decls.java", "Multiple declarations found for class Foo.");
-};
+// exports.testThatDuplicateClassesGetTypeChecked = function() {
+//     compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_class_decls.java", "Multiple declarations found for class Foo.");
+// };
+// 
+// exports.testThatDuplicateMethodDeclarationsFails = function() {
+//     compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
+// };
+// 
+// exports.testThatOverridingSuperclassMethodDeclarationWithDifferentArgsOrTypeFails = function() {
+//     compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
+// };
+// 
+// exports.testThatLegalClassDeclarationsDontFail = function() {
+//     compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_class_decls.java");
+// };
+// 
+// exports.testThatLegalFieldDeclarationsDontFail = function() {
+//     compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_field_decls.java");
+// };
+// 
+// exports.testThatLegalMethodDeclarationsDontFail = function() {
+//     compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_method_decls.java");
+// };
+// 
+// exports.testThatDuplicateFieldDeclarationsFail = function() {
+//     compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_field_decls.java", "A field named x is defined more than once in Baz.");
+// };
+// 
+// exports.testThatTurnInFolderGoodsDontFail = function() {
+//     var files = new FileList("Test/Files/TypeChecker/Turn-In/good*.java").items();
+// 
+//     files.forEach(function(file) {
+//        compilingFileResultsInError(file); 
+//     });
+// };
+// 
+// exports.testThatTurnInFolderBadsFail = function() {
+//     var files = new FileList("Test/Files/TypeChecker/Turn-In/bad*.java").items();
+//     var expected = [
+//         "Multiple declarations found for class Foo.", 
+//         "Cannot extend the unknown superclass Baz.", 
+//         "The method {name: <size>, returnType: <boolean>, parameters: <[]>} in Baz attempts to override the method {name: <size>, returnType: <int>, parameters: <[]>} in Bar.", 
+//         "A field named x has already been defined in the superclass Bar.", 
+//         "A field named x is defined more than once in Bar.", 
+//         "A field named x has already been defined in the superclass Bar."
+//     ];
+//     
+//     files.forEach(function(file) {
+//        compilingFileResultsInError(file, expected[files.indexOf(file)]);
+//     });
+// };
+// 
+// exports.testThatEarlySamplesFail = function() {
+//     var files = new FileList("Test/Files/TypeChecker/EarlySamples/*.java").items();
+//     var expected = [
+//         "Multiple declarations found for class A.",
+//         "A field named c is initialized with an uninitialized type C.",
+//         "The parameter c is initialized with undefined type C.",
+//         "The method {name: <start>, returnType: <boolean>, parameters: <[]>} in B attempts to override the method {name: <start>, returnType: <int>, parameters: <[]>} in C.",
+//         "A field named a has already been defined in the superclass noPoint.",
+//         "A method named setB has already been defined in the class noPoint2.",
+//         "A field named a is defined more than once in noPoint.",
+//         "Cannot extend the unknown superclass Foo1.",
+//         "Cannot extend the unknown superclass Foo.",
+//     ];
+//     
+//     files.forEach(function(file) {
+//         compilingFileResultsInError(file, expected[files.indexOf(file)]);
+//     });
+// };
 
-exports.testThatDuplicateMethodDeclarationsFails = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
-};
-
-exports.testThatOverridingSuperclassMethodDeclarationWithDifferentArgsOrTypeFails = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
-};
-
-exports.testThatLegalClassDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_class_decls.java");
-};
-
-exports.testThatLegalFieldDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_field_decls.java");
-};
-
-exports.testThatLegalMethodDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_method_decls.java");
-};
-
-exports.testThatDuplicateFieldDeclarationsFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_field_decls.java", "A field named x is defined more than once in Baz.");
-};
-
-exports.testThatTurnInFolderGoodsDontFail = function() {
-    var files = new FileList("Test/Files/TypeChecker/Turn-In/good*.java").items();
-
-    files.forEach(function(file) {
-       compilingFileResultsInError(file); 
-    });
-}
-
-exports.testThatTurnInFolderBadsFail = function() {
-    var files = new FileList("Test/Files/TypeChecker/Turn-In/bad*.java").items();
-    var expected = [
-        "Multiple declarations found for class Foo.", 
-        "Cannot extend the unknown superclass Baz.", 
-        "The method {name: <size>, returnType: <boolean>, parameters: <[]>} in Baz attempts to override the method {name: <size>, returnType: <int>, parameters: <[]>} in Bar.", 
-        "A field named x has already been defined in the superclass Bar.", 
-        "A field named x is defined more than once in Bar.", 
-        "A field named x has already been defined in the superclass Bar."
-    ];
-    
-    files.forEach(function(file) {
-       compilingFileResultsInError(file, expected[files.indexOf(file)]);
-    });
-}
-
-exports.testThatEarlySamplesFail = function() {
-    var files = new FileList("Test/Files/TypeChecker/EarlySamples/*.java").items();
+exports.testThatFullTestCasesFail = function() {
+    var files = new FileList("Test/Files/TypeChecker/FullTestCases/FullTests/*.java").items();
     var expected = [
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
         "The parameter c is initialized with undefined type C.",
         "The method {name: <start>, returnType: <boolean>, parameters: <[]>} in B attempts to override the method {name: <start>, returnType: <int>, parameters: <[]>} in C.",
+        "",
+        "",
+        "A method named start has already been defined in the class B.",
         "A field named a has already been defined in the superclass noPoint.",
         "A method named setB has already been defined in the class noPoint2.",
         "A field named a is defined more than once in noPoint.",
+        [
+            "A method named equal has already been defined in the class otherFoo.",
+            "The method {name: <equal>, returnType: <boolean>, parameters: <[{name: <x>, type: <int>}]>} in thisFoo attempts to override the method {name: <equal>, returnType: <boolean>, parameters: <[{name: <x>, type: <int>}, {name: <y>, type: <int>}, {name: <z>, type: <int>}]>} in otherFoo.",
+        ],
+        [
+            "The method {name: <bad>, returnType: <bool>, parameters: <[]>} in badBar attempts to override the method {name: <bad>, returnType: <int>, parameters: <[]>} in otherBar.",
+            "The return type bool of method named bad is undefined.",
+        ],
+        "Multiple declarations found for class start.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
         "Cannot extend the unknown superclass Foo1.",
-        "Cannot extend the unknown superclass Foo.",
+        "The parameter Foo is declared more than once in Baz.",
+        [
+            "Cannot extend the unknown superclass Foo.",
+            "Cannot extend the unknown superclass Foo.",
+        ],
+        "",
+        "",
+        "A field named x has already been defined in the superclass Bar.",
+        "A field named x is initialized with an uninitialized type Baz.",
+        "A method named self has already been defined in the class Bar.",
+        "Cannot extend the unknown superclass Bar.",
+        "The method {name: <self>, returnType: <Bar>, parameters: <[{name: <a>, type: <int>}]>} in Baz attempts to override the method {name: <self>, returnType: <Bar>, parameters: <[]>} in Bar.",
+        [
+            "Cannot extend the unknown superclass Bar.",
+            "A method named self has already been defined in the class Baz.",
+            "The return type Nonexistant of method named self2 is undefined.",
+            "A field named x has already been defined in the superclass Bar.",
+            "The method {name: <self>, returnType: <Bar>, parameters: <[{name: <a>, type: <int>}]>} in Baz attempts to override the method {name: <self>, returnType: <Bar>, parameters: <[]>} in Bar.",
+        ],
+        "A field named x is defined more than once in foo2.",
+        "A field named x has already been defined in the superclass Foo2.",
+        "Cannot extend the unknown superclass Foo3.",
+        "",
+        "A method named Foo2 has already been defined in the class Bar.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        [
+            "A field named x has already been defined in the superclass Test3a.",
+            "A field named b has already been defined in the superclass Test3b.",
+        ],
+        "A field named x is defined more than once in Test4a.",
+        "HERE",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
     ];
     
     files.forEach(function(file) {
         compilingFileResultsInError(file, expected[files.indexOf(file)]);
-    })
-}
+    });
+};
 
 function compilingFileResultsInError(filename, error) {
-    error = error || null;
+    if (error)
+        error = [].concat(error);
     
     var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
     var ast = parser.parse(readFile(filename));
     
     var env = require("../lib/GatherTypeInfo").process(ast).env;
-    var driver = new Driver([ClassDecl, ParameterTypes, ParameterDecs, MethodOverload, FieldDecl, FieldShadow, MethodOverride]);
+    var driver = new Driver([MethodDecl, ClassDecl, ParameterTypes, ParameterDecs, MethodOverload, FieldDecl, FieldShadow, MethodOverride]);
     
     driver.process(ast, env);
+    
+    var actualMessages = env.errors.map(function(err) {
+        return err.message;
+    });
 
     if (error) {
-        var found = false;
-        env.errors.forEach(function(err) {
-            if (err.message === error)
-                found = true;
-        });
-        ASSERT.equal(true, found, "Error message: <" + env.errors.join("\n") + "> did not match <" + error + ">");
+        var found = true;
+        for (var i = 0; i < error.length; i++) {
+            if (actualMessages.indexOf(error[i]) < 0) {
+                found = false;
+            }
+        }
+        
+        for (var i = 0; i < actualMessages.length; i++) {
+            if (error.indexOf(actualMessages[i]) < 0) {
+                found = false;
+            }
+        }
+
+        ASSERT.equal(true, found, "Error message: <" + env.errors.join("\n") + ">\n\ndid not match\n\n<" + error + ">");
     } else {
         ASSERT.equal(0, env.errors.length);
     }
