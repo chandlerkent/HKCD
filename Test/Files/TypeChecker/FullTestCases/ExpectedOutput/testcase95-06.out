@@ -1,0 +1,2 @@
+Cannot redeclare method myMethod
+Cannot overload methods.  Method myMethod has different type signature than inherited method of the same name.

@@ -1,0 +1,3 @@
+Cannot redeclare method equal
+Cannot overload methods.  Method equal has different type signature than inherited method of the same name.
+Cannot overload methods.  Method equal has different type signature than inherited method of the same name.

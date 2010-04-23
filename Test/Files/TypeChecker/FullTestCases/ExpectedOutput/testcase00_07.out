@@ -1,0 +1,2 @@
+Cannot redeclare method start
+Cannot overload methods.  Method start has different type signature than inherited method of the same name.

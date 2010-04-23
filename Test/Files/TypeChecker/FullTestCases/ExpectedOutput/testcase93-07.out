@@ -1,0 +1,2 @@
+Cannot redeclare method dupe
+Cannot overload methods.  Method dupe has different type signature than inherited method of the same name.

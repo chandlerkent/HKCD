@@ -1,0 +1,2 @@
+Cannot redeclare method doCoke
+Cannot overload methods.  Method doCoke has different type signature than inherited method of the same name.
