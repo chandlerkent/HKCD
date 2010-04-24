@@ -1,0 +1,2 @@
+Type error on line 1: Cannot extend the unknown superclass baz.
+Type error on line 1: The method {name: <test>, returnType: <boolean>, parameters: <[]>} in bar attempts to override the method {name: <test>, returnType: <int>, parameters: <[]>} in baz.

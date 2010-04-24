@@ -1,0 +1,1 @@
+Type error on line 23: The method {name: <start>, returnType: <boolean>, parameters: <[]>} in B attempts to override the method {name: <start>, returnType: <int>, parameters: <[]>} in C.

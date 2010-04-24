@@ -1,0 +1,3 @@
+Type error on line 45: A field named z is initialized with an uninitialized type Zain.
+Type error on line 50: The method {name: <setsms>, returnType: <int>, parameters: <[{name: <x>, type: <boolean>}]>} in mobily attempts to override the method {name: <setsms>, returnType: <int>, parameters: <[{name: <x>, type: <int>}]>} in stc.
+Type error on line 55: The method {name: <setDSL>, returnType: <int>, parameters: <[{name: <x>, type: <boolean>}]>} in mobily attempts to override the method {name: <setDSL>, returnType: <int>, parameters: <[{name: <x>, type: <int>}]>} in stc.

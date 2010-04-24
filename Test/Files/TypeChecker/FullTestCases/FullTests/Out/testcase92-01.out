@@ -1,0 +1,2 @@
+Type error on line 2: There was a cycle detected.
+Type error on line 1: Cannot extend the unknown superclass baz.

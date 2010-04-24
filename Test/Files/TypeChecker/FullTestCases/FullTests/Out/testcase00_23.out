@@ -1,0 +1,2 @@
+Type error on line 14: Cannot extend the unknown superclass Foo.
+Type error on line 24: Cannot extend the unknown superclass Foo.

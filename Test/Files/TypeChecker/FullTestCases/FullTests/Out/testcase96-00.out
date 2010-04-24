@@ -1,0 +1,1 @@
+Type error on line 26: The method {name: <estimateNumberOfZombies>, returnType: <int>, parameters: <[{name: <limbs>, type: <int>}, {name: <heads>, type: <int>}]>} in Cred attempts to override the method {name: <estimateNumberOfZombies>, returnType: <int>, parameters: <[{name: <limbs>, type: <int>}]>} in Ed.

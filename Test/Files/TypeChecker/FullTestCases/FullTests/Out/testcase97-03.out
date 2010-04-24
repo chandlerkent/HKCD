@@ -1,0 +1,1 @@
+Type error on line 24: The method {name: <attachedToTheEars>, returnType: <int>, parameters: <[]>} in CourtroomDog attempts to override the method {name: <attachedToTheEars>, returnType: <boolean>, parameters: <[]>} in WhereWasTheDog.

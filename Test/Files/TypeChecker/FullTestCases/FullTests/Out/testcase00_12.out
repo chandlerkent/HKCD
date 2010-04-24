@@ -1,0 +1,2 @@
+Type error on line 18: The return type bool of method named bad is undefined.
+Type error on line 18: The method {name: <bad>, returnType: <bool>, parameters: <[]>} in badBar attempts to override the method {name: <bad>, returnType: <int>, parameters: <[]>} in otherBar.

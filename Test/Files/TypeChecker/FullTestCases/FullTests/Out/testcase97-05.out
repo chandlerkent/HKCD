@@ -1,0 +1,1 @@
+Type error on line 16: The method {name: <doRubiksCube>, returnType: <int>, parameters: <[]>} in StevieWonder attempts to override the method {name: <doRubiksCube>, returnType: <boolean>, parameters: <[]>} in Dude.

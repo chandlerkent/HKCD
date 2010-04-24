@@ -1,0 +1,2 @@
+Type error on line 11: A field named x is defined more than once in foo2.
+Type error on line 12: A field named x is defined more than once in foo2.

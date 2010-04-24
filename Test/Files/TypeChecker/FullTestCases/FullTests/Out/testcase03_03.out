@@ -1,0 +1,2 @@
+Type error on line 3: A field named x has already been defined in the superclass Test3a.
+Type error on line 3: A field named b has already been defined in the superclass Test3b.

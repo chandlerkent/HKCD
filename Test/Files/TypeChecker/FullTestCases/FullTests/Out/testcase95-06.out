@@ -1,0 +1,2 @@
+Type error on line 8: A method named myMethod has already been defined in the class SomeClass.
+Type error on line 11: A method named myMethod has already been defined in the class SomeClass.

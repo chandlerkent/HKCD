@@ -283,7 +283,7 @@ function compilingFileResultsInError(filename, error) {
 
         ASSERT.equal(true, found, "Error message: <" + env.errors.join("\n") + ">\n\ndid not match\n\n<" + error + ">");
     } else {
-        ASSERT.equal(0, env.errors.length);
+        ASSERT.equal(0, actualMessages.length);
     }
 }
 

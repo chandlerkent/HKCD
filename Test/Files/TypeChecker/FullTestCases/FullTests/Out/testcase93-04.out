@@ -1,0 +1,1 @@
+Type error on line 15: The method {name: <returnsFive>, returnType: <boolean>, parameters: <[]>} in OneMethodDos attempts to override the method {name: <returnsFive>, returnType: <int>, parameters: <[]>} in OneMethod.

@@ -1,0 +1,2 @@
+Type error on line 50: The method {name: <setsms>, returnType: <int>, parameters: <[{name: <x>, type: <boolean>}]>} in zain attempts to override the method {name: <setsms>, returnType: <int>, parameters: <[{name: <x>, type: <int>}]>} in stc.
+Type error on line 55: The method {name: <setDSL>, returnType: <int>, parameters: <[{name: <x>, type: <boolean>}]>} in zain attempts to override the method {name: <setDSL>, returnType: <int>, parameters: <[{name: <x>, type: <int>}]>} in stc.

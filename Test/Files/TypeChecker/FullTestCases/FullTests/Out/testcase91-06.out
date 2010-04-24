@@ -1,0 +1,1 @@
+Type error on line 8: A field named soboring is initialized with an uninitialized type bool.

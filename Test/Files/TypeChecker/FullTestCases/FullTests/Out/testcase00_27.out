@@ -1,0 +1,1 @@
+Type error on line 10: A field named x is initialized with an uninitialized type Baz.

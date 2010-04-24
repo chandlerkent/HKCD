@@ -1,0 +1,2 @@
+Type error on line 22: The method {name: <getNum>, returnType: <boolean>, parameters: <[]>} in d attempts to override the method {name: <getNum>, returnType: <int>, parameters: <[]>} in c.
+Type error on line 22: The method {name: <getNum>, returnType: <boolean>, parameters: <[]>} in d attempts to override the method {name: <getNum>, returnType: <int>, parameters: <[]>} in b.

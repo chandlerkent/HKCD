@@ -1,0 +1,8 @@
+Type error on line 8: A method named myMethod has already been defined in the class SomeClass.
+Type error on line 11: A method named myMethod has already been defined in the class SomeClass.
+Type error on line 17: A method named myMethod has already been defined in the class SomeOtherClass.
+Type error on line 20: A method named myMethod has already been defined in the class SomeOtherClass.
+Type error on line 23: A method named myMethod has already been defined in the class SomeOtherClass.
+Type error on line 17: The method {name: <myMethod>, returnType: <boolean>, parameters: <[{name: <b>, type: <int>}]>} in SomeOtherClass attempts to override the method {name: <myMethod>, returnType: <int>, parameters: <[{name: <a>, type: <int>}]>} in SomeClass.
+Type error on line 20: The method {name: <myMethod>, returnType: <boolean>, parameters: <[{name: <b>, type: <int>}]>} in SomeOtherClass attempts to override the method {name: <myMethod>, returnType: <int>, parameters: <[{name: <a>, type: <int>}]>} in SomeClass.
+Type error on line 23: The method {name: <myMethod>, returnType: <boolean>, parameters: <[{name: <b>, type: <int>}]>} in SomeOtherClass attempts to override the method {name: <myMethod>, returnType: <int>, parameters: <[{name: <a>, type: <int>}]>} in SomeClass.

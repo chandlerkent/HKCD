@@ -1,0 +1,1 @@
+Type error on line 20: The method {name: <tni>, returnType: <int>, parameters: <[{name: <cilbup>, type: <int>}]>} in um attempts to override the method {name: <tni>, returnType: <ssalc>, parameters: <[{name: <cilbup>, type: <int>}]>} in ssalc.

@@ -1,0 +1,3 @@
+Type error on line 6: A field named a is defined more than once in SomeClass.
+Type error on line 8: A field named a is defined more than once in SomeClass.
+Type error on line 8: A field named a is initialized with an uninitialized type Type.

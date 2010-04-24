@@ -1,0 +1,7 @@
+Type error on line 39: The return type Nonexistant of method named self2 is undefined.
+Type error on line 25: Cannot extend the unknown superclass Bar.
+Type error on line 19: A method named self has already been defined in the class Baz.
+Type error on line 24: A method named self has already been defined in the class Baz.
+Type error on line 14: A field named x has already been defined in the superclass Bar.
+Type error on line 19: The method {name: <self>, returnType: <Bar>, parameters: <[{name: <a>, type: <int>}]>} in Baz attempts to override the method {name: <self>, returnType: <Bar>, parameters: <[]>} in Bar.
+Type error on line 24: The method {name: <self>, returnType: <Bar>, parameters: <[{name: <a>, type: <int>}]>} in Baz attempts to override the method {name: <self>, returnType: <Bar>, parameters: <[]>} in Bar.
