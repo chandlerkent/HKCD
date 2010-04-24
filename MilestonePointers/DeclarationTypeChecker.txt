@@ -3,7 +3,35 @@ Chandler Kent
 Derek Hammer
 (HKCD)
 DTC Milestone
+(4/23/2010)
 ============================
+
+-----------
+Source Code
+-----------
+The source code for this milestone is located in /lib/.
+
+main.js                                   -> Main Entry Point
+
+grammar.json                              -> Grammar Definition File
+
+Environment.js, ClassMap.js, MethodMap.js
+ArrayMap.js, TypeError.js                 -> Environmnet / Type Tables
+
+ASTNode.js                                -> AST Representation (we use duck typing)
+
+ClassDecl.js, FieldDecl.js, 
+FieldShadow.js, MethodDecl.js, 
+MethodDecl.js, MethodOverload.js,         -> TypeCheckers
+MethodOverride.js, ParameterDecs.js
+ParameterTypes.js                         
+
+GatherTypeInfo.js                         -> Type Environment Scanner
+
+--------------
+Program Output
+--------------
+The output for the test cases is located in /Test/Files/TypeChecker/FullTestCases/FullTests/Out/ (sorry). The names should match the names of the test cases provided.
 
 --------------
 Test Case
