@@ -5,7 +5,7 @@ var Environment = require("../lib/Environment").Environment;
 
 exports.testGatheringTypeInfo = function() {
     var ast = new ASTNode("Program", [
-        new ASTNode("MainClassDecl", [], {"className": "Foo", "param": "args"}),
+        new ASTNode("MainClassDecl", [], {"className": "Foo", "param": "args", "superClassName": null}),
         new ASTNode("ClassDecl", [
             new ASTNode("ClassVarDecl", [], {"type": "int", "fieldName": "x"}),
             new ASTNode("ClassVarDecl", [], {"type": "Foo", "fieldName": "foo"}),

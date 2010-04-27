@@ -91,7 +91,7 @@
                             ],
         "Expr":             [
                                 ["Expr + Expr", "$$ = new yy.ASTNode('Add', [$1, $3], { 'checkType': yy.expressionCheck.Add });"],
-                                ["Expr - Expr", "$$ = new yy.ASTNode('Subtract', [$1, $3]);"],
+                                ["Expr - Expr", "$$ = new yy.ASTNode('Subtract', [$1, $3], { 'checkType': yy.expressionCheck.Subtract });"],
                                 ["Expr * Expr", "$$ = new yy.ASTNode('Multiply', [$1, $3]);"],
                                 ["Expr / Expr", "$$ = new yy.ASTNode('Divide', [$1, $3]);"],
                                 ["Expr < Expr", "$$ = new yy.ASTNode('LessThan', [$1, $3]);"],

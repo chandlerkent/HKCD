@@ -27,6 +27,14 @@ exports.testThatAddWithBadReturnTypeIsInvalid = function() {
     ASSERT.eq(2, result.env.errors.length);
 };
 
+exports.testThatSubtractWithBadReturnTypeIsInvalid = function() {
+    var ast = buildSubtractAST();
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ReturnType.process(ast, env);
+
+    ASSERT.eq(2, result.env.errors.length);
+};
+
 exports.testThatNullWithPrimitiveReturnTypeIsInvalid = function() {
     var ast = buildNullAST();
     var env = require("../lib/GatherTypeInfo").process(ast).env;
@@ -89,6 +97,26 @@ function buildAddAST() {
     method.addChild(ASTBuilder.ParameterNode("x", "int"));
     method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
     method.returnExpression = ASTBuilder.AddExpression(ASTBuilder.IntegerExpression("4"), 
+        ASTBuilder.IntegerExpression("6"));
+
+    classNode.addChild(method);
+
+    ast.addChild(classNode);
+
+    return ast;
+}
+
+function buildSubtractAST() {
+    var ast = ASTBuilder.ProgramNode();
+    ast.addChild(ASTBuilder.MainClassNode());
+
+    var classNode = ASTBuilder.ClassNode("Bar", null);
+
+    var method = ASTBuilder.MethodNode("bar", "boolean");
+
+    method.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
+    method.returnExpression = ASTBuilder.SubtractExpression(ASTBuilder.IntegerExpression("4"), 
         ASTBuilder.IntegerExpression("6"));
 
     classNode.addChild(method);
