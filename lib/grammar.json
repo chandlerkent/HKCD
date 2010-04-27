@@ -90,28 +90,119 @@
                                 ["ID = Expr ;", "$$ = new yy.ASTNode('Assignment', [$3], { 'var_name': $1 });"],
                             ],
         "Expr":             [
-                                ["Expr + Expr", "$$ = new yy.ASTNode('Add', [$1, $3], { 'checkType': yy.expressionCheck.Add });"],
-                                ["Expr - Expr", "$$ = new yy.ASTNode('Subtract', [$1, $3], { 'checkType': yy.expressionCheck.Subtract });"],
-                                ["Expr * Expr", "$$ = new yy.ASTNode('Multiply', [$1, $3], { 'checkType': yy.expressionCheck.Multiply });"],
-                                ["Expr / Expr", "$$ = new yy.ASTNode('Divide', [$1, $3], { 'checkType': yy.expressionCheck.Divide });"],
-                                ["Expr < Expr", "$$ = new yy.ASTNode('LessThan', [$1, $3], { 'checkType': yy.expressionCheck.LessThan });"],
-                                ["Expr <= Expr", "$$ = new yy.ASTNode('LessThanEqual', [$1, $3]);"],
-                                ["Expr >= Expr", "$$ = new yy.ASTNode('GreaterThanEqual', [$1, $3]);"],
-                                ["Expr > Expr", "$$ = new yy.ASTNode('GreaterThan', [$1, $3]);"],
-                                ["Expr == Expr", "$$ = new yy.ASTNode('Equal', [$1, $3]);"],
-                                ["Expr != Expr", "$$ = new yy.ASTNode('NotEqual', [$1, $3]);"],
-                                ["Expr && Expr", "$$ = new yy.ASTNode('And', [$1, $3]);"],
-                                ["Expr || Expr", "$$ = new yy.ASTNode('Or', [$1, $3], { 'checkType': yy.expressionCheck.Or });"],
-                                ["! Expr", "$$ = new yy.ASTNode('Not', [$2], { 'checkType': yy.expressionCheck.Not });"],
-                                ["- Expr", "$$ = new yy.ASTNode('Negate', [$2], { 'checkType': yy.expressionCheck.Negate });", {"prec": "UMINUS"}],
-                                ["Expr . JavaID ( ParameterList )", "$$ = new yy.ASTNode('Call', [$1, $3, $5]);"],
-                                ["new JavaID ( )", "$$ = new yy.ASTNode('Construct', [], { 'constructor':$2, 'checkType': yy.expressionCheck.Construct });"],
-                                ["ID", "$$ = new yy.ASTNode('IDExpression', [], { 'expression': yytext });"],
-                                ["this", "$$ = new yy.ASTNode('ThisExpression', [], { 'checkType': yy.expressionCheck.This });"],
-                                ["Integer", "$$ = new yy.ASTNode('IntegerExpression', [], { 'expression':yytext, 'checkType': yy.expressionCheck.Integer });"],
-                                ["null", "$$ = new yy.ASTNode('NullExpression', [], { 'checkType': yy.expressionCheck.Null });"],
-                                ["true", "$$ = new yy.ASTNode('TrueExpression', [], { 'checkType': yy.expressionCheck.True });"],
-                                ["false", "$$ = new yy.ASTNode('FalseExpression', []);"], 
+                                ["Expr + Expr", "$$ = new yy.ASTNode('Add', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.Add, \
+                                    'getExpressionType': yy.expressionType.Add \
+                                });"],
+                                
+                                ["Expr - Expr", "$$ = new yy.ASTNode('Subtract', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.Subtract, \
+                                    'getExpressionType': yy.expressionType.Subtract \
+                                });"],
+                                
+                                ["Expr * Expr", "$$ = new yy.ASTNode('Multiply', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.Multiply, \
+                                    'getExpressionType': yy.expressionType.Multiply \
+                                });"],
+                                
+                                ["Expr / Expr", "$$ = new yy.ASTNode('Divide', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.Divide, \
+                                    'getExpressionType': yy.expressionType.Divide \
+                                });"],
+                                
+                                ["Expr < Expr", "$$ = new yy.ASTNode('LessThan', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.LessThan, \
+                                    'getExpressionType': yy.expressionType.LessThan \
+                                });"],
+                                
+                                ["Expr <= Expr", "$$ = new yy.ASTNode('LessThanEqual', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.LessThanEqual, \
+                                    'getExpressionType': yy.expressionType.LessThanEqual \
+                                });"],
+                                
+                                ["Expr >= Expr", "$$ = new yy.ASTNode('GreaterThanEqual', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.GreaterThanEqual, \
+                                    'getExpressionType': yy.expressionType.GreaterThanEqual \
+                                });"],
+                                
+                                ["Expr > Expr", "$$ = new yy.ASTNode('GreaterThan', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.GreaterThan, \
+                                    'getExpressionType': yy.expressionType.GreaterThan \
+                                });"],
+                                
+                                ["Expr == Expr", "$$ = new yy.ASTNode('Equal', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.Equal, \
+                                    'getExpressionType': yy.expressionType.Equal \
+                                });"],
+                                
+                                ["Expr != Expr", "$$ = new yy.ASTNode('NotEqual', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.NotEqual, \
+                                    'getExpressionType': yy.expressionType.NotEqual \
+                                });"],
+                                
+                                ["Expr && Expr", "$$ = new yy.ASTNode('And', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.And, \
+                                    'getExpressionType': yy.expressionType.And \
+                                });"],
+                                
+                                ["Expr || Expr", "$$ = new yy.ASTNode('Or', [$1, $3], { \
+                                    'checkType': yy.expressionCheck.Or, \
+                                    'getExpressionType': yy.expressionType.Or \
+                                });"],
+                                
+                                ["! Expr", "$$ = new yy.ASTNode('Not', [$2], { \
+                                    'checkType': yy.expressionCheck.Not, \
+                                    'getExpressionType': yy.expressionType.Not \
+                                });"],
+                                
+                                ["- Expr", "$$ = new yy.ASTNode('Negate', [$2], { \
+                                    'checkType': yy.expressionCheck.Negate, \
+                                    'getExpressionType': yy.expressionType.Negate \
+                                });", {"prec": "UMINUS"}],
+                                
+                                ["Expr . JavaID ( ParameterList )", "$$ = new yy.ASTNode('Call', [$1, $3, $5], { \
+                                    'checkType': yy.expressionCheck.Call, \
+                                    'getExpressionType': yy.expressionType.Call \
+                                });"],
+                                
+                                ["new JavaID ( )", "$$ = new yy.ASTNode('Construct', [], { \
+                                    'constructor':$2, \
+                                    'checkType': yy.expressionCheck.Construct, \
+                                    'getExpressionType': yy.expressionType.Construct \
+                                });"],
+                                
+                                ["ID", "$$ = new yy.ASTNode('IDExpression', [], { \
+                                    'expression': yytext \
+                                    'checkType': yy.expressionCheck.ID, \
+                                    'getExpressionType': yy.expressionType.ID \
+                                });"],
+                                
+                                ["this", "$$ = new yy.ASTNode('ThisExpression', [], { \
+                                    'checkType': yy.expressionCheck.This, \
+                                    'getExpressionType': yy.expressionType.This \
+                                });"],
+                                
+                                ["Integer", "$$ = new yy.ASTNode('IntegerExpression', [], { \
+                                    'expression':yytext, \
+                                    'checkType': yy.expressionCheck.Integer, \
+                                    'getExpressionType': yy.expressionType.Integer \
+                                });"],
+                                
+                                ["null", "$$ = new yy.ASTNode('NullExpression', [], { \
+                                    'checkType': yy.expressionCheck.Null, \
+                                    'getExpressionType': yy.expressionType.Null \
+                                });"],
+                                
+                                ["true", "$$ = new yy.ASTNode('TrueExpression', [], { \
+                                    'checkType': yy.expressionCheck.True, \
+                                    'getExpressionType': yy.expressionType.True \
+                                });"],
+                                
+                                ["false", "$$ = new yy.ASTNode('FalseExpression', [], { \
+                                    'checkType': yy.expressionCheck.False, \
+                                    'getExpressionType': yy.expressionType.False \
+                                });"], 
+                                
                                 ["( Expr )", "$$ = $2;"],
                             ],
         "ParameterList":    [
