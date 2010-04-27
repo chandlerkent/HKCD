@@ -75,6 +75,16 @@ exports.testThatLessThanWithBadReturnTypeIsInvalid = function() {
     ASSERT.eq(6, result.env.errors.length);
 };
 
+exports.testThatLessThanWithBadReturnTypeIsInvalid = function() {
+    var ast = buildBooleanBinaryOperatorAST("LessThanEqual");
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ReturnType.process(ast, env);
+
+    print(result.env.errors.join("\n"));
+
+    ASSERT.eq(6, result.env.errors.length);
+};
+
 exports.testThatNullWithPrimitiveReturnTypeIsInvalid = function() {
     var ast = buildNullAST();
     var env = require("../lib/GatherTypeInfo").process(ast).env;
