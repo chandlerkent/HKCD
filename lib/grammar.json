@@ -59,7 +59,7 @@
                                 ["MethodDecl MethodDeclList", "$2.unshift($1); $$ = $2;"],
                             ],
         "MethodDecl":       [
-                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $5.concat($8, [$10]), { 'returnType': $2, 'methodName': $3, 'lineNumber': yylineno });"],
+                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $5.concat($8), { 'returnExpression': $10, 'returnType': $2, 'methodName': $3, 'lineNumber': yylineno });"],
                             ],
         "FormalList":       [
                                 ["", "$$ = [];"],
@@ -90,7 +90,7 @@
                                 ["ID = Expr ;", "$$ = new yy.ASTNode('Assignment', [$3], { 'var_name': $1 });"],
                             ],
         "Expr":             [
-                                ["Expr + Expr", "$$ = new yy.ASTNode('Add', [$1, $3]);"],
+                                ["Expr + Expr", "$$ = new yy.ASTNode('Add', [$1, $3], { 'checkType': yy.expressionCheck.Add });"],
                                 ["Expr - Expr", "$$ = new yy.ASTNode('Subtract', [$1, $3]);"],
                                 ["Expr * Expr", "$$ = new yy.ASTNode('Multiply', [$1, $3]);"],
                                 ["Expr / Expr", "$$ = new yy.ASTNode('Divide', [$1, $3]);"],
@@ -105,13 +105,13 @@
                                 ["! Expr", "$$ = new yy.ASTNode('Not', [$2]);"],
                                 ["- Expr", "$$ = new yy.ASTNode('Negate', [$2]);", {"prec": "UMINUS"}],
                                 ["Expr . JavaID ( ParameterList )", "$$ = new yy.ASTNode('Call', [$1, $3, $5]);"],
-                                ["new JavaID ( )", "$$ = new yy.ASTNode('Construct', [$2]);"],
-                                ["ID", "$$ = yytext;"],
-                                ["this", "$$ = yytext;"],
-                                ["Integer", "$$ = yytext;"],
-                                ["null", "$$ = yytext;"],
-                                ["true", "$$ = yytext;"],
-                                ["false", "$$ = yytext;"], 
+                                ["new JavaID ( )", "$$ = new yy.ASTNode('Construct', [], { 'constructor':$2, 'checkType': yy.expressionCheck.Construct });"],
+                                ["ID", "$$ = new yy.ASTNode('IDExpression', [], { 'expression': yytext });"],
+                                ["this", "$$ = new yy.ASTNode('ThisExpression', [], { 'checkType': yy.expressionCheck.This });"],
+                                ["Integer", "$$ = new yy.ASTNode('IntegerExpression', [], { 'expression':yytext, 'checkType': yy.expressionCheck.Integer });"],
+                                ["null", "$$ = new yy.ASTNode('NullExpression', [], { 'checkType': yy.expressionCheck.Null });"],
+                                ["true", "$$ = new yy.ASTNode('TrueExpression', [], { 'checkType': yy.expressionCheck.True });"],
+                                ["false", "$$ = new yy.ASTNode('FalseExpression', []);"], 
                                 ["( Expr )", "$$ = $2;"],
                             ],
         "ParameterList":    [

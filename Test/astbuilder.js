@@ -8,7 +8,10 @@ exports.buildValidAST = function() {
     
     var firstClass = ClassNode("Prius");
     firstClass.addChild(FieldNode("mpg", "int"));
-    firstClass.addChild(MethodNode("start", "boolean"));
+    var method = MethodNode("start", "boolean");
+    
+    method.returnExpression = TrueExpression();
+    firstClass.addChild(method);
     
     program.addChild(firstClass);
     
@@ -17,6 +20,7 @@ exports.buildValidAST = function() {
     
     var methodOne = MethodNode("destroy", "boolean");
     methodOne.addChild(ParameterNode("car", "Prius"));
+    methodOne.returnExpression = FalseExpression();
     secondClass.addChild(methodOne);
     
     program.addChild(secondClass);
@@ -46,4 +50,32 @@ var MethodNode = exports.MethodNode = function(name, type ) {
 
 var ParameterNode = exports.ParameterNode = function(name, type) {
     return new ASTNode('Formal', [], { 'type': type, 'parameterName': name });
+}
+
+var IntegerExpression = exports.IntegerExpression = function(intValue) {
+    return new ASTNode('IntegerExpression', [], {'expression': intValue, 'checkType': ASTNode.expressionCheck.Integer });
+}
+
+var AddExpression = exports.AddExpression = function(leftHandSide, rightHandSide) {
+    return new ASTNode('Add', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Add });
+}
+
+var TrueExpression = exports.TrueExpression = function() {
+    return new ASTNode('TrueExpression', [], { 'checkType': ASTNode.expressionCheck.True });
+}
+
+var FalseExpression = exports.FalseExpression = function() {
+    return new ASTNode('FalseExpression', [], { 'checkType': ASTNode.expressionCheck.False });
+}
+
+var NullExpression = exports.NullExpression = function() {
+    return new ASTNode('NullExpression', [], { 'checkType': ASTNode.expressionCheck.Null });
+}
+
+var ThisExpression = exports.ThisExpression = function() {
+    return new ASTNode('ThisExpression', [], { 'checkType': ASTNode.expressionCheck.This });
+}
+
+var ConstructExpression = exports.ConstructExpression = function(type) {
+    return new ASTNode('ConstructExpression', [], { 'constructor':type, 'checkType': ASTNode.expressionCheck.Construct });
 }
