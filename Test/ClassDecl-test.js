@@ -1,4 +1,4 @@
-var ClassDecl = require("../lib/ClassDecl");
+var ClassDecl = require("../lib/TypeChecker/ClassDecl");
 var ASSERT = require("test/assert");
 
 if (require.main === module)

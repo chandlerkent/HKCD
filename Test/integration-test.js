@@ -4,7 +4,7 @@
 
 var Parser = require("../lib/parser").Parser;
 var Driver = require("../lib/driver").Driver;
-var TypeChecker = require("../lib/TypeChecker");
+var TypeChecker = require("../lib/TypeChecker/TypeChecker");
 
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;

@@ -1,4 +1,4 @@
-var FieldShadow = require("../lib/FieldShadow");
+var FieldShadow = require("../lib/TypeChecker/FieldShadow");
 var ASSERT = require("test/assert");
 
 if (require.main === module)

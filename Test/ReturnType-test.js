@@ -1,5 +1,5 @@
 var ASSERT = require("test/assert");
-var ReturnType = require("../lib/ReturnType");
+var ReturnType = require("../lib/TypeChecker/ReturnType");
 var ASTBuilder = require("./astbuilder");
 
 exports.testThatValidASTReturnsSameAST = function() {

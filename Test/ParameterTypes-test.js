@@ -1,5 +1,5 @@
 var ASSERT = require("test/assert");
-var ParameterTypes = require("../lib/ParameterTypes");
+var ParameterTypes = require("../lib/TypeChecker/ParameterTypes");
 var ASTBuilder = require("./astbuilder")
 
 exports.testThatValidASTReturnsSameAST = function() {
