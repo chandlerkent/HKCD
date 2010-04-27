@@ -37,7 +37,7 @@ exports.testWalk = function() {
         actual.push(node.name);
     });
     
-    var expected = "StmtList MainClassDecl ClassDeclList Program";
+    var expected = "Program MainClassDecl StmtList ClassDeclList";
     ASSERT.eq(expected, actual.join(" "));
 };
 

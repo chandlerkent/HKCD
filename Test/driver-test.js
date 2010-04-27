@@ -1,31 +1,32 @@
 var Driver = require("../lib/driver").Driver;
-var ASSERT = require("assert");
+var ASSERT = require("test/assert");
 
 exports.testThatDriverProcessesSteps = function() {
     var steps = buildFakes();
     var driver = new Driver(steps);
-    var initial = {};
+    var initial_ast = {};
+    var initial_env = {};
     
-    var result = driver.process(initial);
+    var result = driver.process(initial_ast, initial_env);
     
-    ASSERT.equal(result, initial);
-    ASSERT.equal(true, steps[0].called);
-    ASSERT.equal(true, steps[1].called);
+    ASSERT.eq({"ast": initial_ast, "env": initial_env}, result);
+    ASSERT.eq(true, steps[0].called);
+    ASSERT.eq(true, steps[1].called);
 }
 
 function buildFakes() {
     return [
         {
-            "process" : function(ast) {
+            "process" : function(ast, env) {
                 this.called = true;
-                return ast;
+                return {"ast": ast, "env": env};
             },
             "called" : false
         },
         {
-            "process" : function(ast) {
+            "process" : function(ast, env) {
                 this.called = true;
-                return ast;
+                return {"ast": ast, "env": env};
             },
             "called" : false
         }
