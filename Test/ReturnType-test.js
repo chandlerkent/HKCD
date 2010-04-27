@@ -51,6 +51,14 @@ exports.testThatDivideWithBadReturnTypeIsInvalid = function() {
     ASSERT.eq(2, result.env.errors.length);
 };
 
+exports.testThatOrWithBadReturnTypeIsInvalid = function() {
+    var ast = buildBooleanBinaryOperatorAST("Or");
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ReturnType.process(ast, env);
+
+    ASSERT.eq(2, result.env.errors.length);
+};
+
 exports.testThatNullWithPrimitiveReturnTypeIsInvalid = function() {
     var ast = buildNullAST();
     var env = require("../lib/GatherTypeInfo").process(ast).env;
@@ -122,6 +130,26 @@ function buildBinaryOperatorAST(exprType) {
     method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
     method.returnExpression = ASTBuilder[exprType + "Expression"](ASTBuilder.IntegerExpression("4"), 
         ASTBuilder.IntegerExpression("6"));
+
+    classNode.addChild(method);
+
+    ast.addChild(classNode);
+
+    return ast;
+}
+
+function buildBooleanBinaryOperatorAST(exprType) {
+    var ast = ASTBuilder.ProgramNode();
+    ast.addChild(ASTBuilder.MainClassNode());
+
+    var classNode = ASTBuilder.ClassNode("Bar", null);
+
+    var method = ASTBuilder.MethodNode("bar", "int");
+
+    method.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
+    method.returnExpression = ASTBuilder[exprType + "Expression"](ASTBuilder.TrueExpression(), 
+        ASTBuilder.FalseExpression());
 
     classNode.addChild(method);
 
@@ -207,25 +235,6 @@ function buildNegateAST() {
 }
 
 function buildNotAST() {
-    var ast = ASTBuilder.ProgramNode();
-    ast.addChild(ASTBuilder.MainClassNode());
-
-    var classNode = ASTBuilder.ClassNode("Bar", null);
-
-    var method = ASTBuilder.MethodNode("bar", "int");
-
-    method.addChild(ASTBuilder.ParameterNode("x", "int"));
-    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
-    method.returnExpression = ASTBuilder.NotExpression(ASTBuilder.TrueExpression());
-
-    classNode.addChild(method);
-
-    ast.addChild(classNode);
-
-    return ast;
-}
-
-function buildOrAST() {
     var ast = ASTBuilder.ProgramNode();
     ast.addChild(ASTBuilder.MainClassNode());
 

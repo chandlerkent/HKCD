@@ -99,3 +99,7 @@ var NegateExpression = exports.NegateExpression = function(integerExpression) {
 var NotExpression = exports.NotExpression = function(booleanExpression) {
     return new ASTNode('Not', [booleanExpression], { 'checkType': ASTNode.expressionCheck.Not });
 };
+
+var OrExpression = exports.OrExpression = function(lhs, rhs) {
+    return new ASTNode('Or', [lhs, rhs], { 'checkType': ASTNode.expressionCheck.Or });
+};
