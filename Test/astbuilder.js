@@ -108,6 +108,10 @@ var LessThanExpression = exports.LessThanExpression = function(lhs, rhs) {
     return new ASTNode('LessThanExpression', [lhs, rhs]);
 };
 
+var AndExpression = exports.AndExpression = function(lhs, rhs) {
+    return new ASTNode('AndExpression', [lhs, rhs]);
+};
+
 var LessThanEqualExpression = exports.LessThanEqualExpression = function(lhs, rhs) {
     return new ASTNode('LessThanEqualExpression', [lhs, rhs]);
 };

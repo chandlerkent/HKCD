@@ -59,6 +59,14 @@ exports.testThatOrWithBadReturnTypeIsInvalid = function() {
     ASSERT.eq(2, result.env.errors.length);
 };
 
+exports.testThatAndWithBadReturnTypeIsInvalid = function() {
+    var ast = buildBooleanBinaryOperatorAST("And");
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ReturnType.process(ast, env);
+
+    ASSERT.eq(2, result.env.errors.length);
+};
+
 exports.testThatLessThanWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("LessThan");
     var env = require("../lib/GatherTypeInfo").process(ast).env;
