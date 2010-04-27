@@ -41,6 +41,12 @@ exports.testWalk = function() {
     ASSERT.eq(expected, actual.join(" "));
 };
 
+exports.testGetterCreation = function() {
+    var node = new ASTNode('test', [], {'className': 'fun'});
+    
+    ASSERT.eq('fun', node.getClassName());
+};
+
 function buildAST() {
     return new ASTNode("Program", [
         new ASTNode("MainClassDecl", [

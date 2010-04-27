@@ -29,7 +29,7 @@ var ProgramNode = exports.ProgramNode = function() {
 }
 
 var MainClassNode = exports.MainClassNode = function() {
-    return new ASTNode('MainClassDecl', [], { 'className': 'SomeClassWeNeverUse', 'param': 'args' });
+    return new ASTNode('MainClassDecl', [], { 'className': 'SomeClassWeNeverUse', 'param': 'args', 'superClassName': null });
 }
 
 var ClassNode = exports.ClassNode = function(name, superclass) {
