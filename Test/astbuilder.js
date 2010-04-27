@@ -115,3 +115,11 @@ var AndExpression = exports.AndExpression = function(lhs, rhs) {
 var LessThanEqualExpression = exports.LessThanEqualExpression = function(lhs, rhs) {
     return new ASTNode('LessThanEqualExpression', [lhs, rhs]);
 };
+
+var EqualsExpression = exports.EqualsExpression = function(lhs, rhs) {
+    return new ASTNode('EqualsExpression', [lhs, rhs]);
+};
+
+var NotEqualExpression = exports.NotEqualExpression = function(lhs, rhs) {
+    return new ASTNode('NotEqualExpression', [lhs, rhs]);
+};
