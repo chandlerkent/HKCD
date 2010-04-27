@@ -25,7 +25,9 @@ exports.testGatheringTypeInfo = function() {
         ], {"className": "Baz", "superClassName": "Oof"}),
     ]);
     
-    print(GatherTypeInfo.process(ast, new Environment()).env);
+    var result = GatherTypeInfo.process(ast, new Environment());
+    
+    ASSERT.eq(ast, result.ast);
 };
 
 if (require.main === module)
