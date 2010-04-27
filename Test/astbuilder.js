@@ -103,3 +103,7 @@ var NotExpression = exports.NotExpression = function(booleanExpression) {
 var OrExpression = exports.OrExpression = function(lhs, rhs) {
     return new ASTNode('Or', [lhs, rhs], { 'checkType': ASTNode.expressionCheck.Or });
 };
+
+var LessThanExpression = exports.LessThanExpression = function(lhs, rhs) {
+    return new ASTNode('LessThan', [lhs, rhs], { 'checkType': ASTNode.expressionCheck.LessThan });
+};
