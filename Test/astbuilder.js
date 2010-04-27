@@ -116,6 +116,14 @@ var LessThanEqualExpression = exports.LessThanEqualExpression = function(lhs, rh
     return new ASTNode('LessThanEqualExpression', [lhs, rhs]);
 };
 
+var GreaterThanEqualExpression = exports.GreaterThanEqualExpression = function(lhs, rhs) {
+    return new ASTNode('GreaterThanEqualExpression', [lhs, rhs]);
+};
+
+var GreaterThanExpression = exports.GreaterThanExpression = function(lhs, rhs) {
+    return new ASTNode('GreaterThanExpression', [lhs, rhs]);
+};
+
 var EqualsExpression = exports.EqualsExpression = function(lhs, rhs) {
     return new ASTNode('EqualsExpression', [lhs, rhs]);
 };
