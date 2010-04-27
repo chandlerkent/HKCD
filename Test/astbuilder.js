@@ -64,6 +64,10 @@ var SubtractExpression = exports.SubtractExpression = function(leftHandSide, rig
     return new ASTNode('Subtract', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Subtract });
 };
 
+var MultiplyExpression = exports.MultiplyExpression = function(leftHandSide, rightHandSide) {
+    return new ASTNode('Multiply', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Multiply });
+};
+
 var TrueExpression = exports.TrueExpression = function() {
     return new ASTNode('TrueExpression', [], { 'checkType': ASTNode.expressionCheck.True });
 };
