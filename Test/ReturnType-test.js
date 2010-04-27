@@ -20,7 +20,7 @@ exports.testThatWrongReturnTypeIsInvalid = function() {
 };
 
 exports.testThatAddWithBadReturnTypeIsInvalid = function() {
-    var ast = buildAddAST();
+    var ast = buildBinaryOperatorAST("Add");
     var env = require("../lib/GatherTypeInfo").process(ast).env;
     var result = ReturnType.process(ast, env);
 
@@ -28,7 +28,7 @@ exports.testThatAddWithBadReturnTypeIsInvalid = function() {
 };
 
 exports.testThatSubtractWithBadReturnTypeIsInvalid = function() {
-    var ast = buildSubtractAST();
+    var ast = buildBinaryOperatorAST("Subtract");
     var env = require("../lib/GatherTypeInfo").process(ast).env;
     var result = ReturnType.process(ast, env);
 
@@ -36,10 +36,18 @@ exports.testThatSubtractWithBadReturnTypeIsInvalid = function() {
 };
 
 exports.testThatMultiplyWithBadReturnTypeIsInvalid = function() {
-    var ast = buildMultiplyAST();
+    var ast = buildBinaryOperatorAST("Multiply");
     var env = require("../lib/GatherTypeInfo").process(ast).env;
     var result = ReturnType.process(ast, env);
     
+    ASSERT.eq(2, result.env.errors.length);
+};
+
+exports.testThatDivideWithBadReturnTypeIsInvalid = function() {
+    var ast = buildBinaryOperatorAST("Divide");
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ReturnType.process(ast, env);
+
     ASSERT.eq(2, result.env.errors.length);
 };
 
@@ -94,7 +102,7 @@ function buildInvalidParameterAST() {
     return ast;
 }
 
-function buildAddAST() {
+function buildBinaryOperatorAST(exprType) {
     var ast = ASTBuilder.ProgramNode();
     ast.addChild(ASTBuilder.MainClassNode());
 
@@ -104,47 +112,7 @@ function buildAddAST() {
 
     method.addChild(ASTBuilder.ParameterNode("x", "int"));
     method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
-    method.returnExpression = ASTBuilder.AddExpression(ASTBuilder.IntegerExpression("4"), 
-        ASTBuilder.IntegerExpression("6"));
-
-    classNode.addChild(method);
-
-    ast.addChild(classNode);
-
-    return ast;
-}
-
-function buildSubtractAST() {
-    var ast = ASTBuilder.ProgramNode();
-    ast.addChild(ASTBuilder.MainClassNode());
-
-    var classNode = ASTBuilder.ClassNode("Bar", null);
-
-    var method = ASTBuilder.MethodNode("bar", "boolean");
-
-    method.addChild(ASTBuilder.ParameterNode("x", "int"));
-    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
-    method.returnExpression = ASTBuilder.SubtractExpression(ASTBuilder.IntegerExpression("4"), 
-        ASTBuilder.IntegerExpression("6"));
-
-    classNode.addChild(method);
-
-    ast.addChild(classNode);
-
-    return ast;
-}
-
-function buildMultiplyAST() {
-    var ast = ASTBuilder.ProgramNode();
-    ast.addChild(ASTBuilder.MainClassNode());
-
-    var classNode = ASTBuilder.ClassNode("Bar", null);
-
-    var method = ASTBuilder.MethodNode("bar", "boolean");
-
-    method.addChild(ASTBuilder.ParameterNode("x", "int"));
-    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
-    method.returnExpression = ASTBuilder.MultiplyExpression(ASTBuilder.IntegerExpression("4"), 
+    method.returnExpression = ASTBuilder[exprType + "Expression"](ASTBuilder.IntegerExpression("4"), 
         ASTBuilder.IntegerExpression("6"));
 
     classNode.addChild(method);
