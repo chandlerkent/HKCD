@@ -2,10 +2,11 @@ var ASSERT = require("test/assert");
 var MethodOverride = require("../lib/TypeChecker/MethodOverride");
 var ASTBuilder = require("./astbuilder");
 var GatherTypeInfo = require("../lib/TypeChecker/GatherTypeInfo");
+var Environment = require("../lib/Environment").Environment;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = ASTBuilder.buildValidAST();
-    var env = GatherTypeInfo.process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var otherAST = MethodOverride.process(ast, env);
     
     ASSERT.eq(ast, otherAST.ast);
@@ -13,7 +14,7 @@ exports.testThatValidASTReturnsSameAST = function() {
 
 exports.testThatOverrideMethodWithDifferentTypeIsInvalid = function() {
     var ast = buildInvalidReturnTypeAST();
-    var env = GatherTypeInfo.process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = MethodOverride.process(ast, env);
     
     ASSERT.eq(1, result.env.errors.length);
@@ -21,7 +22,7 @@ exports.testThatOverrideMethodWithDifferentTypeIsInvalid = function() {
 
 exports.testThatOverrideMethodWithDifferentParameterTypesIsInvalid = function() {
     var ast = buildInvalidParameterTypeAST();
-    var env = GatherTypeInfo.process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = MethodOverride.process(ast, env);
 
     ASSERT.eq(1, result.env.errors.length);

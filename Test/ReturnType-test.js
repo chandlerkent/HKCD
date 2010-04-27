@@ -1,10 +1,12 @@
 var ASSERT = require("test/assert");
 var ReturnType = require("../lib/TypeChecker/ReturnType");
 var ASTBuilder = require("./astbuilder");
+var GatherTypeInfo = require("../lib/TypeChecker").GatherTypeInfo;
+var Environment = require("../lib/Environment").Environment;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = ASTBuilder.buildValidAST();
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var otherAST = ReturnType.process(ast, env);
     
     ASSERT.eq(ast, otherAST.ast);
@@ -13,7 +15,7 @@ exports.testThatValidASTReturnsSameAST = function() {
 
 exports.testThatWrongReturnTypeIsInvalid = function() {
     var ast = buildInvalidParameterAST();
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
     
     ASSERT.eq(2, result.env.errors.length);
@@ -21,7 +23,7 @@ exports.testThatWrongReturnTypeIsInvalid = function() {
 
 exports.testThatAddWithBadReturnTypeIsInvalid = function() {
     var ast = buildBinaryOperatorAST("Add");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -29,7 +31,7 @@ exports.testThatAddWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatSubtractWithBadReturnTypeIsInvalid = function() {
     var ast = buildBinaryOperatorAST("Subtract");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -37,7 +39,7 @@ exports.testThatSubtractWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatMultiplyWithBadReturnTypeIsInvalid = function() {
     var ast = buildBinaryOperatorAST("Multiply");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
     
     ASSERT.eq(2, result.env.errors.length);
@@ -45,7 +47,7 @@ exports.testThatMultiplyWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatDivideWithBadReturnTypeIsInvalid = function() {
     var ast = buildBinaryOperatorAST("Divide");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -53,7 +55,7 @@ exports.testThatDivideWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatOrWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("Or");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -61,7 +63,7 @@ exports.testThatOrWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatAndWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("And");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -69,7 +71,7 @@ exports.testThatAndWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatNotEqualWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("NotEqual");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -77,7 +79,7 @@ exports.testThatNotEqualWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatEqualsWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("Equals");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
     
     ASSERT.eq(2, result.env.errors.length);
@@ -85,7 +87,7 @@ exports.testThatEqualsWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatLessThanWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("LessThan");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(6, result.env.errors.length);
@@ -93,7 +95,7 @@ exports.testThatLessThanWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatLessThanEqualWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("LessThanEqual");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(6, result.env.errors.length);
@@ -101,7 +103,7 @@ exports.testThatLessThanEqualWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatGreaterThanEqualWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("GreaterThanEqual");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(6, result.env.errors.length);
@@ -109,7 +111,7 @@ exports.testThatGreaterThanEqualWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatGreaterThanWithBadReturnTypeIsInvalid = function() {
     var ast = buildBooleanBinaryOperatorAST("GreaterThan");
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(6, result.env.errors.length);
@@ -117,7 +119,7 @@ exports.testThatGreaterThanWithBadReturnTypeIsInvalid = function() {
 
 exports.testThatNullWithPrimitiveReturnTypeIsInvalid = function() {
     var ast = buildNullAST();
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
     
     ASSERT.eq(2, result.env.errors.length);
@@ -125,7 +127,7 @@ exports.testThatNullWithPrimitiveReturnTypeIsInvalid = function() {
 
 exports.testThatConstructTypeIsInvalid = function() {
     var ast = buildConstructAST();
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -133,7 +135,7 @@ exports.testThatConstructTypeIsInvalid = function() {
 
 exports.testThatThisWithOtherReturnTypeIsInvalid = function() {
     var ast = buildThisAST();
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -141,7 +143,7 @@ exports.testThatThisWithOtherReturnTypeIsInvalid = function() {
 
 exports.testThatNegateWithBooleanReturnTypeIsInvalid = function() {
     var ast = buildNegateAST();
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);
@@ -149,7 +151,7 @@ exports.testThatNegateWithBooleanReturnTypeIsInvalid = function() {
 
 exports.testThatNotWithIntegerReturnTypeIsInvalid = function() {
     var ast = buildNotAST();
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
     ASSERT.eq(2, result.env.errors.length);

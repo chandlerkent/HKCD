@@ -1,4 +1,4 @@
-var MethodOverload = require("../lib/TypeChecker/MethodOverload");
+var MethodOverload = require("../lib/TypeChecker").MethodOverload;
 var ASSERT = require("test/assert");
 
 if (require.main === module)

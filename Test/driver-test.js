@@ -1,4 +1,4 @@
-var Driver = require("../lib/driver").Driver;
+var Driver = require("../lib/TypeChecker/Driver").Driver;
 var ASSERT = require("test/assert");
 
 exports.testThatDriverProcessesSteps = function() {

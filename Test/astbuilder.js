@@ -1,5 +1,4 @@
-File = require("file");
-ASTNode = require(File.absolute("lib/astnode")).ASTNode;
+ASTNode = require("../lib/ASTNode").ASTNode;
 
 exports.buildValidAST = function() {
     var program = ProgramNode();

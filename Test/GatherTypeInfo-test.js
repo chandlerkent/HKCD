@@ -1,6 +1,6 @@
 var ASSERT = require("test/assert");
 var ASTNode = require("../lib/ASTNode").ASTNode;
-var GatherTypeInfo = require("../lib/TypeChecker/GatherTypeInfo");
+var GatherTypeInfo = require("../lib/TypeChecker").GatherTypeInfo;
 var Environment = require("../lib/Environment").Environment;
 
 exports.testGatheringTypeInfo = function() {

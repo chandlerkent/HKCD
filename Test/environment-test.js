@@ -1,5 +1,4 @@
-var File = require("file");
-var Environment = require(File.absolute("lib/environment")).Environment;
+var Environment = require("../lib/Environment").Environment;
 var ASSERT = require("test/assert");
 
 exports.testThatEnvironmentAddsClass = function() {
