@@ -47,6 +47,13 @@ exports.testGetterCreation = function() {
     ASSERT.eq('fun', node.getClassName());
 };
 
+exports.testExpressionCoolnessCreation = function() {
+    var node = new ASTNode('AddExpression');
+    
+    ASSERT.eq("function", typeof(node.checkType));
+    ASSERT.eq("function", typeof(node.getExpressionType));
+};
+
 function buildAST() {
     return new ASTNode("Program", [
         new ASTNode("MainClassDecl", [
