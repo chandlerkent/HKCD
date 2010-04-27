@@ -68,6 +68,10 @@ var MultiplyExpression = exports.MultiplyExpression = function(leftHandSide, rig
     return new ASTNode('Multiply', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Multiply });
 };
 
+var DivideExpression = exports.DivideExpression = function(leftHandSide, rightHandSide) {
+    return new ASTNode('Divide', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Divide });
+};
+
 var TrueExpression = exports.TrueExpression = function() {
     return new ASTNode('TrueExpression', [], { 'checkType': ASTNode.expressionCheck.True });
 };
