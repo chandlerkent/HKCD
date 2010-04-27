@@ -257,5 +257,24 @@ function buildNotAST() {
     return ast;
 }
 
+function buildOrAST() {
+    var ast = ASTBuilder.ProgramNode();
+    ast.addChild(ASTBuilder.MainClassNode());
+
+    var classNode = ASTBuilder.ClassNode("Bar", null);
+
+    var method = ASTBuilder.MethodNode("bar", "int");
+
+    method.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
+    method.returnExpression = ASTBuilder.NotExpression(ASTBuilder.TrueExpression());
+
+    classNode.addChild(method);
+
+    ast.addChild(classNode);
+
+    return ast;
+}
+
 if (require.main === module)
     require("os").exit(require("test/runner").run(exports));
