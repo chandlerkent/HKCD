@@ -67,6 +67,14 @@ exports.testThatNegateWithBooleanReturnTypeIsInvalid = function() {
     ASSERT.eq(2, result.env.errors.length);
 };
 
+exports.testThatNotWithIntegerReturnTypeIsInvalid = function() {
+    var ast = buildNotAST();
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ReturnType.process(ast, env);
+
+    ASSERT.eq(2, result.env.errors.length);
+};
+
 function buildInvalidParameterAST() {
     var ast = ASTBuilder.ProgramNode();
     ast.addChild(ASTBuilder.MainClassNode());
@@ -194,6 +202,25 @@ function buildNegateAST() {
     method.addChild(ASTBuilder.ParameterNode("x", "int"));
     method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
     method.returnExpression = ASTBuilder.NegateExpression(ASTBuilder.IntegerExpression("7"));
+
+    classNode.addChild(method);
+
+    ast.addChild(classNode);
+
+    return ast;
+}
+
+function buildNotAST() {
+    var ast = ASTBuilder.ProgramNode();
+    ast.addChild(ASTBuilder.MainClassNode());
+
+    var classNode = ASTBuilder.ClassNode("Bar", null);
+
+    var method = ASTBuilder.MethodNode("bar", "int");
+
+    method.addChild(ASTBuilder.ParameterNode("x", "int"));
+    method.addChild(ASTBuilder.ParameterNode("x", "boolean"));
+    method.returnExpression = ASTBuilder.NotExpression(ASTBuilder.TrueExpression());
 
     classNode.addChild(method);
 

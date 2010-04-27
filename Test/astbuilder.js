@@ -87,3 +87,7 @@ var ConstructExpression = exports.ConstructExpression = function(type) {
 var NegateExpression = exports.NegateExpression = function(integerExpression) {
     return new ASTNode('Negate', [integerExpression], { 'checkType': ASTNode.expressionCheck.Negate });
 };
+
+var NotExpression = exports.NotExpression = function(booleanExpression) {
+    return new ASTNode('Not', [booleanExpression], { 'checkType': ASTNode.expressionCheck.Not });
+};
