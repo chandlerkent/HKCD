@@ -17,35 +17,35 @@ var ASSERT = require("assert");
 var FileList = require("jake").FileList;
 
 exports.testThatDuplicateClassesGetTypeChecked = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_class_decls.java", "Multiple declarations found for class Foo.");
+    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_class_decls.java", "Multiple declarations found for class Foo.");
 };
 
 exports.testThatDuplicateMethodDeclarationsFails = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
+    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
 };
 
 exports.testThatOverridingSuperclassMethodDeclarationWithDifferentArgsOrTypeFails = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
+    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
 };
 
 exports.testThatLegalClassDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_class_decls.java");
+    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/good_class_decls.java");
 };
 
 exports.testThatLegalFieldDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_field_decls.java");
+    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/good_field_decls.java");
 };
 
 exports.testThatLegalMethodDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/good_method_decls.java");
+    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/good_method_decls.java");
 };
 
 exports.testThatDuplicateFieldDeclarationsFail = function() {
-    compilingFileResultsInError("Test/Files/TypeChecker/Ours/bad_field_decls.java", "A field named x is defined more than once in Baz.");
+    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_field_decls.java", "A field named x is defined more than once in Baz.");
 };
 
 exports.testThatTurnInFolderGoodsDontFail = function() {
-    var files = new FileList("Test/Files/TypeChecker/Turn-In/good*.java").items();
+    var files = new FileList("Test/Files/DeclTypeChecker/Turn-In/good*.java").items();
 
     files.forEach(function(file) {
        compilingFileResultsInError(file); 
@@ -53,7 +53,7 @@ exports.testThatTurnInFolderGoodsDontFail = function() {
 };
 
 exports.testThatTurnInFolderBadsFail = function() {
-    var files = new FileList("Test/Files/TypeChecker/Turn-In/bad*.java").items();
+    var files = new FileList("Test/Files/DeclTypeChecker/Turn-In/bad*.java").items();
     var expected = [
         ["Multiple declarations found for class Foo.", "Cannot extend the unknown superclass Bar."], 
         "Cannot extend the unknown superclass Baz.", 
@@ -69,7 +69,7 @@ exports.testThatTurnInFolderBadsFail = function() {
 };
 
 exports.testThatEarlySamplesFail = function() {
-    var files = new FileList("Test/Files/TypeChecker/EarlySamples/*.java").items();
+    var files = new FileList("Test/Files/DeclTypeChecker/EarlySamples/*.java").items();
     var expected = [
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
@@ -88,7 +88,7 @@ exports.testThatEarlySamplesFail = function() {
 };
 
 exports.testThatFullTestCasesGiveExpectedOutput = function() {
-    var files = new FileList("Test/Files/TypeChecker/FullTestCases/FullTests/*.java").items();
+    var files = new FileList("Test/Files/DeclTypeChecker/FullTestCases/FullTests/*.java").items();
     var expected = [
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
