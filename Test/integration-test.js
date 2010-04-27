@@ -4,14 +4,7 @@
 
 var Parser = require("../lib/parser").Parser;
 var Driver = require("../lib/driver").Driver;
-var ClassDecl = require("../lib/ClassDecl");
-var MethodOverload = require("../lib/MethodOverload");
-var FieldDecl = require("../lib/FieldDecl");
-var FieldShadow = require("../lib/FieldShadow");
-var ParameterDecs = require("../lib/ParameterDecs");
-var ParameterTypes = require("../lib/ParameterTypes");
-var MethodOverride = require("../lib/MethodOverride");
-var MethodDecl = require("../lib/MethodDecl");
+var TypeChecker = require("../lib/TypeChecker");
 
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
@@ -258,10 +251,7 @@ function compilingFileResultsInError(filename, error) {
     var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
     var ast = parser.parse(readFile(filename));
     
-    var env = require("../lib/GatherTypeInfo").process(ast).env;
-    var driver = new Driver([MethodDecl, ClassDecl, ParameterTypes, ParameterDecs, MethodOverload, FieldDecl, FieldShadow, MethodOverride]);
-    
-    driver.process(ast, env);
+    var env = TypeChecker.typeCheck(ast).env;
     
     var actualMessages = env.errors.map(function(err) {
         return err.message;
