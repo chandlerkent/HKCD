@@ -53,57 +53,57 @@ var ParameterNode = exports.ParameterNode = function(name, type) {
 };
 
 var IntegerExpression = exports.IntegerExpression = function(intValue) {
-    return new ASTNode('IntegerExpression', [], {'expression': intValue, 'checkType': ASTNode.expressionCheck.Integer });
+    return new ASTNode('IntegerExpression', [], {'expression': intValue });
 };
 
 var AddExpression = exports.AddExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Add', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Add });
+    return new ASTNode('Add', [leftHandSide, rightHandSide]);
 };
 
 var SubtractExpression = exports.SubtractExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Subtract', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Subtract });
+    return new ASTNode('Subtract', [leftHandSide, rightHandSide]);
 };
 
 var MultiplyExpression = exports.MultiplyExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Multiply', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Multiply });
+    return new ASTNode('Multiply', [leftHandSide, rightHandSide]);
 };
 
 var DivideExpression = exports.DivideExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Divide', [leftHandSide, rightHandSide], { 'checkType': ASTNode.expressionCheck.Divide });
+    return new ASTNode('Divide', [leftHandSide, rightHandSide]);
 };
 
 var TrueExpression = exports.TrueExpression = function() {
-    return new ASTNode('TrueExpression', [], { 'checkType': ASTNode.expressionCheck.True });
+    return new ASTNode('TrueExpression', []);
 };
 
 var FalseExpression = exports.FalseExpression = function() {
-    return new ASTNode('FalseExpression', [], { 'checkType': ASTNode.expressionCheck.False });
+    return new ASTNode('FalseExpression', []);
 };
 
 var NullExpression = exports.NullExpression = function() {
-    return new ASTNode('NullExpression', [], { 'checkType': ASTNode.expressionCheck.Null });
+    return new ASTNode('NullExpression', []);
 };
 
 var ThisExpression = exports.ThisExpression = function() {
-    return new ASTNode('ThisExpression', [], { 'checkType': ASTNode.expressionCheck.This });
+    return new ASTNode('ThisExpression', []);
 };
 
 var ConstructExpression = exports.ConstructExpression = function(type) {
-    return new ASTNode('ConstructExpression', [], { 'constructor':type, 'checkType': ASTNode.expressionCheck.Construct });
+    return new ASTNode('ConstructExpression', [], { 'constructor':type });
 };
 
 var NegateExpression = exports.NegateExpression = function(integerExpression) {
-    return new ASTNode('Negate', [integerExpression], { 'checkType': ASTNode.expressionCheck.Negate });
+    return new ASTNode('Negate', [integerExpression]);
 };
 
 var NotExpression = exports.NotExpression = function(booleanExpression) {
-    return new ASTNode('Not', [booleanExpression], { 'checkType': ASTNode.expressionCheck.Not });
+    return new ASTNode('Not', [booleanExpression]);
 };
 
 var OrExpression = exports.OrExpression = function(lhs, rhs) {
-    return new ASTNode('Or', [lhs, rhs], { 'checkType': ASTNode.expressionCheck.Or });
+    return new ASTNode('Or', [lhs, rhs]);
 };
 
 var LessThanExpression = exports.LessThanExpression = function(lhs, rhs) {
-    return new ASTNode('LessThan', [lhs, rhs], { 'checkType': ASTNode.expressionCheck.LessThan });
+    return new ASTNode('LessThan', [lhs, rhs]);
 };
