@@ -57,19 +57,19 @@ var IntegerExpression = exports.IntegerExpression = function(intValue) {
 };
 
 var AddExpression = exports.AddExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Add', [leftHandSide, rightHandSide]);
+    return new ASTNode('AddExpression', [leftHandSide, rightHandSide]);
 };
 
 var SubtractExpression = exports.SubtractExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Subtract', [leftHandSide, rightHandSide]);
+    return new ASTNode('SubtractExpression', [leftHandSide, rightHandSide]);
 };
 
 var MultiplyExpression = exports.MultiplyExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Multiply', [leftHandSide, rightHandSide]);
+    return new ASTNode('MultiplyExpression', [leftHandSide, rightHandSide]);
 };
 
 var DivideExpression = exports.DivideExpression = function(leftHandSide, rightHandSide) {
-    return new ASTNode('Divide', [leftHandSide, rightHandSide]);
+    return new ASTNode('DivideExpression', [leftHandSide, rightHandSide]);
 };
 
 var TrueExpression = exports.TrueExpression = function() {
@@ -93,17 +93,17 @@ var ConstructExpression = exports.ConstructExpression = function(type) {
 };
 
 var NegateExpression = exports.NegateExpression = function(integerExpression) {
-    return new ASTNode('Negate', [integerExpression]);
+    return new ASTNode('NegateExpression', [integerExpression]);
 };
 
 var NotExpression = exports.NotExpression = function(booleanExpression) {
-    return new ASTNode('Not', [booleanExpression]);
+    return new ASTNode('NotExpression', [booleanExpression]);
 };
 
 var OrExpression = exports.OrExpression = function(lhs, rhs) {
-    return new ASTNode('Or', [lhs, rhs]);
+    return new ASTNode('OrExpression', [lhs, rhs]);
 };
 
 var LessThanExpression = exports.LessThanExpression = function(lhs, rhs) {
-    return new ASTNode('LessThan', [lhs, rhs]);
+    return new ASTNode('LessThanExpression', [lhs, rhs]);
 };

@@ -64,9 +64,7 @@ exports.testThatLessThanWithBadReturnTypeIsInvalid = function() {
     var env = require("../lib/GatherTypeInfo").process(ast).env;
     var result = ReturnType.process(ast, env);
 
-    print(result.env.errors.join("\n"));
-    
-    ASSERT.eq(2, result.env.errors.length);
+    ASSERT.eq(6, result.env.errors.length);
 };
 
 exports.testThatNullWithPrimitiveReturnTypeIsInvalid = function() {
