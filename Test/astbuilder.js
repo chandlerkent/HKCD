@@ -119,3 +119,7 @@ var LessThanEqualExpression = exports.LessThanEqualExpression = function(lhs, rh
 var GreaterThanEqualExpression = exports.GreaterThanEqualExpression = function(lhs, rhs) {
     return new ASTNode('GreaterThanEqualExpression', [lhs, rhs]);
 };
+
+var GreaterThanExpression = exports.GreaterThanExpression = function(lhs, rhs) {
+    return new ASTNode('GreaterThanExpression', [lhs, rhs]);
+};

@@ -91,6 +91,14 @@ exports.testThatGreaterThanEqualWithBadReturnTypeIsInvalid = function() {
     ASSERT.eq(6, result.env.errors.length);
 };
 
+exports.testThatGreaterThanWithBadReturnTypeIsInvalid = function() {
+    var ast = buildBooleanBinaryOperatorAST("GreaterThan");
+    var env = require("../lib/GatherTypeInfo").process(ast).env;
+    var result = ReturnType.process(ast, env);
+
+    ASSERT.eq(6, result.env.errors.length);
+};
+
 exports.testThatNullWithPrimitiveReturnTypeIsInvalid = function() {
     var ast = buildNullAST();
     var env = require("../lib/GatherTypeInfo").process(ast).env;
