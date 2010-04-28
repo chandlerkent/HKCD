@@ -1,4 +1,4 @@
-var ClassDecl = require("../lib/TypeChecker/ClassDecl");
+var MethodOverload = require("../../lib/TypeChecker").MethodOverload;
 var ASSERT = require("test/assert");
 
 if (require.main === module)

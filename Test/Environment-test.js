@@ -1,5 +1,9 @@
 var Environment = require("../lib/Environment").Environment;
+var ClassMap = require("../lib/Environment").ClassMap;
 var ASSERT = require("test/assert");
+
+exports.testClassMap = require("./Environment/ClassMap-test");
+exports.testMethodMap = require("./Environment/MethodMap-test");
 
 exports.testThatEnvironmentAddsClass = function() {
     var target = new Environment();
@@ -113,8 +117,8 @@ exports.testThatEnvironmentDoesAddError = function() {
 exports.testThatEnvironmentDoesReturnAllDataInToString = function() {
     var target = new Environment();
     
-    target.addClass(new (require(File.absolute("lib/ClassMap")).ClassMap)("test"));
-    target.addClass(new (require(File.absolute("lib/ClassMap")).ClassMap)("test2"));
+    target.addClass(new ClassMap("test"));
+    target.addClass(new ClassMap("test2"));
     
     target.addError("error1");
     target.addError("error2");

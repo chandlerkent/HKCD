@@ -1,6 +1,6 @@
 var ASSERT = require("test/assert");
-var ClassMap = require("../lib/Environment").ClassMap;
-var MethodMap = require("../lib/Environment").MethodMap;
+var ClassMap = require("../../lib/Environment").ClassMap;
+var MethodMap = require("../../lib/Environment").MethodMap;
 
 exports.testClassMapConstructor = function() {
     var classMap = buildTestClassMap();

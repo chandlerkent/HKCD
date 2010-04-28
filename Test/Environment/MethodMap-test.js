@@ -1,5 +1,5 @@
 var ASSERT = require("test/assert");
-var MethodMap = require("../lib/Environment").MethodMap;
+var MethodMap = require("../../lib/Environment").MethodMap;
 
 exports.testMethodMapConstructor = function() {
     var methodMap = buildTestMethodMap();
