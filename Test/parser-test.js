@@ -2,8 +2,9 @@ var Parser = require("../lib/parser").Parser;
 var FileList = require("jake").FileList;
 var ASSERT = require("assert");
 
+var parser = new Parser(readGrammarFromFile("src/grammar.json"));
+
 exports.testThatParserDoesInitialize = function() {
-    var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
     assertNotNull(parser);
 }
 
@@ -38,7 +39,6 @@ function parserParsesWithErrorsInputFilesFromLocation(location) {
 }
 
 function parserParsesWithAssertionInputFilesFromLocation(assertion, location) {
-    var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
     var inputFiles = new FileList(location).items();
 
     inputFiles.forEach(function(file) {

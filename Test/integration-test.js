@@ -247,7 +247,7 @@ function compilingFileResultsInError(filename, error) {
     if (error)
         error = [].concat(error);
     
-    var parser = new Parser(readGrammarFromFile("lib/grammar.json"));
+    var parser = new Parser(readGrammarFromFile("src/grammar.json"));
     var ast = parser.parse(readFile(filename));
     
     var env = TypeChecker.typeCheck(ast).env;
