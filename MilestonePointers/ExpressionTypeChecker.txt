@@ -1,0 +1,17 @@
+============================
+Chandler Kent
+Derek Hammer
+(HKCD)
+ETC Milestone
+(4/27/2010)
+============================
+
+--------------
+Test Case
+--------------
+
+Test cases are found in 
+
+    HKCD/Test/Files/ExpressionTypeChecker/Turn-In
+    
+The bad test cases are prefixed with bad_ and the good test cases are prefixed with good_.
