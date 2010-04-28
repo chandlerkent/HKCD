@@ -26,7 +26,7 @@ exports.testThatParserDoesFailFullBadTestCases = function() {
 function parserParsesWithNoErrorsInputFilesFromLocation(location) {
     parserParsesWithAssertionInputFilesFromLocation(
             function(parsedFile) {
-                ASSERT.equal(false, parsedFile.errors.length > 0);
+                ASSERT.equal(undefined, parsedFile.errors);
             }, location);
 }
 
