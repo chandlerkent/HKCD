@@ -1,13 +1,13 @@
 var ASSERT = require("test/assert");
-var ParameterDecs = require("../lib/TypeChecker/ParameterDecl");
-var ASTBuilder = require("./astbuilder");
-var GatherTypeInfo = require("../lib/TypeChecker").GatherTypeInfo;
-var Environment = require("../lib/Environment").Environment;
+var ParameterDecl = require("../../lib/TypeChecker").ParameterDecl;
+var ASTBuilder = require("../astbuilder");
+var GatherTypeInfo = require("../../lib/TypeChecker").GatherTypeInfo;
+var Environment = require("../../lib/Environment").Environment;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = ASTBuilder.buildValidAST();
     var env = GatherTypeInfo.process(ast, new Environment()).env;
-    var otherAST = ParameterDecs.process(ast, env);
+    var otherAST = ParameterDecl.process(ast, env);
     
     ASSERT.eq(ast, otherAST.ast);
 };
@@ -15,7 +15,7 @@ exports.testThatValidASTReturnsSameAST = function() {
 exports.testThatParametersWithDuplicateNamesAreInvalid = function() {
     var ast = buildInvalidParameterAST();
     var env = GatherTypeInfo.process(ast, new Environment()).env;
-    var result = ParameterDecs.process(ast, env);
+    var result = ParameterDecl.process(ast, env);
     
     ASSERT.eq(2, result.env.errors.length);
 };

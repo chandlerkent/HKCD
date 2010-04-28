@@ -1,4 +1,4 @@
-var FieldDecl = require("../lib/TypeChecker/FieldDecl");
+var FieldDecl = require("../../lib/TypeChecker").FieldDecl;
 var ASSERT = require("test/assert");
 
 if (require.main === module)

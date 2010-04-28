@@ -1,4 +1,4 @@
-var FieldShadow = require("../lib/TypeChecker/FieldShadow");
+var ClassDecl = require("../../lib/TypeChecker").ClassDecl;
 var ASSERT = require("test/assert");
 
 if (require.main === module)

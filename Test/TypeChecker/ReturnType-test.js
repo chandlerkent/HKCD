@@ -1,8 +1,8 @@
 var ASSERT = require("test/assert");
-var ReturnType = require("../lib/TypeChecker/ReturnType");
-var ASTBuilder = require("./astbuilder");
-var GatherTypeInfo = require("../lib/TypeChecker").GatherTypeInfo;
-var Environment = require("../lib/Environment").Environment;
+var ReturnType = require("../../lib/TypeChecker").ReturnType;
+var ASTBuilder = require("../astbuilder");
+var GatherTypeInfo = require("../../lib/TypeChecker").GatherTypeInfo;
+var Environment = require("../../lib/Environment").Environment;
 
 exports.testThatValidASTReturnsSameAST = function() {
     var ast = ASTBuilder.buildValidAST();
