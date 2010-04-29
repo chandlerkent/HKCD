@@ -11,6 +11,8 @@ exports.testThatEarlySamplesEqualExpectedOutput = function() {
     var outputFiles = new FileList(pathOfOutputFiles).items();
     
     for(var i = 0; i < inputFiles.length; i++) {
+        print("TypeChecking " + inputFiles[i]);
+        
         var parser = new Parser(readGrammarFromFile("src/grammar.json"));
         var ast = parser.parse(readFile(inputFiles[i]));
 
