@@ -130,7 +130,7 @@ exports.testThatConstructTypeIsInvalid = function() {
     var env = GatherTypeInfo.process(ast, new Environment()).env;
     var result = ReturnType.process(ast, env);
 
-    ASSERT.eq(2, result.env.errors.length);
+    ASSERT.eq(3, result.env.errors.length);
 };
 
 exports.testThatThisWithOtherReturnTypeIsInvalid = function() {

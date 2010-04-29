@@ -123,8 +123,8 @@ exports.testThatEnvironmentDoesReturnAllDataInToString = function() {
     target.addError("error1");
     target.addError("error2");
     
-    ASSERT.eq("ENV\n\nClasses\n"+target.classes[0].toString()+"\n"+
-        target.classes[1].toString()+"\nErrors\n"+"error1\nerror2", target.toString());
+    ASSERT.eq("\nClasses:\n"+target.classes[0].toString()+"\n"+
+        target.classes[1].toString()+"\nScopes:\n[]\nErrors:\n"+"error1\nerror2", target.toString());
 }
 
 if (require.main === module)
