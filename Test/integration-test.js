@@ -8,80 +8,62 @@ var TypeChecker = require("../lib/TypeChecker");
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
 
-exports.testThatDuplicateClassesGetTypeChecked = function() {
-    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_class_decls.java", "Multiple declarations found for class Foo.");
-};
+var files = [];
+var outputs = [];
 
-exports.testThatDuplicateMethodDeclarationsFails = function() {
-    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
-};
-
-exports.testThatOverridingSuperclassMethodDeclarationWithDifferentArgsOrTypeFails = function() {
-    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_method_decls.java", "A method named bar has already been defined in the class Bar.");
-};
-
-exports.testThatLegalClassDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/good_class_decls.java");
-};
-
-exports.testThatLegalFieldDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/good_field_decls.java");
-};
-
-exports.testThatLegalMethodDeclarationsDontFail = function() {
-    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/good_method_decls.java");
-};
-
-exports.testThatDuplicateFieldDeclarationsFail = function() {
-    compilingFileResultsInError("Test/Files/DeclTypeChecker/Ours/bad_field_decls.java", "A field named x is defined more than once in Baz.");
-};
-
-exports.testThatTurnInFolderGoodsDontFail = function() {
-    var files = new FileList("Test/Files/DeclTypeChecker/Turn-In/good*.java").items();
-
-    files.forEach(function(file) {
-       compilingFileResultsInError(file); 
-    });
-};
-
-exports.testThatTurnInFolderBadsFail = function() {
-    var files = new FileList("Test/Files/DeclTypeChecker/Turn-In/bad*.java").items();
-    var expected = [
+// Ours
+(new FileList("Test/Files/DeclTypeChecker/Ours/*.java").items()).forEach(function(file) {
+    files.push(file);
+});
+outputs.concat([
+                    "Multiple declarations found for class Foo.",
+                    "A method named bar has already been defined in the class Bar.",
+                    "A method named bar has already been defined in the class Bar.",
+                    "",
+                    "",
+                    "",
+                    "A field named x is defined more than once in Baz.",
+                    ""
+                ]);
+// Turn-In
+var goodTurnIns = new FileList("Test/Files/DeclTypeChecker/Turn-In/good*.java").items();
+goodTurnIns.forEach(function(file) {
+    files.push(file);
+    outputs.push("");
+});
+(new FileList("Test/Files/DeclTypeChecker/Turn-In/bad*.java").items()).forEach(function(file) {
+    files.push(file);
+});
+outputs.concat([
         ["Multiple declarations found for class Foo.", "Cannot extend the unknown superclass Bar."], 
         "Cannot extend the unknown superclass Baz.", 
         "The method {name: <size>, returnType: <boolean>, parameters: <[]>} in Baz attempts to override the method {name: <size>, returnType: <int>, parameters: <[]>} in Bar.", 
         "A field named x has already been defined in the superclass Bar.", 
         "A field named x is defined more than once in Bar.", 
         "A field named x has already been defined in the superclass Bar."
-    ];
-    
-    files.forEach(function(file) {
-       compilingFileResultsInError(file, expected[files.indexOf(file)]);
-    });
-};
+            ]);
 
-exports.testThatEarlySamplesFail = function() {
-    var files = new FileList("Test/Files/DeclTypeChecker/EarlySamples/*.java").items();
-    var expected = [
-        "Multiple declarations found for class A.",
-        "A field named c is initialized with an uninitialized type C.",
-        "The parameter c is initialized with undefined type C.",
-        "The method {name: <start>, returnType: <boolean>, parameters: <[]>} in B attempts to override the method {name: <start>, returnType: <int>, parameters: <[]>} in C.",
-        "A field named a has already been defined in the superclass noPoint.",
-        "A method named setB has already been defined in the class noPoint2.",
-        "A field named a is defined more than once in noPoint.",
-        "Cannot extend the unknown superclass Foo1.",
-        "Cannot extend the unknown superclass Foo.",
-    ];
-    
-    files.forEach(function(file) {
-        compilingFileResultsInError(file, expected[files.indexOf(file)]);
-    });
-};
+// Early Samples
+(new FileList("Test/Files/DeclTypeChecker/EarlySamples/*.java").items()).forEach(function(file) {
+    files.push(file);
+});
+outputs.concat([
+    "Multiple declarations found for class A.",
+    "A field named c is initialized with an uninitialized type C.",
+    "The parameter c is initialized with undefined type C.",
+    "The method {name: <start>, returnType: <boolean>, parameters: <[]>} in B attempts to override the method {name: <start>, returnType: <int>, parameters: <[]>} in C.",
+    "A field named a has already been defined in the superclass noPoint.",
+    "A method named setB has already been defined in the class noPoint2.",
+    "A field named a is defined more than once in noPoint.",
+    "Cannot extend the unknown superclass Foo1.",
+    "Cannot extend the unknown superclass Foo.",
+]);
 
-exports.testThatFullTestCasesGiveExpectedOutput = function() {
-    var files = new FileList("Test/Files/DeclTypeChecker/FullTestCases/FullTests/*.java").items();
-    var expected = [
+// Full
+(new FileList("Test/Files/DeclTypeChecker/FullTestCases/FullTests/*.java").items()).forEach(function(file) {
+    files.push(file);
+});
+outputs.concat([
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
         "The parameter c is initialized with undefined type C.",
@@ -236,44 +218,50 @@ exports.testThatFullTestCasesGiveExpectedOutput = function() {
         "",
         "Multiple declarations found for class Test7a.",
         ""
-    ];
-    
-    files.forEach(function(file) {
-        compilingFileResultsInError(file, expected[files.indexOf(file)]);
-    });
-};
+]);
 
-function compilingFileResultsInError(filename, error) {
+var parser = new Parser(readGrammarFromFile("src/grammar.json"));
+
+for (var i = 0; i < files.length; i++) {
+    var fileParts = files[i].split("/");
+    fileParts.shift();
+    fileParts.shift();
+    var fileNameThatMatters = fileParts.join("/");
+    exports["testFile__/" + fileNameThatMatters] = buildTestFunctionForFile(files[i], outputs[i]);
+}
+
+function buildTestFunctionForFile(inFile, error) {
     if (error)
         error = [].concat(error);
     
-    var parser = new Parser(readGrammarFromFile("src/grammar.json"));
-    var ast = parser.parse(readFile(filename));
-    
-    var env = TypeChecker.typeCheck(ast).env;
-    
-    var actualMessages = env.errors.map(function(err) {
-        return err.message;
-    });
-
-    if (error) {
-        var found = true;
-        for (var i = 0; i < error.length; i++) {
-            if (actualMessages.indexOf(error[i]) < 0) {
-                found = false;
-            }
-        }
+    return function() {
+        var ast = parser.parse(readFile(inFile));
         
-        for (var i = 0; i < actualMessages.length; i++) {
-            if (error.indexOf(actualMessages[i]) < 0) {
-                found = false;
+        var env = TypeChecker.typeCheck(ast).env;
+            
+        var actualMessages = env.errors.map(function(err) {
+            return err.message;
+        });
+        
+        if (error) {
+            var found = true;
+            for (var i = 0; i < error.length; i++) {
+                if (actualMessages.indexOf(error[i]) < 0) {
+                    found = false;
+                }
             }
+        
+            for (var i = 0; i < actualMessages.length; i++) {
+                if (error.indexOf(actualMessages[i]) < 0) {
+                    found = false;
+                }
+            }
+        
+            ASSERT.equal(true, found, "Error message: <" + env.errors.join("\n") + ">\n\ndid not match\n\n<" + error + ">");
+        } else {
+            ASSERT.equal(0, actualMessages.length);
         }
-
-        ASSERT.equal(true, found, "Error message: <" + env.errors.join("\n") + ">\n\ndid not match\n\n<" + error + ">");
-    } else {
-        ASSERT.equal(0, actualMessages.length);
-    }
+    };
 }
 
 function readGrammarFromFile(filePath) {
