@@ -22,7 +22,8 @@ exports.testThatEarlySamplesEqualExpectedOutput = function() {
         
         var expected = readFile(outputFiles[i]);
         
-        ASSERT.equal(expected, actualMessages, "Error message: <" + actualMessages + ">\n\ndid not match\n\n<" + expected + ">");
+        ASSERT.equal(expected, actualMessages, "Error message: <" + actualMessages + 
+            ">\n\ndid not match\n\n<" + expected + ">");
     }
 }
 
