@@ -1,5 +1,6 @@
 var ASSERT = require("test/assert");
 var MethodMap = require("../../lib/Environment").MethodMap;
+var VariableMap = require("../../lib/Environment").VariableMap;
 
 exports.testMethodMapConstructor = function() {
     var methodMap = buildTestMethodMap();
@@ -11,16 +12,16 @@ exports.testMethodMapConstructor = function() {
 
 exports.testAddParameter = function() {
     var methodMap = buildTestMethodMap();
-    methodMap.addParameter("x", "int");
-    methodMap.addParameter("y", "boolean");
+    methodMap.addParameter(new VariableMap("x", "int"));
+    methodMap.addParameter(new VariableMap("y", "boolean"));
     
     ASSERT.eq(2, methodMap.parameters.length);
 };
 
 exports.testGetParameterType = function() {
     var methodMap = buildTestMethodMap();
-    methodMap.addParameter("x", "int");
-    methodMap.addParameter("y", "boolean");
+    methodMap.addParameter(new VariableMap("x", "int"));
+    methodMap.addParameter(new VariableMap("y", "boolean"));
     
     ASSERT.eq("int", methodMap.getParameterType("x"));
     ASSERT.eq("boolean", methodMap.getParameterType("y"));
@@ -35,9 +36,9 @@ exports.testGetReturnType = function() {
 
 exports.testHasMultipleOfParameter = function() {
     var methodMap = buildTestMethodMap();
-    methodMap.addParameter("x", "int");
-    methodMap.addParameter("x", "boolean");
-    methodMap.addParameter("y", "Foo");
+    methodMap.addParameter(new VariableMap("x", "int"));
+    methodMap.addParameter(new VariableMap("x", "boolean"));
+    methodMap.addParameter(new VariableMap("y", "Foo"));
     
     ASSERT.isTrue(methodMap.hasMultipleOfParameter("x"));
     ASSERT.isFalse(methodMap.hasMultipleOfParameter("y"));
@@ -66,25 +67,25 @@ exports.testEquals = function() {
     ASSERT.isFalse(methodMap4.equals(methodMap1));
     
     var methodMap5 = new MethodMap("foo", "int");
-    methodMap5.addParameter("x", "int");
-    methodMap5.addParameter("y", "boolean");
+    methodMap5.addParameter(new VariableMap("x", "int"));
+    methodMap5.addParameter(new VariableMap("y", "boolean"));
     
     var methodMap6 = new MethodMap("foo", "int");
-    methodMap6.addParameter("x", "int");
+    methodMap6.addParameter(new VariableMap("x", "int"));
     ASSERT.isFalse(methodMap5.equals(methodMap6));
     ASSERT.isFalse(methodMap6.equals(methodMap5));
     
     var methodMap7 = new MethodMap("foo", "int");
-    methodMap7.addParameter("x", "int");
-    methodMap7.addParameter("y", "int");
+    methodMap7.addParameter(new VariableMap("x", "int"));
+    methodMap7.addParameter(new VariableMap("y", "int"));
     ASSERT.isFalse(methodMap5.equals(methodMap7));
     ASSERT.isFalse(methodMap7.equals(methodMap5));
 };
 
 exports.testToString = function() {
     var methodMap = buildTestMethodMap();
-    methodMap.addParameter("x", "int");
-    methodMap.addParameter("y", "boolean");
+    methodMap.addParameter(new VariableMap("x", "int"));
+    methodMap.addParameter(new VariableMap("y", "boolean"));
     
     var expected = "{name: <foo>, returnType: <int>, parameters: <[{name: <x>, type: <int>}, {name: <y>, type: <boolean>}]>}";
     ASSERT.eq(expected, methodMap.toString());

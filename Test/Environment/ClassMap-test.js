@@ -1,6 +1,7 @@
 var ASSERT = require("test/assert");
 var ClassMap = require("../../lib/Environment").ClassMap;
 var MethodMap = require("../../lib/Environment").MethodMap;
+var VariableMap = require("../../lib/Environment").VariableMap;
 
 exports.testClassMapConstructor = function() {
     var classMap = buildTestClassMap();
@@ -12,16 +13,16 @@ exports.testClassMapConstructor = function() {
 
 exports.testAddField = function() {
     var classMap = buildTestClassMap();
-    classMap.addField("x", "int");
-    classMap.addField("y", "boolean");
+    classMap.addField(new VariableMap("x", "int"));
+    classMap.addField(new VariableMap("y", "boolean"));
     
     ASSERT.eq(2, classMap.fields.length);
 };
 
 exports.testHasMultipleOfField = function() {
     var classMap = buildTestClassMap();
-    classMap.addField("x", "int");
-    classMap.addField("x", "boolean");
+    classMap.addField(new VariableMap("x", "int"));
+    classMap.addField(new VariableMap("x", "boolean"));
     
     ASSERT.isTrue(classMap.hasMultipleOfField("x"));
     ASSERT.isFalse(classMap.hasMultipleOfField("y"));
@@ -38,8 +39,8 @@ exports.testHasMultipleOfMethod = function() {
 
 exports.testHasField = function() {
     var classMap = buildTestClassMap();
-    classMap.addField("x", "int");
-    classMap.addField("y", "boolean");
+    classMap.addField(new VariableMap("x", "int"));
+    classMap.addField(new VariableMap("y", "boolean"));
     
     ASSERT.isTrue(classMap.hasField("x"));
     ASSERT.isTrue(classMap.hasField("y"));
@@ -60,8 +61,8 @@ exports.testHasMethod = function() {
 
 exports.testGetFieldType = function() {
     var classMap = buildTestClassMap();
-    classMap.addField("x", "int");
-    classMap.addField("y", "boolean");
+    classMap.addField(new VariableMap("x", "int"));
+    classMap.addField(new VariableMap("y", "boolean"));
     
     ASSERT.eq("int", classMap.getFieldType("x"));
     ASSERT.eq("boolean", classMap.getFieldType("y"));
@@ -96,16 +97,16 @@ exports.testAddMethod = function() {
 
 exports.testGetKey = function() {
     var classMap = buildTestClassMap();
-    classMap.addField("x", "int");
-    classMap.addField("y", "boolean");
+    classMap.addField(new VariableMap("x", "int"));
+    classMap.addField(new VariableMap("y", "boolean"));
 
     ASSERT.eq("bar", classMap.getKey());
 };
 
 exports.testToString = function() {
     var classMap = buildTestClassMap();
-    classMap.addField("x", "int");
-    classMap.addField("y", "boolean");
+    classMap.addField(new VariableMap("x", "int"));
+    classMap.addField(new VariableMap("y", "boolean"));
     var methodMap1 = new MethodMap("bar", "int");
     var methodMap2 = new MethodMap("foo", "boolean");
     classMap.addMethod(methodMap1);
