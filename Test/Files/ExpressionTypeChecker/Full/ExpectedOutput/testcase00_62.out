@@ -1,0 +1,6 @@
+Variable this is not declared.
+Left argument of type boolean does not match expected type int for operator PLUS
+Argument type boolean is incompatible with formal parameter type int
+Cannot assign type Test6 to variable e of type Test7
+Cannot assign type Test6 to variable f of type Test8
+Cannot assign type Test8 to variable h of type Test9

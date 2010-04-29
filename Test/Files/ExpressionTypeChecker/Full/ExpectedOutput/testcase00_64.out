@@ -1,0 +1,7 @@
+Right argument of type boolean does not match expected type int for operator LT
+Variable y is not declared.
+Left argument of type null does not match expected type int for operator PLUS
+No variable named y exists in the current scope.
+Variable y is not declared.
+Cannot assign type null to variable x of type int
+In MiniJava, System.out.println only takes an int.  The expression has type boolean

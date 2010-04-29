@@ -1,0 +1,6 @@
+Superclass name Bar not in scope.
+Cannot redeclare method self
+Cannot find class named Nonexistant
+Actual return type Baz of method self does not match declared type Bar
+Actual return type Baz of method self does not match declared type Bar
+Actual return type Bar of method self2 does not match declared type Nonexistant

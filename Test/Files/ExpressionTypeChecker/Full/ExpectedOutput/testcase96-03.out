@@ -1,0 +1,2 @@
+Left argument of type boolean does not match expected type int for operator PLUS
+Actual return type int of method isTasty does not match declared type boolean

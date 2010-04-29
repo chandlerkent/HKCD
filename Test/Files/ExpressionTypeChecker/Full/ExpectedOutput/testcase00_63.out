@@ -1,0 +1,10 @@
+Right argument of type boolean does not match expected type int for operator PLUS
+Right argument of type boolean does not match expected type int for operator DIVIDE
+Right argument of type int does not match expected type boolean for operator AND
+Left argument of type boolean does not match expected type int for operator MINUS
+Right argument of type boolean does not match expected type int for operator MINUS
+Left argument of type int does not match expected type boolean for operator OR
+Right argument of type int does not match expected type boolean for operator OR
+Cannot assign type boolean to variable z of type int
+Variable x is not declared.
+Cannot assign type null to variable z of type int

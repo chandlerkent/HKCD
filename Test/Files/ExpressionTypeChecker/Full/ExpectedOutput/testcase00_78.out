@@ -1,0 +1,2 @@
+Condition for if statement is of type int instead of boolean
+While loop condition must be a boolean.  The expressions has type int

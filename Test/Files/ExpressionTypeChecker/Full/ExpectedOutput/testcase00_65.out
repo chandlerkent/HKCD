@@ -1,0 +1,6 @@
+Operand type int is not compatible with expected type boolean of operator NOT
+Operand type boolean is not compatible with expected type int of operator MINUS
+The variable x is already declared in the current scope.
+Cannot assign type boolean to variable x of type int
+The variable y is already declared in the current scope.
+Cannot assign type int to variable y of type boolean

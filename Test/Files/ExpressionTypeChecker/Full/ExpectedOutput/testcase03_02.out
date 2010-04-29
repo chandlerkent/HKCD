@@ -1,0 +1,2 @@
+Left argument of type int does not match expected type boolean for operator AND
+In MiniJava, System.out.println only takes an int.  The expression has type boolean

@@ -1,0 +1,2 @@
+Cannot redeclare method predicate
+Cannot overload methods.  Method predicate has different type signature than inherited method of the same name.

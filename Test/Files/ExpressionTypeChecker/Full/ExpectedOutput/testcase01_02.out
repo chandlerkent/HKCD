@@ -1,0 +1,4 @@
+Actual return type int of method a4 does not match declared type double
+No method named a5 found for class A6
+The operand types, null and int, are not compatible for equality comparison
+Actual return type boolean of method a4 does not match declared type double

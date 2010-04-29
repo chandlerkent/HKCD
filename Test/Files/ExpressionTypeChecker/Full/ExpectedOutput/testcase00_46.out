@@ -1,0 +1,9 @@
+Variable bar is not declared.
+No method named fib found for class null
+In MiniJava, System.out.println only takes an int.  The expression has type null
+Variable bar is not declared.
+No method named fib found for class null
+Variable bar is not declared.
+No method named fib found for class null
+Left argument of type null does not match expected type int for operator PLUS
+Right argument of type null does not match expected type int for operator PLUS

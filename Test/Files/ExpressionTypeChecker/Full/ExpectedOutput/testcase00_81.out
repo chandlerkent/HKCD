@@ -1,0 +1,8 @@
+Variable c is not declared.
+No variable named a exists in the current scope.
+The variable i is already declared in the current scope.
+Cannot assign type int to variable b of type boolean
+Cannot assign type boolean to variable i of type int
+Cannot assign type boolean to variable i of type int
+In MiniJava, System.out.println only takes an int.  The expression has type boolean
+In MiniJava, System.out.println only takes an int.  The expression has type boolean

@@ -1,0 +1,4 @@
+Cannot assign type boolean to variable alpha of type int
+Argument type int is incompatible with formal parameter type boolean
+Cannot assign type Bar to variable gamma of type int
+Left argument of type boolean does not match expected type int for operator GT

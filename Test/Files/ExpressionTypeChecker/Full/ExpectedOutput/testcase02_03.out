@@ -1,0 +1,3 @@
+Cannot assign type boolean to variable myBoolean of type int
+No method named nonExistingMethod found for class Foo
+Cannot assign type null to variable nonExisting of type int

@@ -1,0 +1,5 @@
+Condition for if statement is of type int instead of boolean
+While loop condition must be a boolean.  The expressions has type int
+Left argument of type int does not match expected type boolean for operator OR
+Right argument of type int does not match expected type boolean for operator OR
+Cannot assign type boolean to variable l1 of type int

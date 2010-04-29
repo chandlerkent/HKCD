@@ -1,0 +1,17 @@
+Cannot find class named Point
+Cannot redeclare method tryToRedeclare
+Cannot overload methods.  Method overrideWithTooFew has different type signature than inherited method of the same name.
+Cannot overload methods.  Method overrideWithTooMany has different type signature than inherited method of the same name.
+Cannot overload methods.  Method switchParameterTypes has different type signature than inherited method of the same name.
+Cannot find class named Point
+The class variable x is already declared.  Redeclaration and shadowing are not allowed.
+Cannot instantiate undeclared class named Point
+Variable a is not declared.
+In MiniJava, System.out.println only takes an int.  The expression has type null
+In MiniJava, System.out.println only takes an int.  The expression has type boolean
+Cannot instantiate undeclared class named Point
+Actual return type int of method returnTypeDoesNotMatch1 does not match declared type boolean
+Actual return type boolean of method returnTypeDoesNotMatch2 does not match declared type int
+The class variable x is already declared.  Redeclaration and shadowing are not allowed.
+The class variable y is already declared.  Redeclaration and shadowing are not allowed.
+Cannot instantiate undeclared class named Point

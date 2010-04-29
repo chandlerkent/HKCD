@@ -1,0 +1,3 @@
+Variable bar is not declared.
+No method named add found for class null
+In MiniJava, System.out.println only takes an int.  The expression has type null

@@ -1,0 +1,3 @@
+Actual return type boolean of method inc does not match declared type int
+Right argument of type boolean does not match expected type int for operator MINUS
+Cannot assign type boolean to variable myInt of type int
