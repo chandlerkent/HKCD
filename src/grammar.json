@@ -34,7 +34,7 @@
                                 ["MainClassDecl ClassDeclList", "$$ = new yy.ASTNode('Program', [$1].concat($2), { 'lineNumber': yylineno }); return $$;"],
                             ],
         "MainClassDecl":    [
-                                ["class JavaID { public static void main ( String [ ] JavaID ) { StmtList } }", "$$ = new yy.ASTNode('MainClassDecl', [].concat($15), { 'className': $2, 'param': $12, 'superClassName': null, 'lineNumber': yylineno });"],
+                                ["class JavaID { MainMethodDecl }", "$$ = new yy.ASTNode('MainClassDecl', [].concat($4), { 'className': $2, 'param': $12, 'superClassName': null, 'lineNumber': yylineno });"],
                             ],
         "ClassDeclList":    [
                                 ["", "$$ = [];"],
@@ -57,6 +57,9 @@
         "MethodDeclList":   [
                                 ["", "$$ = [];"],
                                 ["MethodDecl MethodDeclList", "$2.unshift($1); $$ = $2;"],
+                            ],
+        "MainMethodDecl":   [
+                                ["public static void main ( String [ ] JavaID ) { StmtList }", "$$ = new yy.ASTNode('MainMethodDecl', [].concat($12), { 'returnExpression': null, 'returnType': 'void', 'methodName': 'main', 'lineNumber': yylineno });"],
                             ],
         "MethodDecl":       [
                                 ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $5.concat($8), { 'returnExpression': $10, 'returnType': $2, 'methodName': $3, 'lineNumber': yylineno });"],
@@ -83,7 +86,7 @@
                             ],
         "Stmt":             [
                                 ["Type JavaID = Expr ;", "$$ = new yy.ASTNode('InitialAssignment', [], { 'type': $1, 'varName': $2, 'value': $4, 'lineNumber': yylineno });"],
-                                ["{ StmtList }", "$$ = new yy.ASTNode('Block', [$2], { 'lineNumber': yylineno });"],
+                                ["{ StmtList }", "$$ = new yy.ASTNode('Block', [].concat($2), { 'lineNumber': yylineno });"],
                                 ["if ( Expr ) Stmt else Stmt", "$$ = new yy.ASTNode('If', [$5, $7], { 'condition': $3, 'lineNumber': yylineno });"],
                                 ["while ( Expr ) Stmt", "$$ = new yy.ASTNode('While', [$5], { 'condition': $3, 'lineNumber': yylineno });"],
                                 ["printLine ( Expr ) ;", "$$ = new yy.ASTNode('PrintLine', [], { 'value': $3, 'lineNumber': yylineno });"],
