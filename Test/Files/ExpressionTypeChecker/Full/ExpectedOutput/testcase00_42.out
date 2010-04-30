@@ -1,3 +1,7 @@
-Actual return type boolean of method inc does not match declared type int
-Right argument of type boolean does not match expected type int for operator MINUS
-Cannot assign type boolean to variable myInt of type int
+Expected false to be int.
+The right side of a subtract operation was expected to be of type int but was boolean.
+The type of the right hand side expression of the assignment to variable x does not match the expected type int.
+Expected variable tf to be of type int, but was of type boolean.
+The type of the right hand side expression of the assignment to variable myInt does not match the expected type int.
+Expected true to be int.
+Type of return expression does not match int.

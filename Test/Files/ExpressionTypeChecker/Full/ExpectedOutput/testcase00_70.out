@@ -1,1 +1,1 @@
-The class variable avar is already declared.  Redeclaration and shadowing are not allowed.
+A field named avar has already been defined in the superclass Foo.

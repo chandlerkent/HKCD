@@ -1,1 +1,2 @@
-Cannot assign type Foo to variable bar of type Foo2
+The return type of the method getFoo was expected to be Foo2 but is of type Foo.
+The variable bar was assigned with mismatched types.>

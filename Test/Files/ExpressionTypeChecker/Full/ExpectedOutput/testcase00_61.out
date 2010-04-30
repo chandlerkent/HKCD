@@ -1,1 +1,1 @@
-Cannot overload methods.  Method ossifrage has different type signature than inherited method of the same name.
+The method {name: <ossifrage>, returnType: <int>, parameters: <[{name: <x>, type: <boolean>}]>} in Test6 attempts to override the method {name: <ossifrage>, returnType: <int>, parameters: <[{name: <x>, type: <int>}]>} in Test5A.

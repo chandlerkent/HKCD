@@ -1,3 +1,4 @@
-Cannot find class named C
 Variable this is not declared.
-Cannot instantiate undeclared class named C
+Cannot instantiate the type C because it was never defined.
+Type of return expression does not match C.
+The return type C of method named stop is undefined.

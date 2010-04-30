@@ -1,1 +1,2 @@
-Cannot assign type int to variable a of type bool
+Expected an integer to be bool.
+The variable a was assigned with mismatched types.

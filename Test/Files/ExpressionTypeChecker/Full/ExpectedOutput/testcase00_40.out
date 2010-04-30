@@ -1,5 +1,4 @@
-No variable named a exists in the current scope.
-Variable a is not declared.
 Argument type null is incompatible with formal parameter type int
+The variable a is not in the current scope.
 The variable c is already declared in the current scope.
 The variable x is already declared in the current scope.

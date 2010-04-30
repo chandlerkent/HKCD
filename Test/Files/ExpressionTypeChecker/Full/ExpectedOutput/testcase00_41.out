@@ -1,4 +1,7 @@
-Cannot assign type boolean to variable alpha of type int
-Argument type int is incompatible with formal parameter type boolean
-Cannot assign type Bar to variable gamma of type int
-Left argument of type boolean does not match expected type int for operator GT
+The return type of the method retribution was expected to be int but is of type boolean.
+The variable alpha was assigned with mismatched types.
+The return type of the method half was expected to be int but is of type Bar.
+The variable gamma was assigned with mismatched types.
+Expected variable x to be of type int, but was of type boolean.
+The left side of a greater than operation was expected to be of type int but was boolean.
+The condition in a(n) If statement must be of type boolean.

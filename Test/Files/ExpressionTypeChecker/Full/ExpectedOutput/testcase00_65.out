@@ -1,6 +1,8 @@
-Operand type int is not compatible with expected type boolean of operator NOT
-Operand type boolean is not compatible with expected type int of operator MINUS
+Expected an integer to be boolean.
+Trying to not a non-boolean!.
+The variable x was assigned with mismatched types.
+Expected false to be int.
+Trying to negate a non-integer!.
+The variable y was assigned with mismatched types.
 The variable x is already declared in the current scope.
-Cannot assign type boolean to variable x of type int
 The variable y is already declared in the current scope.
-Cannot assign type int to variable y of type boolean

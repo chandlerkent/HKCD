@@ -1,2 +1,2 @@
-Variable args is not declared.
-In MiniJava, System.out.println only takes an int.  The expression has type null
+No variable named args in the current scope.
+System.out.println only takes an argument of type int.

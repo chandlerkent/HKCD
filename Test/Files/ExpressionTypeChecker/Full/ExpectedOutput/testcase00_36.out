@@ -1,1 +1,2 @@
-Cannot assign type boolean to variable b of type int
+The return type of the method start was expected to be int but is of type boolean.
+The variable b was assigned with mismatched types.
