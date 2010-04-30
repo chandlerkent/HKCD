@@ -1,1 +1,2 @@
-Cannot assign type boolean to variable x of type int
+The return type of the method setJunk was expected to be int but is of type boolean.
+The type of the right hand side expression of the assignment to variable x does not match the expected type int.

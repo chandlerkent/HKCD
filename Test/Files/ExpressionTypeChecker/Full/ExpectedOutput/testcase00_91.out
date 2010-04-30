@@ -1,2 +1,5 @@
-Actual return type int of method gety does not match declared type boolean
-Left argument of type null does not match expected type boolean for operator OR
+Expected variable x to be of type boolean, but was of type int.
+Type of return expression does not match boolean.
+Attempting to set null to a primitive type boolean.
+The left side of an or operation was expected to be of type boolean but was void.
+Type of return expression does not match boolean.

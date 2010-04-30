@@ -1,3 +1,4 @@
-Superclass name DoesNotExist not in scope.
-Class named Point already exists.
-Class named Point already exists.
+Multiple declarations found for class Point.
+Cannot extend the unknown superclass DoesNotExist.
+Multiple declarations found for class Point.
+Multiple declarations found for class Point.

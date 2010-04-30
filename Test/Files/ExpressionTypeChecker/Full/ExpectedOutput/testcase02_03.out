@@ -1,3 +1,4 @@
-Cannot assign type boolean to variable myBoolean of type int
-No method named nonExistingMethod found for class Foo
-Cannot assign type null to variable nonExisting of type int
+The return type of the method getMyBoolean was expected to be int but is of type boolean.
+The variable myBoolean was assigned with mismatched types.
+The class Foo does not have the method nonExistingMethod.
+The variable nonExisting was assigned with mismatched types.
