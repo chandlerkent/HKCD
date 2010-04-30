@@ -1,1 +1,2 @@
-Condition for if statement is of type int instead of boolean
+An add expression does not return type boolean.
+The condition in a(n) If statement must be of type boolean.

@@ -1,6 +1,8 @@
-Argument type boolean is incompatible with formal parameter type int
-No method named developLists found for class Dude
-Cannot assign type null to variable numNaughty of type int
-Actual return type int of method eliminateNaughty does not match declared type boolean
-Cannot assign type Xmas to variable roboticSanta of type Santa
-Actual return type Santa of method developLists does not match declared type int
+Expected an integer to be boolean.
+Type of return expression does not match boolean.
+Expected variable roboticSanta to be of type int, but was of type Santa.
+Type of return expression does not match int.
+The class Dude does not have the method developLists.
+The variable numNaughty was assigned with mismatched types.
+Attempting to return Xmas but expecting Santa.
+The variable roboticSanta was assigned with mismatched types.

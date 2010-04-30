@@ -1,2 +1,4 @@
-Cannot assign type boolean to variable b of type int
-Cannot assign type boolean to variable value of type int
+Expected false to be int.
+The type of the right hand side expression of the assignment to variable b does not match the expected type int.
+Expected true to be int.
+The variable value was assigned with mismatched types.

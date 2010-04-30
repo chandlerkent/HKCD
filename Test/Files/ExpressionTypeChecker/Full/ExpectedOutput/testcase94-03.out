@@ -1,1 +1,3 @@
-Right argument of type boolean does not match expected type int for operator PLUS
+Expected variable a4 to be of type int, but was of type boolean.
+The right side of an add operation was expected to be of type int but was boolean.
+System.out.println only takes an argument of type int.

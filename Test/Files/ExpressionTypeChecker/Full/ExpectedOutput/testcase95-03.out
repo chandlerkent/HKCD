@@ -1,2 +1,5 @@
-Left argument of type int does not match expected type boolean for operator OR
-Right argument of type int does not match expected type boolean for operator OR
+Expected variable a to be of type boolean, but was of type int.
+The left side of an or operation was expected to be of type boolean but was int.
+Expected variable b to be of type boolean, but was of type int.
+The right side of an or operation was expected to be of type boolean but was int.
+The variable c was assigned with mismatched types.

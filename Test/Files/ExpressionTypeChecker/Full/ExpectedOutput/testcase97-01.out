@@ -1,1 +1,3 @@
-Right argument of type LightBulb does not match expected type int for operator PLUS
+Expected variable BathtubFiller to be of type int, but was of type LightBulb.
+The right side of an add operation was expected to be of type int but was LightBulb.
+The variable howMany was assigned with mismatched types.

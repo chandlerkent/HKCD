@@ -1,1 +1,2 @@
-Actual return type boolean of method baz does not match declared type int
+An or expression does not return type int.
+Type of return expression does not match int.

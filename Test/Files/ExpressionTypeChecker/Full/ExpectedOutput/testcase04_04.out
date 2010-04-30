@@ -1,5 +1,10 @@
-Condition for if statement is of type int instead of boolean
-While loop condition must be a boolean.  The expressions has type int
-Left argument of type int does not match expected type boolean for operator OR
-Right argument of type int does not match expected type boolean for operator OR
-Cannot assign type boolean to variable l1 of type int
+Expected an integer to be boolean.
+The condition in a(n) If statement must be of type boolean.
+Expected variable l1 to be of type boolean, but was of type int.
+The condition in a(n) While statement must be of type boolean.
+Expected variable l1 to be of type boolean, but was of type int.
+The left side of an or operation was expected to be of type boolean but was int.
+Expected variable O0 to be of type boolean, but was of type int.
+The right side of an or operation was expected to be of type boolean but was int.
+An or expression does not return type int.
+The type of the right hand side expression of the assignment to variable l1 does not match the expected type int.

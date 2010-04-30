@@ -1,1 +1,2 @@
-In MiniJava, System.out.println only takes an int.  The expression has type Class2
+The return type of the method Class2 was expected to be int but is of type Class2.
+System.out.println only takes an argument of type int.

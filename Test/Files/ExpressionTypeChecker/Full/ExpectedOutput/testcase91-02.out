@@ -1,1 +1,2 @@
-Actual return type boolean of method method does not match declared type int
+Expected true to be int.
+Type of return expression does not match int.

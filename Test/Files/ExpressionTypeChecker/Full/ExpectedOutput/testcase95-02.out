@@ -1,1 +1,2 @@
-In MiniJava, System.out.println only takes an int.  The expression has type boolean
+The return type of the method checkEq was expected to be int but is of type boolean.
+System.out.println only takes an argument of type int.
