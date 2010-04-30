@@ -1,2 +1,3 @@
-Cannot overload methods.  Method start has different type signature than inherited method of the same name.
-Actual return type boolean of method start does not match declared type int
+Expected false to be int.
+Type of return expression does not match int.
+The method {name: <start>, returnType: <boolean>, parameters: <[]>} in B attempts to override the method {name: <start>, returnType: <int>, parameters: <[]>} in C.

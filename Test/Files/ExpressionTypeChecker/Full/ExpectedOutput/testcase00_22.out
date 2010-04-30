@@ -1,1 +1,2 @@
-Formal parameter named Foo duplicates the name of another formal parameter.
+The parameter Foo is declared more than once in Baz.
+The parameter Foo is declared more than once in Baz.

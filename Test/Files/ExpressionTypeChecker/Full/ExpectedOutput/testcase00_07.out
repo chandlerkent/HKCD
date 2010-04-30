@@ -1,3 +1,4 @@
-Cannot redeclare method start
-Cannot overload methods.  Method start has different type signature than inherited method of the same name.
-Cannot assign type boolean to variable b of type int
+The return type of the method start was expected to be int but is of type boolean.
+The variable b was assigned with mismatched types.
+A method named start has already been defined in the class B.
+A method named start has already been defined in the class B.

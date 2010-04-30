@@ -1,1 +1,1 @@
-Cannot overload methods.  Method self has different type signature than inherited method of the same name.
+The method {name: <self>, returnType: <Bar>, parameters: <[{name: <a>, type: <int>}]>} in Baz attempts to override the method {name: <self>, returnType: <Bar>, parameters: <[]>} in Bar.

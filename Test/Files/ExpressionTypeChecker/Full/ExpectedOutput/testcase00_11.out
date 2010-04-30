@@ -1,3 +1,3 @@
-Cannot redeclare method equal
-Cannot overload methods.  Method equal has different type signature than inherited method of the same name.
-Cannot overload methods.  Method equal has different type signature than inherited method of the same name.
+The method {name: <equal>, returnType: <boolean>, parameters: <[{name: <x>, type: <int>}]>} in thisFoo attempts to override the method {name: <equal>, returnType: <boolean>, parameters: <[{name: <x>, type: <int>}, {name: <y>, type: <int>}, {name: <z>, type: <int>}]>} in otherFoo.
+A method named equal has already been defined in the class otherFoo.
+A method named equal has already been defined in the class otherFoo.

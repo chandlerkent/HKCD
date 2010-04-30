@@ -1,2 +1,2 @@
-Superclass name Foo not in scope.
-Superclass name Foo not in scope.
+Cannot extend the unknown superclass Foo.
+Cannot extend the unknown superclass Foo.

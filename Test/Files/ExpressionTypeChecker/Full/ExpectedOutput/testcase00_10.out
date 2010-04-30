@@ -1,1 +1,2 @@
-The class variable a is already declared.  Redeclaration and shadowing are not allowed.
+A field named a is defined more than once in noPoint.
+A field named a is defined more than once in noPoint.
