@@ -1,2 +1,1 @@
-Cannot assign type int to variable x of type boolean
 The variable x is already declared in the current scope.

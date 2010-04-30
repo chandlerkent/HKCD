@@ -1,5 +1,5 @@
 Cannot extend the unknown superclass Bar.
-Expected the return expression to be undefined type Nonexistant.
+Expected the return expression to be Nonexistant but was Bar.
 Type of return expression does not match Nonexistant.
 A field named x has already been defined in the superclass Bar.
 A method named self has already been defined in the class Baz.

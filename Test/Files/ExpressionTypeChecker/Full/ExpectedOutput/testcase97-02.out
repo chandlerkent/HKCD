@@ -1,6 +1,6 @@
 Expected an integer to be boolean.
 Type of return expression does not match boolean.
-Expected variable roboticSanta to be of type int, but was of type Santa.
+Expected the return expression to be int but was Santa.
 Type of return expression does not match int.
 Expected true to be int.
 Argument type boolean does not match expected type int for method eliminateNaughty.
