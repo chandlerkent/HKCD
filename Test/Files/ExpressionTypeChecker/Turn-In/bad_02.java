@@ -14,7 +14,7 @@ class Baz {
     int size;
     
     public int size() {
-        if(true + 5) {
+        if(true + 5) { // 2 bad
             size = 6;
         } else {
             size = 2;

@@ -8,8 +8,8 @@ class good0 {
 	    b = 4;
 	    boolean d = true;
 	    d = 4; // bad
-	    int e = 4; // bad
-	    e = true;
+	    int e = 4;
+	    e = true; // bad
 	}
 }
 

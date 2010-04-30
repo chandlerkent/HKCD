@@ -1,3 +1,5 @@
+// This file has no errors.
+
 class Foo {
     public static void main(String[] args) {
         

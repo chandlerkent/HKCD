@@ -15,39 +15,42 @@ var outputs = [];
 (new FileList("Test/Files/DeclTypeChecker/Ours/*.java").items()).forEach(function(file) {
     files.push(file);
 });
-outputs.concat([
+outputs = outputs.concat([
                     "Multiple declarations found for class Foo.",
+                    "Cannot extend the unknown superclass Baz.",
+                    [
+                        "A field named x is defined more than once in Baz.",
+                        "A field named x is defined more than once in Baz."
+                    ],
                     "A method named bar has already been defined in the class Bar.",
-                    "A method named bar has already been defined in the class Bar.",
+                    "The method {name: <bar>, returnType: <boolean>, parameters: <[]>} in Baz attempts to override the method {name: <bar>, returnType: <int>, parameters: <[]>} in Bar.",
                     "",
                     "",
-                    "",
-                    "A field named x is defined more than once in Baz.",
                     ""
-                ]);
+]);
+
 // Turn-In
-var goodTurnIns = new FileList("Test/Files/DeclTypeChecker/Turn-In/good*.java").items();
-goodTurnIns.forEach(function(file) {
+(new FileList("Test/Files/DeclTypeChecker/Turn-In/good*.java").items()).forEach(function(file) {
     files.push(file);
     outputs.push("");
 });
 (new FileList("Test/Files/DeclTypeChecker/Turn-In/bad*.java").items()).forEach(function(file) {
     files.push(file);
 });
-outputs.concat([
+outputs = outputs.concat([
         ["Multiple declarations found for class Foo.", "Cannot extend the unknown superclass Bar."], 
         "Cannot extend the unknown superclass Baz.", 
         "The method {name: <size>, returnType: <boolean>, parameters: <[]>} in Baz attempts to override the method {name: <size>, returnType: <int>, parameters: <[]>} in Bar.", 
         "A field named x has already been defined in the superclass Bar.", 
         "A field named x is defined more than once in Bar.", 
         "A field named x has already been defined in the superclass Bar."
-            ]);
+]);
 
 // Early Samples
 (new FileList("Test/Files/DeclTypeChecker/EarlySamples/*.java").items()).forEach(function(file) {
     files.push(file);
 });
-outputs.concat([
+outputs = outputs.concat([
     "Multiple declarations found for class A.",
     "A field named c is initialized with an uninitialized type C.",
     "The parameter c is initialized with undefined type C.",
@@ -63,7 +66,7 @@ outputs.concat([
 (new FileList("Test/Files/DeclTypeChecker/FullTestCases/FullTests/*.java").items()).forEach(function(file) {
     files.push(file);
 });
-outputs.concat([
+outputs = outputs.concat([
         "Multiple declarations found for class A.",
         "A field named c is initialized with an uninitialized type C.",
         "The parameter c is initialized with undefined type C.",
@@ -230,10 +233,10 @@ for (var i = 0; i < files.length; i++) {
     exports["testFile__/" + fileNameThatMatters] = buildTestFunctionForFile(files[i], outputs[i]);
 }
 
-function buildTestFunctionForFile(inFile, error) {
-    if (error)
-        error = [].concat(error);
-    
+function buildTestFunctionForFile(inFile, errors) {
+    if (errors)
+        errors = [].concat(errors);
+
     return function() {
         var ast = parser.parse(readFile(inFile));
         
@@ -242,24 +245,24 @@ function buildTestFunctionForFile(inFile, error) {
         var actualMessages = env.errors.map(function(err) {
             return err.message;
         });
-        
-        if (error) {
+
+        if (errors.length > 0) {
             var found = true;
-            for (var i = 0; i < error.length; i++) {
-                if (actualMessages.indexOf(error[i]) < 0) {
+            for (var i = 0; i < errors.length; i++) {
+                if (actualMessages.indexOf(errors[i]) < 0) {
                     found = false;
                 }
             }
         
             for (var i = 0; i < actualMessages.length; i++) {
-                if (error.indexOf(actualMessages[i]) < 0) {
+                if (errors.indexOf(actualMessages[i]) < 0) {
                     found = false;
                 }
             }
         
-            ASSERT.equal(true, found, "Error message: <" + env.errors.join("\n") + ">\n\ndid not match\n\n<" + error + ">");
+            ASSERT.equal(true, found, "Error message: <" + env.errors.join("\n") + ">\n\ndid not match\n\n<" + errors + ">");
         } else {
-            ASSERT.equal(0, actualMessages.length);
+            ASSERT.equal(0, actualMessages.length, "Expected no errors but got " + env.errors.join("\n"));
         }
     };
 }

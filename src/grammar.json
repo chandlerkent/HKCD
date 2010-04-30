@@ -62,7 +62,7 @@
                                 ["public static void main ( String [ ] JavaID ) { StmtList }", "$$ = new yy.ASTNode('MainMethodDecl', [].concat($12), { 'returnExpression': null, 'returnType': 'void', 'methodName': 'main', 'lineNumber': yylineno });"],
                             ],
         "MethodDecl":       [
-                                ["public Type JavaID ( FormalList ) { StmtList return Expr ; }", "$$ = new yy.ASTNode('MethodDecl', $5.concat($8), { 'returnExpression': $10, 'returnType': $2, 'methodName': $3, 'lineNumber': yylineno });"],
+                                ["public Type JavaID ( FormalList ) { StmtList ReturnStmt }", "$$ = new yy.ASTNode('MethodDecl', $5.concat($8).concat([$9]), { 'returnExpression': $9, 'returnType': $2, 'methodName': $3, 'lineNumber': yylineno });"],
                             ],
         "FormalList":       [
                                 ["", "$$ = [];"],
@@ -83,6 +83,9 @@
         "StmtList":         [
                                 ["", "$$ = [];"],
                                 ["Stmt StmtList", "$2.unshift($1); $$ = $2;"],
+                            ],
+        "ReturnStmt":       [
+                                ["return Expr ;", "$$ = new yy.ASTNode('ReturnExpression', [], { 'lineNumber': yylineno, 'expression': $2 });"],
                             ],
         "Stmt":             [
                                 ["Type JavaID = Expr ;", "$$ = new yy.ASTNode('InitialAssignment', [], { 'type': $1, 'varName': $2, 'value': $4, 'lineNumber': yylineno });"],
@@ -108,7 +111,7 @@
                                 ["! Expr", "$$ = new yy.ASTNode('NotExpression', [$2], { 'lineNumber': yylineno });"],
                                 ["- Expr", "$$ = new yy.ASTNode('NegateExpression', [$2], { 'lineNumber': yylineno });", {"prec": "UMINUS"}],
                                 ["Expr . JavaID ( ParameterList )", "$$ = new yy.ASTNode('CallExpression', [$1, $5], {'methodCallName': $3, 'lineNumber': yylineno});"],
-                                ["new JavaID ( )", "$$ = new yy.ASTNode('ConstructExpression', [], {'constructor':$2, 'lineNumber': yylineno});"],
+                                ["new JavaID ( )", "$$ = new yy.ASTNode('ConstructExpression', [], {'className':$2, 'lineNumber': yylineno});"],
                                 ["ID", "$$ = new yy.ASTNode('IDExpression', [], { 'value': yytext, 'lineNumber': yylineno });"],
                                 ["this", "$$ = new yy.ASTNode('ThisExpression', [], { 'lineNumber': yylineno });"],
                                 ["Integer", "$$ = new yy.ASTNode('IntegerExpression', [], {'expression':yytext, 'lineNumber': yylineno});"],
