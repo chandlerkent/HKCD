@@ -1,10 +1,8 @@
-Cannot instantiate the type Point because it was never defined.
 Type of return expression does not match Point.
 Expected an integer to be boolean.
 Type of return expression does not match boolean.
 Expected true to be int.
 Type of return expression does not match int.
-Cannot instantiate the type Point because it was never defined.
 Type of return expression does not match Point.
 The method {name: <overrideWithTooFew>, returnType: <boolean>, parameters: <[{name: <a>, type: <int>}]>} in EntryPoint2 attempts to override the method {name: <overrideWithTooFew>, returnType: <boolean>, parameters: <[{name: <a>, type: <int>}, {name: <b>, type: <boolean>}]>} in EntryPoint1.
 The method {name: <overrideWithTooMany>, returnType: <boolean>, parameters: <[{name: <a>, type: <int>}]>} in EntryPoint2 attempts to override the method {name: <overrideWithTooMany>, returnType: <boolean>, parameters: <[]>} in EntryPoint1.
@@ -23,3 +21,5 @@ Expected true to be int.
 System.out.println only takes an argument of type int.
 A field named x has already been defined in the superclass EntryPoint1.
 A field named y has already been defined in the superclass EntryPoint1.
+Expected the return expression to be undefined type Point.
+Expected the return expression to be undefined type Point.

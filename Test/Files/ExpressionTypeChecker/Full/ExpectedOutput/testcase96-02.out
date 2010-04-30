@@ -1,2 +1,2 @@
-Expected variable Blob to be of type Blob, but was of type int.
+Expected the return expression to be Blob but was int.
 Type of return expression does not match Blob.

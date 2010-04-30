@@ -1,4 +1,4 @@
 The return type bool of method named bad is undefined.
-Expected false to be bool.
+Expected the return expression to be undefined type bool.
 Type of return expression does not match bool.
 The method {name: <bad>, returnType: <bool>, parameters: <[]>} in badBar attempts to override the method {name: <bad>, returnType: <int>, parameters: <[]>} in otherBar.

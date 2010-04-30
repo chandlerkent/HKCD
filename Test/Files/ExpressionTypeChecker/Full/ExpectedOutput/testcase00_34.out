@@ -1,4 +1,4 @@
-Cannot instantiate the type C because it was never defined.
+Expected the return expression to be undefined type C.
 Type of return expression does not match C.
 Cannot access variable this in static methods.
 Argument type null does not match expected type A for method start.

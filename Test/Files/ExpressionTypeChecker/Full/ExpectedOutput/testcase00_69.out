@@ -2,5 +2,3 @@ The method {name: <predicate>, returnType: <boolean>, parameters: <[{name: <y>, 
 The method {name: <predicate>, returnType: <boolean>, parameters: <[{name: <y>, type: <int>}, {name: <z>, type: <int>}]>} in FooExt attempts to override the method {name: <predicate>, returnType: <boolean>, parameters: <[{name: <y>, type: <int>}]>} in Foo.
 A method named predicate has already been defined in the class FooExt.
 A method named predicate has already been defined in the class FooExt.
-
-NOT SURE IF THIS IS RIGHT FAIL
