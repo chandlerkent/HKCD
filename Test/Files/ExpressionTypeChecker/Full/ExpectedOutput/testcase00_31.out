@@ -1,8 +1,3 @@
-Actual return type Baz of method self does not match declared type Bar
-Actual return type Baz of method self does not match declared type Bar
-Actual return type Bar of method self2 does not match declared type Nonexistant
-
-
 Cannot extend the unknown superclass Bar.
 The variable this is not of type Nonexistant.
 Type of return expression does not match Nonexistant.
