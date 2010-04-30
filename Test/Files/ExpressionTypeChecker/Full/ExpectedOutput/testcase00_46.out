@@ -1,9 +1,10 @@
 Variable bar is not declared.
-No method named fib found for class null
-In MiniJava, System.out.println only takes an int.  The expression has type null
 Variable bar is not declared.
-No method named fib found for class null
 Variable bar is not declared.
-No method named fib found for class null
-Left argument of type null does not match expected type int for operator PLUS
-Right argument of type null does not match expected type int for operator PLUS
+The class null does not have the method fib.
+The left side of an add operation was expected to be of type int but was null.
+The class null does not have the method fib.
+The right side of an add operation was expected to be of type int but was null.
+The type of the right hand side expression of the assignment to variable result does not match the expected type int.
+The class null does not have the method fib.
+System.out.println only takes an argument of type int.

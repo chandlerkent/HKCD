@@ -1,4 +1,6 @@
-Argument type null is incompatible with formal parameter type int
 The variable a is not in the current scope.
+No variable named a in the current scope.
+Argument type null does not match expected type int for method set.
+The variable c was assigned with mismatched types.
 The variable c is already declared in the current scope.
 The variable x is already declared in the current scope.
