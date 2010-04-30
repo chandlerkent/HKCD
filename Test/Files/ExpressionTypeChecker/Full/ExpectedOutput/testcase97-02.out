@@ -2,6 +2,9 @@ Expected an integer to be boolean.
 Type of return expression does not match boolean.
 Expected variable roboticSanta to be of type int, but was of type Santa.
 Type of return expression does not match int.
+Expected true to be int.
+Argument type boolean does not match expected type int for method eliminateNaughty.
+The variable justiceServed was assigned with mismatched types.
 The class Dude does not have the method developLists.
 The variable numNaughty was assigned with mismatched types.
 Attempting to return Xmas but expecting Santa.
