@@ -1,3 +1,3 @@
 Expected true to be int.
 The left side of an add operation was expected to be of type int but was boolean.
-Type of return expression does not match int
+Type of return expression does not match int.
