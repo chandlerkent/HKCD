@@ -1,1 +1,2 @@
-Variable this is not declared.
+Cannot access variable this in static methods.
+The variable ft was assigned with mismatched types.

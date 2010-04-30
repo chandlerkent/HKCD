@@ -1,1 +1,3 @@
-Argument type int is incompatible with formal parameter type boolean
+Expected an integer to be boolean.
+Argument type int does not match expected type boolean for method meth.
+Type of return expression does not match int.

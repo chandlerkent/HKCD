@@ -1,4 +1,6 @@
-Variable this is not declared.
 Cannot instantiate the type C because it was never defined.
 Type of return expression does not match C.
+Cannot access variable this in static methods.
+Argument type null does not match expected type A for method start.
+The variable b was assigned with mismatched types.
 The return type C of method named stop is undefined.
