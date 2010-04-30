@@ -1,1 +1,3 @@
-Left argument of type boolean does not match expected type int for operator PLUS
+Expected variable X to be of type int, but was of type boolean.
+The left side of an add operation was expected to be of type int but was boolean.
+The type of the right hand side expression of the assignment to variable y does not match the expected type int.

@@ -1,1 +1,2 @@
-Actual return type int of method getX3 does not match declared type Test3a
+Expected an integer to be Test3a.
+Type of return expression does not match Test3a.

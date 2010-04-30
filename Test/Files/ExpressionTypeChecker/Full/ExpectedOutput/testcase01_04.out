@@ -1,3 +1,6 @@
-Actual return type int of method a4 does not match declared type double
-Left argument of type boolean does not match expected type int for operator PLUS
-Actual return type int of method a9 does not match declared type boolean
+An add expression does not return type double.
+Type of return expression does not match double.
+The return type of the method a6 was expected to be int but is of type boolean.
+The left side of an add operation was expected to be of type int but was boolean.
+An add expression does not return type boolean.
+Type of return expression does not match boolean.

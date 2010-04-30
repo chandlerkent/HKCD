@@ -1,1 +1,2 @@
-Condition for if statement is of type int instead of boolean
+Expected an integer to be boolean.
+The condition in a(n) If statement must be of type boolean.

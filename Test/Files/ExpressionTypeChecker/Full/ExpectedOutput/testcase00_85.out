@@ -1,1 +1,2 @@
-Cannot assign type int to variable x of type boolean
+Expected variable y to be of type boolean, but was of type int.
+The type of the right hand side expression of the assignment to variable x does not match the expected type boolean.

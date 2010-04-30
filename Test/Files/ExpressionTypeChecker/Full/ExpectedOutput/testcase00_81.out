@@ -1,8 +1,12 @@
-Variable c is not declared.
-No variable named a exists in the current scope.
+System.out.println only takes an argument of type int.
+System.out.println only takes an argument of type int.
+Expected variable c to be of type int, but was of type boolean.
+Expected variable b to be of type int, but was of type boolean.
 The variable i is already declared in the current scope.
-Cannot assign type int to variable b of type boolean
-Cannot assign type boolean to variable i of type int
-Cannot assign type boolean to variable i of type int
-In MiniJava, System.out.println only takes an int.  The expression has type boolean
-In MiniJava, System.out.println only takes an int.  The expression has type boolean
+Expected an integer to be boolean.
+The variable b was assigned with mismatched types.
+The variable a is not in the current scope.
+Expected variable c to be of type int, but was of type boolean.
+The type of the right hand side expression of the assignment to variable i does not match the expected type int.
+Expected variable b to be of type int, but was of type boolean.
+The type of the right hand side expression of the assignment to variable i does not match the expected type int.

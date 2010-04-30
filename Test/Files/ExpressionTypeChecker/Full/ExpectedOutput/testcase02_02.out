@@ -1,1 +1,2 @@
-In MiniJava, System.out.println only takes an int.  The expression has type boolean
+Expected variable y to be of type int, but was of type boolean.
+System.out.println only takes an argument of type int.

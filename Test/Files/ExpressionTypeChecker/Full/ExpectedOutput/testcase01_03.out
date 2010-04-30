@@ -1,1 +1,3 @@
-Right argument of type int does not match expected type boolean for operator AND
+Expected an integer to be boolean.
+The right side of an and operation was expected to be of type boolean but was int.
+The condition in a(n) If statement must be of type boolean.

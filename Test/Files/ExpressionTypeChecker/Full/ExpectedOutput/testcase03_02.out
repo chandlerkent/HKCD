@@ -1,2 +1,5 @@
-Left argument of type int does not match expected type boolean for operator AND
-In MiniJava, System.out.println only takes an int.  The expression has type boolean
+An add expression does not return type boolean.
+The left side of an and operation was expected to be of type boolean but was int.
+The condition in a(n) If statement must be of type boolean.
+Expected true to be int.
+System.out.println only takes an argument of type int

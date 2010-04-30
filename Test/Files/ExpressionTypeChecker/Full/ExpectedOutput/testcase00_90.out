@@ -1,1 +1,3 @@
-Left argument of type null does not match expected type boolean for operator OR
+Attempting to set null to a primitive type boolean.
+The left side of an or operation was expected to be of type boolean but was void.
+Type of return expression does not match boolean.
