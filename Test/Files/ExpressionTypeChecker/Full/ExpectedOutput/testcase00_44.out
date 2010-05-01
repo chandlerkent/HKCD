@@ -1,5 +1,4 @@
-Variable bar is not declared.
-Expected true to be int.
-Type of return expression does not match int.
 The class null does not have the method fib.
 System.out.println only takes an argument of type int.
+Expected true to be int.
+Type of return expression does not match int.

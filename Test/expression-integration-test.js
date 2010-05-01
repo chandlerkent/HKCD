@@ -111,6 +111,11 @@ function buildTestFunctionForFile(inFile, errors) {
 
     return function() {
         var ast = parser.parse(readFile(inFile));
+
+        if (errors.indexOf("PARSE ERROR") >= 0) {
+            ASSERT.equal(true, (ast.errors.length > 0), "Expected parse error but got none.");
+            return;            
+        }
         
         var env = TypeChecker.typeCheck(ast).env;
             

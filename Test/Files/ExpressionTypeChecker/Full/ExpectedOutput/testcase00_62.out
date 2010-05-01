@@ -1,6 +1,16 @@
-Variable this is not declared.
-Left argument of type boolean does not match expected type int for operator PLUS
-Argument type boolean is incompatible with formal parameter type int
-Cannot assign type Test6 to variable e of type Test7
-Cannot assign type Test6 to variable f of type Test8
-Cannot assign type Test8 to variable h of type Test9
+Cannot access variable this in static methods.
+Argument type null does not match expected type Test5 for method foo.
+The type of the right hand side expression of the assignment to variable a does not match the expected type int.
+Expected true to be int.
+The left side of an add operation was expected to be of type int but was boolean.
+Argument type int does not match expected type int for method xyzzy.
+The type of the right hand side expression of the assignment to variable b does not match the expected type boolean.
+Expected true to be int.
+Argument type boolean does not match expected type int for method xyzzy.
+The type of the right hand side expression of the assignment to variable b does not match the expected type boolean.
+The return type of the method grue was expected to be Test7 but is of type Test6.
+The variable e was assigned with mismatched types.
+The return type of the method some was expected to be Test8 but is of type Test6.
+The variable f was assigned with mismatched types.
+The return type of the method PuffTheFractalDragon was expected to be Test9 but is of type Test8.
+The variable h was assigned with mismatched types.
