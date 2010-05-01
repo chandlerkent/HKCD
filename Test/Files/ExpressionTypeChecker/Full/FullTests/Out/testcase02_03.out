@@ -1,0 +1,4 @@
+Type error on line NaN: The return type of the method getMyBoolean was expected to be int but is of type boolean.
+Type error on line 21: The variable myBoolean was assigned with mismatched types.
+Type error on line 22: The class Foo does not have the method nonExistingMethod.
+Type error on line 22: The variable nonExisting was assigned with mismatched types.

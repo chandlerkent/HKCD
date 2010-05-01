@@ -1,0 +1,6 @@
+Type error on line 11: A multiply expression does not return type double.
+Type error on line 12: Type of return expression does not match double.
+Type error on line 17: The left hand side's type (null) does not equal the right hand side's type (int).
+Type error on line 18: Type of return expression does not match boolean.
+Type error on line NaN: The return type of the method a7 was expected to be double but is of type boolean.
+Type error on line 22: Type of return expression does not match double.

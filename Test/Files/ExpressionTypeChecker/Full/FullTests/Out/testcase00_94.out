@@ -1,0 +1,2 @@
+Type error on line 30: Expected true to be int.
+Type error on line 30: System.out.println only takes an argument of type int.

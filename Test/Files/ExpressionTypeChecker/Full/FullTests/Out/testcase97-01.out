@@ -1,0 +1,3 @@
+Type error on line 5: Expected variable BathtubFiller to be of type int, but was of type LightBulb.
+Type error on line 5: The right side of an add operation was expected to be of type int but was LightBulb.
+Type error on line 5: The variable howMany was assigned with mismatched types.

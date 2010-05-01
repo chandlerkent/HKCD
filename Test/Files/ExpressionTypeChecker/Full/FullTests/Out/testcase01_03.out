@@ -1,0 +1,3 @@
+Type error on line 17: Expected an integer to be boolean.
+Type error on line 17: The right side of an and operation was expected to be of type boolean but was int.
+Type error on line 18: The condition in a(n) If statement must be of type boolean.

@@ -1,0 +1,6 @@
+Type error on line 20: Expected the return expression to be undefined type C.
+Type error on line 21: Type of return expression does not match C.
+Type error on line 7: Cannot access variable this in static methods.
+Type error on line 7: Argument type null does not match expected type A for method start.
+Type error on line 7: The variable b was assigned with mismatched types.
+Type error on line 21: The return type C of method named stop is undefined.

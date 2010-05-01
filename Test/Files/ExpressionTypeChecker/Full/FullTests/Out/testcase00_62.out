@@ -1,0 +1,16 @@
+Type error on line 21: Cannot access variable this in static methods.
+Type error on line 21: Argument type null does not match expected type Test5 for method foo.
+Type error on line 21: The type of the right hand side expression of the assignment to variable a does not match the expected type int.
+Type error on line 22: Expected true to be int.
+Type error on line 22: The left side of an add operation was expected to be of type int but was boolean.
+Type error on line 22: Argument type int does not match expected type int for method xyzzy.
+Type error on line 22: The type of the right hand side expression of the assignment to variable b does not match the expected type boolean.
+Type error on line 23: Expected true to be int.
+Type error on line 23: Argument type boolean does not match expected type int for method xyzzy.
+Type error on line 23: The type of the right hand side expression of the assignment to variable b does not match the expected type boolean.
+Type error on line NaN: The return type of the method grue was expected to be Test7 but is of type Test6.
+Type error on line 24: The variable e was assigned with mismatched types.
+Type error on line NaN: The return type of the method some was expected to be Test8 but is of type Test6.
+Type error on line 25: The variable f was assigned with mismatched types.
+Type error on line NaN: The return type of the method PuffTheFractalDragon was expected to be Test9 but is of type Test8.
+Type error on line 26: The variable h was assigned with mismatched types.

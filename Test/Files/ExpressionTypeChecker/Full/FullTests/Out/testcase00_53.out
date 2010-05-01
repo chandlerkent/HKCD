@@ -1,0 +1,2 @@
+Type error on line 24: Expected true to be int.
+Type error on line 24: The type of the right hand side expression of the assignment to variable x does not match the expected type int.

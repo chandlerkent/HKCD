@@ -1,0 +1,25 @@
+Type error on line 33: The return type Point of method named returnTypeDoesNotExist is undefined.
+Type error on line 57: The return type Point of method named returnTypeDoesNotExist is undefined.
+Type error on line 49: The method {name: <overrideWithTooFew>, returnType: <boolean>, parameters: <[{name: <a>, type: <int>}]>} in EntryPoint2 attempts to override the method {name: <overrideWithTooFew>, returnType: <boolean>, parameters: <[{name: <a>, type: <int>}, {name: <b>, type: <boolean>}]>} in EntryPoint1.
+Type error on line 51: The method {name: <overrideWithTooMany>, returnType: <boolean>, parameters: <[{name: <a>, type: <int>}]>} in EntryPoint2 attempts to override the method {name: <overrideWithTooMany>, returnType: <boolean>, parameters: <[]>} in EntryPoint1.
+Type error on line 53: The method {name: <switchParameterTypes>, returnType: <boolean>, parameters: <[{name: <a>, type: <boolean>}, {name: <b>, type: <int>}]>} in EntryPoint2 attempts to override the method {name: <switchParameterTypes>, returnType: <boolean>, parameters: <[{name: <a>, type: <int>}, {name: <b>, type: <boolean>}]>} in EntryPoint1.
+Type error on line 33: Expected the return expression to be undefined type Point.
+Type error on line 33: Type of return expression does not match Point.
+Type error on line 35: Expected an integer to be boolean.
+Type error on line 35: Type of return expression does not match boolean.
+Type error on line 37: Expected true to be int.
+Type error on line 37: Type of return expression does not match int.
+Type error on line 57: Expected the return expression to be undefined type Point.
+Type error on line 57: Type of return expression does not match Point.
+Type error on line 45: A method named tryToRedeclare has already been defined in the class EntryPoint2.
+Type error on line 47: A method named tryToRedeclare has already been defined in the class EntryPoint2.
+Type error on line 11: Cannot instantiate the type Point because it was never defined.
+Type error on line 11: The variable p was assigned with mismatched types.
+Type error on line 18: No variable named a in the current scope.
+Type error on line 18: System.out.println only takes an argument of type int.
+Type error on line 19: Expected true to be int.
+Type error on line 19: System.out.println only takes an argument of type int.
+Type error on line 4: A field named x is defined more than once in EntryPoint1.
+Type error on line 5: A field named x is defined more than once in EntryPoint1.
+Type error on line 41: A field named x has already been defined in the superclass EntryPoint1.
+Type error on line 42: A field named y has already been defined in the superclass EntryPoint1.

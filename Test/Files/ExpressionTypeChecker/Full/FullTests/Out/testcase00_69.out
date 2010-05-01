@@ -1,0 +1,4 @@
+Type error on line 23: The method {name: <predicate>, returnType: <boolean>, parameters: <[{name: <y>, type: <int>}, {name: <z>, type: <int>}]>} in FooExt attempts to override the method {name: <predicate>, returnType: <boolean>, parameters: <[{name: <y>, type: <int>}]>} in Foo.
+Type error on line 27: The method {name: <predicate>, returnType: <boolean>, parameters: <[{name: <y>, type: <int>}, {name: <z>, type: <int>}]>} in FooExt attempts to override the method {name: <predicate>, returnType: <boolean>, parameters: <[{name: <y>, type: <int>}]>} in Foo.
+Type error on line 23: A method named predicate has already been defined in the class FooExt.
+Type error on line 27: A method named predicate has already been defined in the class FooExt.

@@ -1,0 +1,3 @@
+Type error on line 6: Expected variable increase to be of type int, but was of type boolean.
+Type error on line 6: The right side of an add operation was expected to be of type int but was boolean.
+Type error on line 6: The type of the right hand side expression of the assignment to variable x does not match the expected type int.

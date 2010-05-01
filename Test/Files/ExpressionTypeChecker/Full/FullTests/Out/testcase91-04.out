@@ -1,0 +1,6 @@
+Parse Error
+
+Parse error on line 26:
+...{			result=1;		}	}}
+--------------------^
+Expecting 'return'

@@ -1,0 +1,2 @@
+Type error on line 5: No variable named args in the current scope.
+Type error on line 5: System.out.println only takes an argument of type int.

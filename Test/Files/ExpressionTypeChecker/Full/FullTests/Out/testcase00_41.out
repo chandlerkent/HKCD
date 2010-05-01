@@ -1,0 +1,10 @@
+Type error on line 27: Expected variable x to be of type int, but was of type boolean.
+Type error on line 27: The left side of a greater than operation was expected to be of type int but was boolean.
+Type error on line 31: The condition in a(n) If statement must be of type boolean.
+Type error on line NaN: The return type of the method retribution was expected to be int but is of type boolean.
+Type error on line 6: The variable alpha was assigned with mismatched types.
+Type error on line 7: Expected variable alpha to be of type boolean, but was of type int.
+Type error on line 7: Argument type int does not match expected type boolean for method commit.
+Type error on line 7: The variable beta was assigned with mismatched types.
+Type error on line NaN: The return type of the method half was expected to be int but is of type Bar.
+Type error on line 8: The variable gamma was assigned with mismatched types.

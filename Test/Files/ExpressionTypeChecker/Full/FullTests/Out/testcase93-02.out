@@ -1,0 +1,2 @@
+Type error on line 25: Expected an integer to be boolean.
+Type error on line 25: The type of the right hand side expression of the assignment to variable hasCartoonishMascot does not match the expected type boolean.

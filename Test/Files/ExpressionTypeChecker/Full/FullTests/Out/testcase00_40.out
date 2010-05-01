@@ -1,0 +1,6 @@
+Type error on line 6: The variable a is not in the current scope.
+Type error on line 8: No variable named a in the current scope.
+Type error on line 8: Argument type null does not match expected type int for method set.
+Type error on line 8: The variable c was assigned with mismatched types.
+Type error on line 9: The variable c is already declared in the current scope.
+Type error on line 18: The variable x is already declared in the current scope.

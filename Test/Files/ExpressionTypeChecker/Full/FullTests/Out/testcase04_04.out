@@ -1,0 +1,10 @@
+Type error on line 31: Expected variable l1 to be of type boolean, but was of type int.
+Type error on line 31: The left side of an or operation was expected to be of type boolean but was int.
+Type error on line 31: Expected variable O0 to be of type boolean, but was of type int.
+Type error on line 31: The right side of an or operation was expected to be of type boolean but was int.
+Type error on line 31: An or expression does not return type int.
+Type error on line 31: The type of the right hand side expression of the assignment to variable l1 does not match the expected type int.
+Type error on line 17: Expected an integer to be boolean.
+Type error on line 21: The condition in a(n) If statement must be of type boolean.
+Type error on line 30: Expected variable l1 to be of type boolean, but was of type int.
+Type error on line 32: The condition in a(n) While statement must be of type boolean.

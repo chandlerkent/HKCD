@@ -1,0 +1,4 @@
+Type error on line 4: Expected an integer to be boolean.
+Type error on line 8: The condition in a(n) If statement must be of type boolean.
+Type error on line 9: Expected an integer to be boolean.
+Type error on line 11: The condition in a(n) While statement must be of type boolean.

@@ -1,0 +1,4 @@
+Type error on line 16: A method named start has already been defined in the class B.
+Type error on line 21: A method named start has already been defined in the class B.
+Type error on line NaN: The return type of the method start was expected to be int but is of type boolean.
+Type error on line 7: The variable b was assigned with mismatched types.

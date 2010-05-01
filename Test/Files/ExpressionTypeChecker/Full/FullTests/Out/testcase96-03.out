@@ -1,0 +1,4 @@
+Type error on line 29: A greater than expression does not return type int.
+Type error on line 29: The left side of an add operation was expected to be of type int but was boolean.
+Type error on line 29: An add expression does not return type boolean.
+Type error on line 30: Type of return expression does not match boolean.

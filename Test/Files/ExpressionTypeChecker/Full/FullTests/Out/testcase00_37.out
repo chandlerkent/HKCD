@@ -1,0 +1,2 @@
+Type error on line 15: Cannot instantiate the type C because it was never defined.
+Type error on line 15: The variable c was assigned with mismatched types.

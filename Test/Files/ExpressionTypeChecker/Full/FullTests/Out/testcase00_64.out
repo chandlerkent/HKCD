@@ -1,0 +1,8 @@
+Type error on line 26: Expected false to be int.
+Type error on line 26: System.out.println only takes an argument of type int.
+Type error on line 13: The variable y is not in the current scope.
+Type error on line 22: No variable named y in the current scope.
+Type error on line 22: The type of the right hand side expression of the assignment to variable x does not match the expected type int.
+Type error on line 11: Expected true to be int.
+Type error on line 11: The right side of a less than operation was expected to be of type int but was boolean.
+Type error on line 14: The condition in a(n) While statement must be of type boolean.

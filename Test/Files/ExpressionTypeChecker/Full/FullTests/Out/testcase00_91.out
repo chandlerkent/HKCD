@@ -1,0 +1,5 @@
+Type error on line 14: Expected variable x to be of type boolean, but was of type int.
+Type error on line 15: Type of return expression does not match boolean.
+Type error on line 18: Attempting to set null to a primitive type boolean.
+Type error on line 18: The left side of an or operation was expected to be of type boolean but was void.
+Type error on line 19: Type of return expression does not match boolean.

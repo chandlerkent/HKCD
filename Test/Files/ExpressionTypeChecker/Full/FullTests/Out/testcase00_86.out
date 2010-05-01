@@ -1,0 +1,2 @@
+Type error on line 5: No variable named arg in the current scope.
+Type error on line 5: The variable z was assigned with mismatched types.

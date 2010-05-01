@@ -1,0 +1,2 @@
+Type error on line NaN: The return type of the method method was expected to be AnotherClass but is of type AClass.
+Type error on line 4: The variable b was assigned with mismatched types.

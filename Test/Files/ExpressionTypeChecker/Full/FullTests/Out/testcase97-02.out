@@ -1,0 +1,11 @@
+Type error on line 4: Expected true to be int.
+Type error on line 4: Argument type boolean does not match expected type int for method eliminateNaughty.
+Type error on line 4: The variable justiceServed was assigned with mismatched types.
+Type error on line 5: The class Dude does not have the method developLists.
+Type error on line 5: The variable numNaughty was assigned with mismatched types.
+Type error on line 22: Attempting to return Xmas but expecting Santa.
+Type error on line 22: The variable roboticSanta was assigned with mismatched types.
+Type error on line 18: Expected an integer to be boolean.
+Type error on line 19: Type of return expression does not match boolean.
+Type error on line 23: Expected the return expression to be int but was Santa.
+Type error on line 24: Type of return expression does not match int.

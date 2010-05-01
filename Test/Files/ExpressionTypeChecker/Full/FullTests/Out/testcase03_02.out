@@ -1,0 +1,5 @@
+Type error on line 3: An add expression does not return type boolean.
+Type error on line 3: The left side of an and operation was expected to be of type boolean but was int.
+Type error on line 7: The condition in a(n) If statement must be of type boolean.
+Type error on line 6: Expected true to be int.
+Type error on line 6: System.out.println only takes an argument of type int.

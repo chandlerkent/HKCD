@@ -1,0 +1,2 @@
+Type error on line 25: An or expression does not return type int.
+Type error on line 26: Type of return expression does not match int.

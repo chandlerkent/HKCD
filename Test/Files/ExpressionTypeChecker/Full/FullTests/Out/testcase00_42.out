@@ -1,0 +1,7 @@
+Type error on line 26: Expected true to be int.
+Type error on line 27: Type of return expression does not match int.
+Type error on line 30: Expected false to be int.
+Type error on line 30: The right side of a subtract operation was expected to be of type int but was boolean.
+Type error on line 30: The type of the right hand side expression of the assignment to variable x does not match the expected type int.
+Type error on line 35: Expected variable tf to be of type int, but was of type boolean.
+Type error on line 35: The type of the right hand side expression of the assignment to variable myInt does not match the expected type int.

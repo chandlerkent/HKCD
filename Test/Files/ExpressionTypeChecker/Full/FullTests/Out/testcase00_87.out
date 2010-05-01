@@ -1,0 +1,2 @@
+Type error on line 5: Expected true to be int.
+Type error on line 5: The variable x was assigned with mismatched types.

@@ -1,0 +1,2 @@
+Type error on line 8: Expected variable Blob to be of type Blob, but was of type int.
+Type error on line 9: Type of return expression does not match Blob.

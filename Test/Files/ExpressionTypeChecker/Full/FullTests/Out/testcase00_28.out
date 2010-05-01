@@ -1,0 +1,2 @@
+Type error on line 14: A method named self has already been defined in the class Bar.
+Type error on line 19: A method named self has already been defined in the class Bar.

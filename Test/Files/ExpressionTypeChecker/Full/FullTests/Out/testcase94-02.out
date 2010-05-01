@@ -1,0 +1,2 @@
+Type error on line 9: An add expression does not return type boolean.
+Type error on line 9: The variable a3 was assigned with mismatched types.

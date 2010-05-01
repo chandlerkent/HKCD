@@ -3,7 +3,7 @@ Chandler Kent
 Derek Hammer
 (HKCD)
 DTC Milestone
-(4/23/2010)
+(4/30/2010)
 ============================
 
 -----------
@@ -13,25 +13,34 @@ The source code for this milestone is located in /lib/.
 
 main.js                                   -> Main Entry Point
 
-grammar.json                              -> Grammar Definition File
+lib/grammar.json                          -> Grammar Definition File
 
-Environment.js, ClassMap.js, MethodMap.js
-ArrayMap.js, TypeError.js                 -> Environmnet / Type Tables
+Environment.js, 
+Environment/
+  ClassMap.js, MethodMap.js
+  VariableMap.js, ScopeMap.js
+  ArrayMap.js, TypeError.js               -> Environmnet / Type Tables
 
-ASTNode.js                                -> AST Representation (we use duck typing)
+ASTNode.js    
+ASTNode/
+  ExpressionChecks.js, ExpressionTypes.js -> AST Representation (we use duck typing)
 
-ClassDecl.js, FieldDecl.js, 
-FieldShadow.js, MethodDecl.js, 
-MethodDecl.js, MethodOverload.js,         -> TypeCheckers
-MethodOverride.js, ParameterDecs.js
-ParameterTypes.js                         
 
-GatherTypeInfo.js                         -> Type Environment Scanner
+TypeChecker.js
+TypeChecker/
+  ClassDecl.js, FieldDecl.js, 
+  Assigment.js, Driver.js,
+  GatherTypeInfo.js, IfWhile.js,
+  InitialAssignment.js, PrintLine.js,
+  FieldShadow.js, MethodDecl.js, 
+  MethodDecl.js, MethodOverload.js,       -> TypeCheckers
+  MethodOverride.js, ParameterDecs.js
+  ParameterTypes.js, ReturnType.js                         
 
 --------------
 Program Output
 --------------
-The output for the test cases is located in /Test/Files/TypeChecker/FullTestCases/FullTests/Out/ (sorry). The names should match the names of the test cases provided.
+The output for the test cases is located in Test/Files/ExpressionTypeChecker/Full/FullTests/Out/ (sorry). The names should match the names of the test cases provided.
 
 --------------
 Test Case

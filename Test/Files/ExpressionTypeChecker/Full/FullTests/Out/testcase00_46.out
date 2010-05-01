@@ -1,0 +1,7 @@
+Type error on line 13: The class null does not have the method fib.
+Type error on line 13: The left side of an add operation was expected to be of type int but was null.
+Type error on line 13: The class null does not have the method fib.
+Type error on line 13: The right side of an add operation was expected to be of type int but was null.
+Type error on line 13: The type of the right hand side expression of the assignment to variable result does not match the expected type int.
+Type error on line 3: The class null does not have the method fib.
+Type error on line 3: System.out.println only takes an argument of type int.

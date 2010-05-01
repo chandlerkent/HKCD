@@ -1,0 +1,1 @@
+Type error on line 22: The method {name: <method>, returnType: <boolean>, parameters: <[{name: <test>, type: <int>}]>} in shadow attempts to override the method {name: <method>, returnType: <int>, parameters: <[{name: <test>, type: <int>}]>} in UV.

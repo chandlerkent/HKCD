@@ -1,0 +1,2 @@
+Type error on line 3: The class null does not have the method add.
+Type error on line 3: System.out.println only takes an argument of type int.

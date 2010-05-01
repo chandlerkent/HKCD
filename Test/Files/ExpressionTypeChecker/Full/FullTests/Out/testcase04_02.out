@@ -1,0 +1,3 @@
+Type error on line 25: Expected true to be int.
+Type error on line 25: The left side of an add operation was expected to be of type int but was boolean.
+Type error on line 26: Type of return expression does not match int.

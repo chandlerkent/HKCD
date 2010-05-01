@@ -1,0 +1,2 @@
+Type error on line 3: Cannot access variable this in static methods.
+Type error on line 3: The variable ft was assigned with mismatched types.

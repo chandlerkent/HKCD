@@ -1,0 +1,4 @@
+Type error on line 7: The variable a is already declared in the current scope.
+Type error on line 8: The variable b is already declared in the current scope.
+Type error on line 14: The variable a is already declared in the current scope.
+Type error on line 15: The variable b is already declared in the current scope.

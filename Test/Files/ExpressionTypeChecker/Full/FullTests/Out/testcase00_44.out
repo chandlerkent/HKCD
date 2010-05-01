@@ -1,0 +1,4 @@
+Type error on line 3: The class null does not have the method fib.
+Type error on line 3: System.out.println only takes an argument of type int.
+Type error on line 9: Expected true to be int.
+Type error on line 10: Type of return expression does not match int.

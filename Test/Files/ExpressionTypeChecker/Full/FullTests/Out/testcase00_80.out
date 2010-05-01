@@ -1,0 +1,4 @@
+Type error on line 8: Multiple declarations found for class Point.
+Type error on line 8: Cannot extend the unknown superclass DoesNotExist.
+Type error on line 10: Multiple declarations found for class Point.
+Type error on line 12: Multiple declarations found for class Point.

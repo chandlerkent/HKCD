@@ -1,0 +1,2 @@
+Type error on line 7: Expected an integer to be bool.
+Type error on line 7: The variable a was assigned with mismatched types.

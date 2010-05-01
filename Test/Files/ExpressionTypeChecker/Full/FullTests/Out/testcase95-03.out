@@ -1,0 +1,5 @@
+Type error on line 5: Expected variable a to be of type boolean, but was of type int.
+Type error on line 5: The left side of an or operation was expected to be of type boolean but was int.
+Type error on line 5: Expected variable b to be of type boolean, but was of type int.
+Type error on line 5: The right side of an or operation was expected to be of type boolean but was int.
+Type error on line 5: The variable c was assigned with mismatched types.

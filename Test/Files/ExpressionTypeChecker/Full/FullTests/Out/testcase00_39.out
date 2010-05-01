@@ -1,0 +1,2 @@
+Type error on line 15: Expected true to be int.
+Type error on line 16: Type of return expression does not match int.

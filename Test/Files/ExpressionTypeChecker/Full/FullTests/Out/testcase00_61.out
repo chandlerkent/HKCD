@@ -1,0 +1,1 @@
+Type error on line 39: The method {name: <ossifrage>, returnType: <int>, parameters: <[{name: <x>, type: <boolean>}]>} in Test6 attempts to override the method {name: <ossifrage>, returnType: <int>, parameters: <[{name: <x>, type: <int>}]>} in Test5A.
