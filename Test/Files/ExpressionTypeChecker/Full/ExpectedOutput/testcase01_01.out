@@ -1,3 +1,2 @@
-The class A6 does not have the method a5.
 The left hand side's type (null) does not equal the right hand side's type (int).
 Type of return expression does not match boolean.

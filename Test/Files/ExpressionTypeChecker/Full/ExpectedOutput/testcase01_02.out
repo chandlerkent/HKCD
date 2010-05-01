@@ -1,6 +1,5 @@
 A multiply expression does not return type double.
 Type of return expression does not match double.
-The class A6 does not have the method a5.
 The left hand side's type (null) does not equal the right hand side's type (int).
 Type of return expression does not match boolean.
 The return type of the method a7 was expected to be double but is of type boolean.
