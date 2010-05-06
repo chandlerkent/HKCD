@@ -1,8 +1,9 @@
 var Parser = require("../lib/parser").Parser;
 var FileList = require("jake").FileList;
+var UTILS = require("../lib/utils");
 var ASSERT = require("assert");
 
-var parser = new Parser(readGrammarFromFile("src/grammar.json"));
+var parser = new Parser(UTILS.readGrammarFromFile("src/grammar.json"));
 
 exports.testThatParserDoesInitialize = function() {
     assertNotNull(parser);
@@ -42,7 +43,7 @@ function parserParsesWithAssertionInputFilesFromLocation(assertion, location) {
     var inputFiles = new FileList(location).items();
 
     inputFiles.forEach(function(file) {
-        var bytes = readFile(file);
+        var bytes = UTILS.readFile(file);
 
         try {
             var parsedFile = parser.parse(bytes);
@@ -56,29 +57,6 @@ function parserParsesWithAssertionInputFilesFromLocation(assertion, location) {
 function assertNotNull(obj) {
     if(!obj || obj === null) {
         ASSERT.fail("Expecting a non null object.");
-    }
-}
-
-function readGrammarFromFile(filePath) {
-    try
-    {
-        return JSON.parse(readFile(filePath));
-    }
-    catch (e)
-    {
-        print("Error reading grammar file: " + filePath);
-    }
-}
-
-function readFile(fileName) {
-    try
-    {
-        var filePath = require("file").absolute(fileName);
-        return require("file").read(filePath);
-    }
-    catch (e)
-    {
-        require("os").exit(-1);
     }
 }
 

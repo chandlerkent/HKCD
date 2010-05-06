@@ -4,9 +4,9 @@
 
 var Parser = require("../lib/parser").Parser;
 var TypeChecker = require("../lib/TypeChecker");
-
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
+var UTILS = require("../lib/utils");
 
 var files = [];
 var outputs = [];
@@ -223,7 +223,7 @@ outputs = outputs.concat([
         ""
 ]);
 
-var parser = new Parser(readGrammarFromFile("src/grammar.json"));
+var parser = new Parser(UTILS.readGrammarFromFile("src/grammar.json"));
 
 for (var i = 0; i < files.length; i++) {
     var fileParts = files[i].split("/");
@@ -238,7 +238,7 @@ function buildTestFunctionForFile(inFile, errors) {
         errors = [].concat(errors);
 
     return function() {
-        var ast = parser.parse(readFile(inFile));
+        var ast = parser.parse(UTILS.readFile(inFile));
         
         var env = TypeChecker.typeCheck(ast).env;
             
@@ -265,29 +265,6 @@ function buildTestFunctionForFile(inFile, errors) {
             ASSERT.equal(0, actualMessages.length, "Expected no errors but got " + env.errors.join("\n"));
         }
     };
-}
-
-function readGrammarFromFile(filePath) {
-    try
-    {
-        return JSON.parse(readFile(filePath));
-    }
-    catch (e)
-    {
-        print("Error reading grammar file: " + filePath);
-    }
-}
-
-function readFile(fileName) {
-    try
-    {
-        var filePath = require("file").absolute(fileName);
-        return require("file").read(filePath);
-    }
-    catch (e)
-    {
-        require("os").exit(-1);
-    }
 }
 
 if (require.main === module)
