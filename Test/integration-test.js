@@ -3,7 +3,7 @@
 // leverage them. This is where they go.
 
 var Parser = require("../lib/parser").Parser;
-var TypeChecker = require("../lib/TypeChecker");
+var TypeChecker = require("../lib/TypeChecker").TypeChecker;
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;
 var UTILS = require("../lib/utils");
@@ -240,7 +240,7 @@ function buildTestFunctionForFile(inFile, errors) {
     return function() {
         var ast = parser.parse(UTILS.readFile(inFile));
         
-        var env = TypeChecker.typeCheck(ast).env;
+        var env = (new TypeChecker()).typeCheck(ast).env;
             
         var actualMessages = env.errors.map(function(err) {
             return err.message;
