@@ -1,0 +1,19 @@
+============================
+Chandler Kent
+Derek Hammer
+(HKCD)
+Basic Code Gen. Milestone
+(5/7/2010)
+============================
+
+-----------
+Source Code
+-----------
+The source code for this milestone is located in /lib/.
+
+ASTNode/
+  NodeEmitter.js                          -> The emitter mixin which adds an emit() function to each node
+
+CodeEmitter.js                            -> Target-machine (JVM) specific code emitter
+
+CodeGenerator.js                          -> Module to start node-visiting and write the generated code to a file
