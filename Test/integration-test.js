@@ -2,7 +2,7 @@
 // of the project but we are required to submit functional test cases. Since we are writing them, we may as well
 // leverage them. This is where they go.
 
-var Parser = require("../lib/parser").Parser;
+var Parser = require("../lib/Parser").Parser;
 var TypeChecker = require("../lib/TypeChecker").TypeChecker;
 var ASSERT = require("assert");
 var FileList = require("jake").FileList;

@@ -1,7 +1,7 @@
 exports.testASTNode = require("./ASTNode-test");
 exports.testTypeChecker = require("./TypeChecker-test");
 exports.testEnvironment = require("./Environment-test");
-exports.testParser = require("./parser-test");
+exports.testParser = require("./Parser-test");
 exports.testIntegration = require("./integration-test");
 
 if (require.main === module)

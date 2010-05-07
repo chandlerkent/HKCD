@@ -1,4 +1,4 @@
-var Parser = require("../lib/parser").Parser;
+var Parser = require("../lib/Parser").Parser;
 var FileList = require("jake").FileList;
 var UTILS = require("../lib/utils");
 var ASSERT = require("assert");
