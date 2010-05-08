@@ -4,6 +4,10 @@ var ASSERT = require("test/assert");
 
 exports.testClassMap = require("./Environment/ClassMap-test");
 exports.testMethodMap = require("./Environment/MethodMap-test");
+exports.testArrayMap = require("./Environment/ArrayMap-test");
+exports.testScopeMap = require("./Environment/ScopeMap-test");
+exports.testTypeError = require("./Environment/TypeError-test");
+exports.testVariableMap = require("./Environment/VariableMap-test");
 
 exports.testThatEnvironmentAddsClass = function() {
     var target = new Environment();

@@ -10,7 +10,11 @@ exports.testMethodOverride = require("./TypeChecker/MethodOverride-test");
 exports.testParameterDecl = require("./TypeChecker/ParameterDecl-test");
 exports.testParameterTypes = require("./TypeChecker/ParameterTypes-test");
 exports.testReturnType = require("./TypeChecker/ReturnType-test");
-
+exports.testAssignment = require("./TypeChecker/Assignment-test");
+exports.testIfWhile = require("./TypeChecker/IfWhile-test");
+exports.testInitialAssignment = require("./TypeChecker/InitialAssignment-test");
+exports.testMethodDecl = require("./TypeChecker/MethodDecl-test");
+exports.testPrintLine = require("./TypeChecker/PrintLine-test");
 
 exports.testThatTypeCheckerProcessesSteps = function() {
     var steps = buildFakes();
