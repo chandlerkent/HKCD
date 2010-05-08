@@ -1,6 +1,10 @@
 var ASTNode = require("../lib/ASTNode").ASTNode;
 var ASSERT = require("test/assert");
 
+exports.testExpressionChecks = require("./ASTNode/ExpressionChecks-test");
+exports.testExpressionTypes = require("./ASTNode/ExpressionTypes-test");
+exports.testNodeEmitters = require("./ASTNode/NodeEmitters-test");
+
 exports.testNodeConstruction = function() {
     var namedNode = new ASTNode('NAME');
     ASSERT.eq('NAME', namedNode.name);
