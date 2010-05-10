@@ -35,11 +35,10 @@ var runCompileTest = function(file, expectedOutput) {
         "args":  [file]
     };
     var compiler = new Compiler(options);
-    var compiledFile = options.args[0].replace(/\.java$/, ".j");
     
     compiler.compile();
     
-    var jasmine = OS.popen(["java", "-jar", "src/jasmin.jar", compiledFile].join(" "));
+    var jasmine = OS.popen(["java", "-jar", "src/jasmin.jar", "*.j"].join(" "));
     jasmine.wait();
     
     var javaProcess = OS.popen(["java", "Main"].join(" "));
@@ -49,7 +48,7 @@ var runCompileTest = function(file, expectedOutput) {
     ASSERT.eq(expectedOutput, result);
     
     FILE.rmtree("Main.class");
-    FILE.rmtree(compiledFile);
+    FILE.rmtree(new FileList("*.j").items());
 };
 
 for (var i = 0; i < files.length; i++) {
