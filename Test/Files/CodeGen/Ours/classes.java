@@ -1,7 +1,7 @@
 class Main {
     public static void main(String[] args) {
         System.out.println((new Foo()).foo(6));
-        System.out.println((new Bar()).bar());
+        // System.out.println((new Bar()).bar());
     }
 }
 
@@ -11,8 +11,8 @@ class Foo {
     }
 }
 
-class Bar extends Foo {
-    public int bar() {
-        return this.foo(6);
-    }
-}
+// class Bar extends Foo {
+//     public int bar() {
+//         return this.foo(6);
+//     }
+// }
