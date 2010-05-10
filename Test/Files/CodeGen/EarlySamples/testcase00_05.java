@@ -5,7 +5,7 @@ class Main
    public static void main( String[] args )
    {
       int s  = 500000;
-      int o  = 00000;
+      int o  = 0;
       int l1 = 1000;
       int l2 = 100;
       int e  = 30;
