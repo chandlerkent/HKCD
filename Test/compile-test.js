@@ -46,9 +46,9 @@ var runCompileTest = function(file, expectedOutput) {
     var result = javaProcess.stdout.read();
     
     ASSERT.eq(expectedOutput, result);
-    
-    FILE.rmtree("Main.class");
-    FILE.rmtree(new FileList("*.j").items());
+    // 
+    // FILE.rmtree("Main.class");
+    // FILE.rmtree(new FileList("*.j").items());
 };
 
 for (var i = 0; i < files.length; i++) {
