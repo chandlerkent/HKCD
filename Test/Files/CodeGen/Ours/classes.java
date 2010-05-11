@@ -6,9 +6,6 @@ class Main {
 }
 
 class Foo {
-    int y;
-    boolean z;
-    
     public int foo(int x) {
         return x * 7;
     }
