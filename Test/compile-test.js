@@ -14,6 +14,14 @@ var outputs = [];
     outputs.push(file);
 });
 
+// Full
+(new FileList("Test/Files/CodeGen/Full/FullTests/*.java").items()).forEach(function(file) {
+    files.push(file);
+});
+(new FileList("Test/Files/CodeGen/Full/ExpectedOutput/*.out").items()).forEach(function(file) {
+    outputs.push(file);
+});
+
 // Turn-In
 (new FileList("Test/Files/CodeGen/Turn-In/*.java").items()).forEach(function(file) {
     files.push(file);
