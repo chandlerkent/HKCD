@@ -1,12 +1,12 @@
 var Compiler = require("../lib/Compiler.js").Compiler;
 var ASSERT = require("test/assert");
-var OS = require("os");
 var FILE = require("file");
 var FileList = require("jake").FileList;
 
 var files = [];
 var outputs = [];
 
+// Ours
 (new FileList("Test/Files/CodeGen/Ours/*.java").items()).forEach(function(file) {
     files.push(file);
 });
@@ -14,10 +14,19 @@ var outputs = [];
     outputs.push(file);
 });
 
+// Turn-In
 (new FileList("Test/Files/CodeGen/Turn-In/*.java").items()).forEach(function(file) {
     files.push(file);
 });
 (new FileList("Test/Files/CodeGen/Turn-In/*.out").items()).forEach(function(file) {
+    outputs.push(file);
+});
+
+// Early Samples
+(new FileList("Test/Files/CodeGen/EarlySamples/*.java").items()).forEach(function(file) {
+    files.push(file);
+});
+(new FileList("Test/Files/CodeGen/EarlySamples/*.out").items()).forEach(function(file) {
     outputs.push(file);
 });
 
@@ -36,19 +45,9 @@ var runCompileTest = function(file, expectedOutput) {
     };
     var compiler = new Compiler(options);
     
-    compiler.compile();
-    
-    var jasmine = OS.popen(["java", "-jar", "src/jasmin.jar", "*.j"].join(" "));
-    jasmine.wait();
-    
-    var javaProcess = OS.popen(["java", "Main"].join(" "));
-    
-    var result = javaProcess.stdout.read();
+    var result = compiler.compile();
     
     ASSERT.eq(expectedOutput, result);
-    // 
-    // FILE.rmtree("Main.class");
-    // FILE.rmtree(new FileList("*.j").items());
 };
 
 for (var i = 0; i < files.length; i++) {

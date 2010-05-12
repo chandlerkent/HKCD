@@ -1,6 +1,6 @@
 class Main {
     public static void main(String[] args) {
-        System.out.println((new Foo()).foo(5, 7, 2));
+        System.out.println((new Foo()).foo(10, 4, 2));
         System.out.println((new Bar()).bar());
     }
 }
@@ -13,6 +13,6 @@ class Foo {
 
 class Bar extends Foo {
     public int bar() {
-        return this.foo(5, 7, 2);
+        return this.foo(13, 3, 3);
     }
 }
