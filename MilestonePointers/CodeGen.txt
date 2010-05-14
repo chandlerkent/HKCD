@@ -1,0 +1,28 @@
+============================
+Chandler Kent
+Derek Hammer
+(HKCD)
+Code Gen. Milestone
+(5/13/2010)
+============================
+
+-----------
+Source Code
+-----------
+The source code for this milestone is located in /lib/.
+
+ASTNode/
+  NodeEmitter.js                          -> The emitter mixin which adds an emit() function to each node
+
+CodeEmitter.js                            -> Target-machine (JVM) specific code emitter
+
+CodeGenerator.js                          -> Module to start node-visiting and write the generated code to a file
+
+CodeRunner.js                             -> Runs jasmine and the JVM
+
+ResultReporter.js                         -> Reports results (...) but also grabs all relevant output (error messages)
+
+--------------
+Program Output
+--------------
+The output for the test cases is located in /Test/Files/CodeGen/Full/FullTests/Out/ (sorry). The names should match the names of the test cases provided.
