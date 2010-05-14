@@ -14,7 +14,7 @@
             ["System\\.out\\.println\\b",       "return 'printLine';"],
             ["{Letter}({Letter}|{Digit})*",     "return 'ID';"],
             ["({NonZeroDigit}{Digit}*|0)",      "return 'Integer';"],
-            ["(\\!=|\\!|-|\\+|\\*|&&|\\/|>=|>|<=|<|==|\\|\\||\\{|\\}|\\[|\\]|\\(|\\)|\\.|;|,|=)", "return yytext;"],
+            ["(\\!=|\\!|-|\\+|\\*|&&|\\/|>=|>|<=|<|==|\\|\\||\\{|\\}|\\[|\\]|\\(|\\)|\\.|;|,|=|\\|)", "return yytext;"],
         ]
     },
     
@@ -87,6 +87,9 @@
         "ReturnStmt":       [
                                 ["return Expr ;", "$$ = new yy.ASTNode('ReturnExpression', [], { 'lineNumber': yylineno, 'expression': $2 });"],
                             ],
+        "ImplicitReturn":   [
+                                ["Expr", "$$ = $1"]
+                            ],
         "Stmt":             [
                                 ["Type JavaID = Expr ;", "$$ = new yy.ASTNode('InitialAssignment', [], { 'type': $1, 'varName': $2, 'value': $4, 'lineNumber': yylineno });"],
                                 ["{ StmtList }", "$$ = new yy.ASTNode('Block', [].concat($2), { 'lineNumber': yylineno });"],
@@ -119,6 +122,7 @@
                                 ["true", "$$ = new yy.ASTNode('TrueExpression', [], { 'lineNumber': yylineno });"],
                                 ["false", "$$ = new yy.ASTNode('FalseExpression', [], { 'lineNumber': yylineno });"], 
                                 ["( Expr )", "$$ = $2;"],
+                                ["{ FormalList | ImplicitReturn }", "$$ = new yy.ASTNode('ClosureExpression', [], { 'parameterList': $2, 'returnExpression': $4, 'lineNumber': yylineno });"],
                             ],
         "ParameterList":    [
                                 ["", "$$ = [];"],
