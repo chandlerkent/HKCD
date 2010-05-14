@@ -20,8 +20,18 @@ function main() {
 
     if (File.isDirectory(options.args[0])) {
         Utils.processDirectory(options.args[0], function(file) {
+<<<<<<< HEAD
+            var newOptions = {};
+            for(var key in options) {
+                newOptions[key] = options[key];
+            }
+            newOptions.args = [file];
+            
+            var compiler = new Compiler(newOptions);
+=======
             var compiler = new Compiler(options, [new Parser(), new TypeChecker(), new CodeGenerator(), new CodeRunner()]);
             compiler.file = file;
+>>>>>>> 8379f817e318f50b60b464e331be08fbc07b978d
             var success = compiler.compile();
             
             return (success) ? success : compiler.errors.join("\n");

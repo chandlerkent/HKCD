@@ -3,7 +3,11 @@ Chandler Kent
 Derek Hammer
 (HKCD)
 Code Gen. Milestone
+<<<<<<< HEAD
+(5/13/2010)
+=======
 (5/14/2010)
+>>>>>>> 8379f817e318f50b60b464e331be08fbc07b978d
 ============================
 
 -----------
@@ -18,6 +22,16 @@ CodeEmitter.js                            -> Target-machine (JVM) specific code 
 
 CodeGenerator.js                          -> Module to start node-visiting and write the generated code to a file
 
+<<<<<<< HEAD
+CodeRunner.js                             -> Runs jasmine and the JVM
+
+ResultReporter.js                         -> Reports results (...) but also grabs all relevant output (error messages)
+
+--------------
+Program Output
+--------------
+The output for the test cases is located in /Test/Files/CodeGen/Full/FullTests/Out/ (sorry). The names should match the names of the test cases provided.
+=======
 CodeRunner.js                             -> Runs the Jasmin assembler on the code to generate Java class files and then uses Java to run the code
 
 Compiler.js                               -> Ties together all the compiler modules to execute them in a pipeline
@@ -27,3 +41,4 @@ Compiler.js                               -> Ties together all the compiler modu
 Output
 ------
 The output of our compiler from the full test cases is located in /Test/Files/CodeGen/Full/FullTests/Out/.
+>>>>>>> 8379f817e318f50b60b464e331be08fbc07b978d
