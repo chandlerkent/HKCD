@@ -121,6 +121,7 @@
                                 ["false", "$$ = new yy.ASTNode('FalseExpression', [], { 'lineNumber': yylineno });"], 
                                 ["( Expr )", "$$ = $2;"],
                                 ["Closure", "$$ = $1;"],
+                                ["ID ( ParameterList )", "$$ = new yy.ASTNode('ClosureCallExpression', [$5], { 'lineNumber': yylineno })"],
                             ],
         "Closure":          [
                                 ["{ FormalList | StmtList ReturnStmt }", "$$ = new yy.ASTNode('ClosureExpression', [$5].concat($4), { 'parameterList': $2, 'returnExpression': $5, 'lineNumber': yylineno });"],
