@@ -10,7 +10,7 @@
             ["/\\*(.|\\n|\\r|\\r\\n)*?\\*/",    "/* skip */"],
             ["//.*",                            "/* skip */"],
             ["\\s+",                            "/* skip */"],
-            ["(class|public|static|void|main|String|extends|int|boolean|return|if|else|while|true|new|null|false|this)\\b", "return yytext;"],
+            ["(class|public|static|void|main|String|extends|int|boolean|Function|return|if|else|while|true|new|null|false|this)\\b", "return yytext;"],
             ["System\\.out\\.println\\b",       "return 'printLine';"],
             ["{Letter}({Letter}|{Digit})*",     "return 'ID';"],
             ["({NonZeroDigit}{Digit}*|0)",      "return 'Integer';"],
@@ -78,6 +78,7 @@
         "Type":             [
                                 ["int", "$$ = yytext;"],
                                 ["boolean", "$$ = yytext;"],
+                                ["Function", "$$ = yytext;"],
                                 ["ID", "$$ = yytext;"],
                             ],
         "StmtList":         [
@@ -86,9 +87,6 @@
                             ],
         "ReturnStmt":       [
                                 ["return Expr ;", "$$ = new yy.ASTNode('ReturnExpression', [], { 'lineNumber': yylineno, 'expression': $2 });"],
-                            ],
-        "ImplicitReturn":   [
-                                ["Expr", "$$ = $1"]
                             ],
         "Stmt":             [
                                 ["Type JavaID = Expr ;", "$$ = new yy.ASTNode('InitialAssignment', [], { 'type': $1, 'varName': $2, 'value': $4, 'lineNumber': yylineno });"],
@@ -122,7 +120,10 @@
                                 ["true", "$$ = new yy.ASTNode('TrueExpression', [], { 'lineNumber': yylineno });"],
                                 ["false", "$$ = new yy.ASTNode('FalseExpression', [], { 'lineNumber': yylineno });"], 
                                 ["( Expr )", "$$ = $2;"],
-                                ["{ FormalList | ImplicitReturn }", "$$ = new yy.ASTNode('ClosureExpression', [], { 'parameterList': $2, 'returnExpression': $4, 'lineNumber': yylineno });"],
+                                ["Closure", "$$ = $1;"],
+                            ],
+        "Closure":          [
+                                ["{ FormalList | StmtList ReturnStmt }", "$$ = new yy.ASTNode('ClosureExpression', [$5].concat($4), { 'parameterList': $2, 'returnExpression': $5, 'lineNumber': yylineno });"],
                             ],
         "ParameterList":    [
                                 ["", "$$ = [];"],
