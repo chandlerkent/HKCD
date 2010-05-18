@@ -14,6 +14,7 @@ class Main {
         
         System.out.println(foo.foo(x));
         System.out.println(foo.foo(y));
+        System.out.println(foo.foo({ int g | return g * 2; }));
         System.out.println(w);
     }
 }
