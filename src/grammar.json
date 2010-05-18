@@ -89,7 +89,7 @@
                                 ["return Expr ;", "$$ = new yy.ASTNode('ReturnExpression', [], { 'lineNumber': yylineno, 'expression': $2 });"],
                             ],
         "Stmt":             [
-                                ["Type JavaID = Expr ;", "$$ = new yy.ASTNode('InitialAssignment', [], { 'type': $1, 'varName': $2, 'value': $4, 'lineNumber': yylineno });"],
+                                ["Type JavaID = Expr ;", "$4.varName = $2; $$ = new yy.ASTNode('InitialAssignment', [], { 'type': $1, 'varName': $2, 'value': $4, 'lineNumber': yylineno });"],
                                 ["{ StmtList }", "$$ = new yy.ASTNode('Block', [].concat($2), { 'lineNumber': yylineno });"],
                                 ["if ( Expr ) Stmt else Stmt", "$$ = new yy.ASTNode('If', [$5, $7], { 'condition': $3, 'lineNumber': yylineno });"],
                                 ["while ( Expr ) Stmt", "$$ = new yy.ASTNode('While', [$5], { 'condition': $3, 'lineNumber': yylineno });"],
@@ -113,7 +113,7 @@
                                 ["- Expr", "$$ = new yy.ASTNode('NegateExpression', [$2], { 'lineNumber': yylineno });", {"prec": "UMINUS"}],
                                 ["Expr . JavaID ( ParameterList )", "$$ = new yy.ASTNode('CallExpression', [$1, $5], {'methodCallName': $3, 'lineNumber': yylineno});"],
                                 ["new JavaID ( )", "$$ = new yy.ASTNode('ConstructExpression', [], {'className':$2, 'lineNumber': yylineno});"],
-                                ["ID", "$$ = new yy.ASTNode('IDExpression', [], { 'value': yytext, 'lineNumber': yylineno });"],
+                                ["IDExpression", "$$ = $1;"],
                                 ["this", "$$ = new yy.ASTNode('ThisExpression', [], { 'lineNumber': yylineno });"],
                                 ["Integer", "$$ = new yy.ASTNode('IntegerExpression', [], {'expression':yytext, 'lineNumber': yylineno});"],
                                 ["null", "$$ = new yy.ASTNode('NullExpression', [], { 'lineNumber': yylineno });"],
@@ -121,10 +121,13 @@
                                 ["false", "$$ = new yy.ASTNode('FalseExpression', [], { 'lineNumber': yylineno });"], 
                                 ["( Expr )", "$$ = $2;"],
                                 ["Closure", "$$ = $1;"],
-                                ["ID ( ParameterList )", "$$ = new yy.ASTNode('ClosureCallExpression', [$3], { 'closureName': $1, 'lineNumber': yylineno })"],
+                                ["IDExpression ( ParameterList )", "$$ = new yy.ASTNode('ClosureCallExpression', [$1, $3], { 'lineNumber': yylineno })"],
+                            ],
+        "IDExpression":     [
+                                ["ID", "$$ = new yy.ASTNode('IDExpression', [], { 'value': yytext, 'lineNumber': yylineno });"],
                             ],
         "Closure":          [
-                                ["{ FormalList | StmtList ReturnStmt }", "$$ = new yy.ASTNode('ClosureExpression', [$5].concat($4).concat($2), { 'returnExpression': $5, 'lineNumber': yylineno });"],
+                                ["{ FormalList | StmtList ReturnStmt }", "$$ = new yy.ASTNode('ClosureExpression', $2.concat($4).concat([$5]), { 'returnExpression': $5, 'lineNumber': yylineno });"],
                             ],
         "ParameterList":    [
                                 ["", "$$ = [];"],
